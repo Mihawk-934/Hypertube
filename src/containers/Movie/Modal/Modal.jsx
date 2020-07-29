@@ -2,7 +2,7 @@ import React from 'react';
 import Video from '../Video/Video';
 import { Modal, ButtonToolbar } from 'react-bootstrap';
 import { FaFilm } from "react-icons/fa";
-// import './Modal.css';
+import './Modal.css';
 import MyButton from '../../../components/MyButton/MyButton'
 
 function MyVerticallyCenteredModal(props) {
