@@ -8,7 +8,7 @@ function MyVerticallyCenteredModal(props) {
     return (
         <Modal className="Modal" {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Title id="contained-modal-title-vcenter" style={{color:'black'}}>
                     Trailer
                 </Modal.Title>
             </Modal.Header>
@@ -19,15 +19,15 @@ function MyVerticallyCenteredModal(props) {
     );
 }
 
-const myModal = (props) => {
-    // const [modalShow, setModalShow] = React.useState(false);
+const MyModal = (props) => {
+    const [modalShow, setModalShow] = React.useState(false);
 
     return (
         <ButtonToolbar>
-            {/* <Button className='BandeAnnonce' variant="danger" block onClick={() => setModalShow(true)}><FaFilm style={{marginRight:"20px"}}/>Regarder le trailer</Button>
-            <MyVerticallyCenteredModal show={modalShow} id={props.id} onHide={() => setModalShow(false)}/> */}
+            <Button className='BandeAnnonce' variant="danger" block onClick={() => setModalShow(true)}><FaFilm style={{marginRight:"20px"}}/>Regarder le trailer</Button>
+            <MyVerticallyCenteredModal show={modalShow} id={props.id} onHide={() => setModalShow(false)}/>
         </ButtonToolbar>
     );
 }
 
-export default myModal;
+export default MyModal;
