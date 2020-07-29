@@ -19,7 +19,6 @@ const Presentation = (props) => {
                     <Icons/>
                     <Modal id={props.youtubeKey}/>
                 </Col>
-
                 <Col sm={12} md={8}>
                     <Row>
                         <Col> 
