@@ -1,0 +1,10 @@
+.Image {
+    cursor: pointer;
+    transform: scale(0.9);
+    -webkit-filter: brightness(0.75);
+}
+.Image:hover {
+    transition-duration: 0.5s;
+    transform: scale(1);
+    -webkit-filter: brightness(1);
+}

@@ -1,0 +1,26 @@
+.Filtres,
+.Filtres2 {
+    display: flex;
+    flex-direction: row;
+}
+
+@media(max-width: 980px) {
+    .Filtres {
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 430px) {
+    .Filtres2 {
+        flex-direction: column;
+    }
+}
+
+.Reset {
+    width: 30px;
+    height: 30px;
+    color: red;
+    margin: auto;
+    margin-top: 35px;
+    cursor: pointer;
+}

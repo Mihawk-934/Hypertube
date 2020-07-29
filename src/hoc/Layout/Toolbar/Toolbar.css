@@ -1,0 +1,36 @@
+.Toolbar {
+    background-color: black;
+    border-bottom: 2px solid white;
+}
+
+.NavUser {
+    margin: auto;
+}
+
+.NavLogout {
+    display:flex;
+    align-items: center;
+    margin: auto;
+}
+
+.User {
+    width: 70px;
+    height: 70px;
+}
+
+.Logout {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.Logout:hover {
+    color: red; 
+}
+
+@media (min-width: 991px) {
+    .NavUser,
+    .NavUser {
+        margin: 0 10px;
+    }
+}

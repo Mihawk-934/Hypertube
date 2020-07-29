@@ -1,0 +1,36 @@
+.Ul {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.Titre {
+    padding: 5px;
+    color: white;
+    font-size: 32px;
+    font-family: Osvald , sans-serif;
+    text-align: center;
+}
+
+.Head {
+    display: flex;
+    flex-direction: row;
+}
+
+.Hr {
+    width: 20%;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width: 524px) {
+    .Ul {
+        display: flex;
+        justify-content: center;
+    }
+}
