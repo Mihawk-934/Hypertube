@@ -12,7 +12,7 @@ const MyButton = props => (
     className="button login-form-submit"
     onClick={props.clicked}
   >
-    Valider
+    {props.value ? props.value : 'Valider'}
   </Button>
 );
 

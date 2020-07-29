@@ -1,13 +1,14 @@
 import React from 'react';
 import Video from '../Video/Video';
-import { Modal, Button, ButtonToolbar } from 'react-bootstrap';
+import { Modal, ButtonToolbar } from 'react-bootstrap';
 import { FaFilm } from "react-icons/fa";
-import './Modal.css';
+// import './Modal.css';
+import MyButton from '../../../components/MyButton/MyButton'
 
 function MyVerticallyCenteredModal(props) {
     return (
-        <Modal className="Modal" {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
-            <Modal.Header closeButton>
+        <Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
+            <Modal.Header closeButton className="close">
                 <Modal.Title id="contained-modal-title-vcenter" style={{color:'black'}}>
                     Trailer
                 </Modal.Title>
@@ -24,7 +25,7 @@ const MyModal = (props) => {
 
     return (
         <ButtonToolbar>
-            <Button className='BandeAnnonce' variant="danger" block onClick={() => setModalShow(true)}><FaFilm style={{marginRight:"20px"}}/>Regarder le trailer</Button>
+            <MyButton value={<div><FaFilm style={{marginRight:"20px"}}/>Regarder le Trailer</div>} clicked={() => setModalShow(true)}/>
             <MyVerticallyCenteredModal show={modalShow} id={props.id} onHide={() => setModalShow(false)}/>
         </ButtonToolbar>
     );

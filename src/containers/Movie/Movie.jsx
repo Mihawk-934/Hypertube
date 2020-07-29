@@ -3,9 +3,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Video from './Video/Video';
 import Slider from './Slider/Slider';
-// import MyButton from '../../components/MyButton/MyButton';
 import { Container } from 'react-bootstrap';
-
 import './Movie.css';
 import Presentation from './Presentation/Presentation';
 
@@ -43,8 +41,7 @@ class MovieId extends Component {
     idVideoYoutube = () => {
         axios.get(`https://api.themoviedb.org/3/movie/${this.state.movie.id}?api_key=ee52528a3d2bfff0312880daeaee21b3&append_to_response=videos&&language=frinclude_adult=false`)
             .then(response => {this.setState({youtubeKey: response.data.videos.results[0].key})})
-            .catch(error => {this.setState({youtubeKey: null})});
-            //je remet la youtubeKey a null quand il n'y a pas d'ID youtube pour ce film.
+            .catch(error => {this.setState({youtubeKey: null})}); //je remet la youtubeKey a null quand il n'y a pas d'ID youtube pour ce film.
     };
 
     componentDidUpdate (prevProps) {
