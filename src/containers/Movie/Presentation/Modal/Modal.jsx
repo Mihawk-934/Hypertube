@@ -1,9 +1,9 @@
-import React from 'react';
-import Video from '../Video/Video';
+import React, { useState} from 'react';
+import Video from '../../Video/Video';
 import { Modal, ButtonToolbar } from 'react-bootstrap';
 import { FaFilm } from "react-icons/fa";
 import './Modal.css';
-import MyButton from '../../../components/MyButton/MyButton'
+import MyButton from '../../../../components/MyButton/MyButton'
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -21,7 +21,7 @@ function MyVerticallyCenteredModal(props) {
 }
 
 const MyModal = (props) => {
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(false);
 
     return (
         <ButtonToolbar>
@@ -30,5 +30,5 @@ const MyModal = (props) => {
         </ButtonToolbar>
     );
 }
-
+ 
 export default MyModal;

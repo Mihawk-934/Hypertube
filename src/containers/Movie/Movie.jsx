@@ -78,13 +78,13 @@ class MovieId extends Component {
         return (
             <div className="Page" style={movieBackdropStyles}>
                 <Container className='Container'>
-                    <Presentation 
+                    {this.state.movie && <Presentation 
                         movie={this.state.movie}
                         youtubeKey={this.state.youtubeKey}
                         years={this.state.years}
                         acteurs={this.state.acteurs} 
-                        genre={this.state.genre}/>
-                    <Video id={this.state.youtubeKey}/>
+                        genre={this.state.genre}/>}
+                    {this.state.youtubeKey && <Video id={this.state.youtubeKey}/>}
                     <Slider idMovie={this.state.id}/>
                 </Container>
             </div>

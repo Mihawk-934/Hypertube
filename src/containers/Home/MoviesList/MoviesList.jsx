@@ -22,8 +22,7 @@ class MoviesList extends Component {
       this.props.filtresRequest(this.props.filtres, 1);
     }
     else if (prevProps.textSearch !== this.props.textSearch 
-      && (this.props.textSearch !== '')
-      ) {
+      && (this.props.textSearch !== '')) {
       this.props.initialise(1);
       this.props.initialiseFiltres();
       this.props.textSearchRequest(this.props.textSearch, 1);

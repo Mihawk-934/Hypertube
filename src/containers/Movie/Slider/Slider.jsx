@@ -60,9 +60,9 @@ class SimpleSlider extends React.Component {
     );
     
     return (
-      <div>
+      <>
         {sliderItems}
-      </div>
+      </>
     );
   }
 }

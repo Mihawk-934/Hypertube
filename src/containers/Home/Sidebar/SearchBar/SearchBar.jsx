@@ -1,6 +1,8 @@
 import React from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../../../../store/actions/index';
 
 const useStyles = makeStyles(theme => ({
    search: {
@@ -43,18 +45,24 @@ const useStyles = makeStyles(theme => ({
    },
  }));
 
-const SearchBar = (props) => {
+const SearchBar = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const textSearch = useSelector(state => state.movies.textSearch);
+  const changetext = (e) => {
+    dispatch(actions.textSearch(e.target.value))
+  } 
+
   return (
     <div className={classes.search}>
       <InputBase
-        value={props.value}
+        value={textSearch}
         placeholder="Search…"
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
-        onChange={props.changed}
+        onChange={changetext}
       />
     </div>
   )
