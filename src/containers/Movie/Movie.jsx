@@ -7,6 +7,9 @@ import { Container } from 'react-bootstrap';
 import Presentation from './Presentation/Presentation';
 import './Movie.css';
 
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
 class MovieId extends Component {
     _isMounted = false;
     state = {
@@ -19,12 +22,14 @@ class MovieId extends Component {
     };
 
     componentDidMount () {
+        Aos.init();
         this._isMounted = true;
         if (this._isMounted)
             this.infoMovie();
     };
 
     componentDidUpdate (prevProps) {
+        // Aos.init();
         if (this.props.match.params.id !== prevProps.match.params.id)
             this.infoMovie();
     };
@@ -64,7 +69,7 @@ class MovieId extends Component {
         e.preventDefault();
     };
 
-    render () {
+    render () { 
         let movieBackdropStyles = null;
         if (!!this.state.movie.backdrop_path) {
             movieBackdropStyles = {
@@ -80,14 +85,16 @@ class MovieId extends Component {
         return (
             <div className="Page" style={movieBackdropStyles}>
                 <Container className='Container'>
-                    {this.state.movie && <Presentation 
+                    <div data-aos="flip-left" data-aos-duration="2000">
+                        {this.state.movie && <Presentation
                         movie={this.state.movie}
                         youtubeKey={this.state.youtubeKey}
                         years={this.state.years}
                         acteurs={this.state.acteurs} 
                         genre={this.state.genre}/>}
-                    {this.state.youtubeKey && <Video id={this.state.youtubeKey}/>}
-                    <Slider idMovie={this.state.id}/>
+                        {this.state.youtubeKey && <Video id={this.state.youtubeKey}/>}
+                        <Slider idMovie={this.state.id}/>
+                    </div>
                 </Container>
             </div>
         );

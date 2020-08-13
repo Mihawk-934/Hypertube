@@ -7,7 +7,6 @@ import { Image } from 'react-bootstrap';
 import './Slider.css';
 import axios from 'axios';
 
- 
 class SimpleSlider extends React.Component {
   state = {
     similarMovie: []
@@ -44,8 +43,8 @@ class SimpleSlider extends React.Component {
 
     let sliderItems = this.state.similarMovie.length === 0 ? null : (
       <>
-        <h3 className='pl-3'>Films similaires : </h3>
-        <Slider {...settings} data-aos="fade-left">
+        <h3>Films similaires :</h3>
+        <Slider {...settings} autoplay={true} autoplaySpeed={4000} speed={1000}>
           {
             this.state.similarMovie.map(movie => {
               return (
