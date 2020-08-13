@@ -58,9 +58,12 @@ class MoviesList extends Component {
     return (
       <div className="block">
         <InfiniteScroll
+          style={{overflow:'none'}}
           dataLength={this.props.movies.length}
           next={this.newMovie}
-          hasMore={this.state.hasMore}>
+          scrollableTarget={'false'}
+          hasMore={this.state.hasMore}
+          >
           {movies}
         </InfiniteScroll>
       </div>

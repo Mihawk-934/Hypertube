@@ -6,10 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { Image } from 'react-bootstrap';
 import './Slider.css';
 import axios from 'axios';
-import Aux from '../../../hoc/Aux/Aux';
+
  
 class SimpleSlider extends React.Component {
-  state= {
+  state = {
     similarMovie: []
   };
 
@@ -43,20 +43,20 @@ class SimpleSlider extends React.Component {
     };
 
     let sliderItems = this.state.similarMovie.length === 0 ? null : (
-      <Aux>
+      <>
         <h3 className='pl-3'>Films similaires : </h3>
-        <Slider {...settings}>
+        <Slider {...settings} data-aos="fade-left">
           {
             this.state.similarMovie.map(movie => {
               return (
                 <div key={movie.id} className='Image' onClick={() => this.clicked(movie.id)}>
-                  <Image style={{width:"100%", height:"auto"}} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='lol' />
+                  <Image style={{width:"100%", height:"400px"}} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='lol' />
                 </div>
               )
             })
           }
         </Slider>
-      </Aux>
+      </>
     );
     
     return (

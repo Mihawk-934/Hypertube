@@ -16,6 +16,7 @@ import Aux from './hoc/Aux/Aux';
 import Layout from './hoc/Layout/Layout';
 import * as actions from './store/actions/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
 class App extends Component {

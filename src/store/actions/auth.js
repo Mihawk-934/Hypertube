@@ -67,7 +67,6 @@ export const authRegister = (email, password, history) => {
             })
             .catch(err => {
                 dispatch(errorServor('Cet email existe Deja!'));
-                // dispatch(authFail(err.response.data.error.message));
             })
     };
 };
@@ -84,7 +83,7 @@ export const authLogin = (email, password, history) => {
             .then(response => {
                 localStorage.setItem('token', response.data.idToken)
                 localStorage.setItem('id', response.data.localId)
-                localStorage.setItem('show', true)
+                localStorage.setItem('animation', true)
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 history.push('/home');
             })
@@ -107,7 +106,6 @@ export const socialTwitter = (provider,history) => {
                 localStorage.setItem('name', response.user.displayName)
                 localStorage.setItem('photo', response.additionalUserInfo.profile.profile_image_url)
                 localStorage.setItem('email', response.user.email)
-                localStorage.setItem('show', true)
                 dispatch(authSuccess(response.credential.idToken, response.user.uid));
                 history.push('/home');
             })
@@ -128,7 +126,6 @@ export const socialAuth = (provider,history) => {
                 localStorage.setItem('name', response.user.displayName)
                 localStorage.setItem('photo', response.user.photoURL)
                 localStorage.setItem('email', response.user.email)
-                localStorage.setItem('show', true)
                 dispatch(authSuccess(response.credential.idToken, response.user.uid));
                 history.push('/home');  
             })
@@ -140,7 +137,6 @@ export const socialAuth = (provider,history) => {
 
 export const authCheckState = () => {
     return (dispatch) => {
-        localStorage.removeItem('show')
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id')
         if (!token)

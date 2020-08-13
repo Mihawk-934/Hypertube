@@ -5,9 +5,9 @@ import { FaUserCircle } from 'react-icons/fa';
 const Rubrique = (props) => {
     let data = null;
 
-    console.log(props.data)
-    if (props.map) {
-       
+    if (props.data.length === 0)
+        data = <p>indispo</p>
+    else if (props.map) {       
         data = (
             <Row className="LuMovie">
                 {
@@ -24,8 +24,6 @@ const Rubrique = (props) => {
             </Row>
         );
     }
-    else if (props.data.length === 0)
-        data = <p>indispo</p>
     else 
         data = props.data;
     
