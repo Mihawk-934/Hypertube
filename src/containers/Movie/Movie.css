@@ -1,5 +1,4 @@
 .Page {
-    background-color: white;
     width: 100%;
     color: white;
     font-family: PT Sans,sans-serif;
@@ -25,7 +24,7 @@
 }
 
 .LiMovie {
-    width: 100px;
+    margin-top: 3px;
     text-align: center;
     border: 1px solid snow;
     border-radius: 5px;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { FaHeart } from "react-icons/fa";
-import { IoIosTime } from "react-icons/io";
+import { FaHeart, FaCartPlus } from "react-icons/fa";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Icons = () => {
@@ -11,8 +10,8 @@ const Icons = () => {
                 <FaHeart className='Fav'/>
             </OverlayTrigger>
             <OverlayTrigger  placement='bottom'
-                overlay={<Tooltip id='voir'>A voir plus tard</Tooltip>}>
-                <IoIosTime className='Vu'/>
+                overlay={<Tooltip id='voir'>Ajouter au panier</Tooltip>}>
+                <FaCartPlus className='Vu'/>
             </OverlayTrigger>
         </div>
     )

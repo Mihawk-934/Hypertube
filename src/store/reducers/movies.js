@@ -15,9 +15,9 @@ const initialState = {
   noResult: false
 };
 
-const initialise = (state, action) => {
+const initialise = (state) => {
   return updateObject( state, { 
-    page: action.value,
+    page: 1,
     movies: [],
     nbPage: null
   })
@@ -30,7 +30,7 @@ const initialiseFiltres = (state) => {
     sortby: {value: null, label: 'SortBy'}
   }
   return updateObject( state, { 
-    filtres: filtres
+    filtres: filtres 
   })
 }
 
@@ -54,7 +54,8 @@ const textSearch = (state, action) => {
 
 const movies = (state, action) => {
   let a = [...state.movies, ...action.newMovies];
-  let movies = [...new Set(a.map(o => o.id))].map(id => a.find(i => i.id === id))
+  const tab = a.filter(movie => movie.poster_path !== null)
+  let movies = [...new Set(tab.map(o => o.id))].map(id => tab.find(i => i.id === id))
   return updateObject( state, { 
     movies: movies,
     nbPage: action.nbPage,

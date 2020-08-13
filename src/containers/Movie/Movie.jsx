@@ -4,8 +4,8 @@ import axios from 'axios';
 import Video from './Video/Video';
 import Slider from './Slider/Slider';
 import { Container } from 'react-bootstrap';
-import './Movie.css';
 import Presentation from './Presentation/Presentation';
+import './Movie.css';
 
 class MovieId extends Component {
     _isMounted = false;
@@ -20,42 +20,44 @@ class MovieId extends Component {
 
     componentDidMount () {
         this._isMounted = true;
-        if (this._isMounted) {
-            window.scrollTo(0, 0); 
-            const { match: { params } } = this.props;
-            this.setState({id: params.id}, () => {
-                axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos&language=fr`)
-                    .then(response => this.setState({movie : response.data, genre : response.data.genres, years: response.data.release_date.substr(0, 4)}, () => this.idVideoYoutube()))
-                    .catch(error => console.log(error));
-                axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=1e32f5c452c2267d5367589e9864ab1c`)
-                    .then(response => this.setState({acteurs: response.data.cast.splice(0, 5)}))
-                    .catch(err => console.log(err))
-            });
-        }
+        if (this._isMounted)
+            this.infoMovie();
+    };
+
+    componentDidUpdate (prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id)
+            this.infoMovie();
     };
 
     componentWillUnmount() {
         this._isMounted = false;
     };
 
+    infoMovie = () => {
+        this.setState({id: this.props.match.params.id}, () => {
+            axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos&language=fr`)
+                .then(response => this.setState({movie : response.data, genre : response.data.genres, years: response.data.release_date.substr(0, 4)}, () => this.idVideoYoutube()))
+                .catch(error => console.log(error));
+            axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=1e32f5c452c2267d5367589e9864ab1c`)
+                .then(response => {
+                    let acteurs = response.data.cast.splice(0, 4);
+                    acteurs = acteurs.map(acteur => {
+                        return {
+                            ...acteur,
+                            img: true
+                        }
+                    })
+                    this.setState({acteurs: acteurs})
+                })
+                .catch(err => console.log(err))
+            window.scrollTo(0, 0);
+        });
+    };
+
     idVideoYoutube = () => {
         axios.get(`https://api.themoviedb.org/3/movie/${this.state.movie.id}?api_key=ee52528a3d2bfff0312880daeaee21b3&append_to_response=videos&&language=frinclude_adult=false`)
             .then(response => {this.setState({youtubeKey: response.data.videos.results[0].key})})
             .catch(error => {this.setState({youtubeKey: null})}); //je remet la youtubeKey a null quand il n'y a pas d'ID youtube pour ce film.
-    };
-
-    componentDidUpdate (prevProps) {
-        if (this.props.match.params.id !== prevProps.match.params.id) {
-            this.setState({id: this.props.match.params.id}, () => {
-                axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos&language=fr`)
-                    .then(response => this.setState({movie : response.data, genre : response.data.genres, years: response.data.release_date.substr(0, 4)}, () => this.idVideoYoutube(this.state.movie.id)))
-                    .catch(error => console.log(error));
-                axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=1e32f5c452c2267d5367589e9864ab1c`)
-                    .then(response => this.setState({acteurs: response.data.cast.splice(0, 5)}))
-                    .catch(err => console.log(err))
-                window.scrollTo(0, 0);
-            });
-        };
     };
 
     submit = (e) => {
@@ -70,7 +72,7 @@ class MovieId extends Component {
                 backgroundRepeat: 'no-repeat',
                 backgroundSize:'cover',
                 minHeight:'100vh',
-                backgroundColor: 'white',
+                backgroundColor: 'black',
                 backgroundPosition:'center' 
             };
         }

@@ -1,6 +1,9 @@
 .Ul {
-    margin-top: 60px;
+    width: 70%;
+    margin: auto;
+    margin-top: 80px;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0 20px;

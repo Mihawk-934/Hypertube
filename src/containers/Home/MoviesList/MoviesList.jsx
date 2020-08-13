@@ -7,35 +7,38 @@ import * as actions from '../../../store/actions/index';
 
 class MoviesList extends Component {
   state = {
-    hasMore: true,
+    hasMore: true
   }
  
   componentDidMount () {
-    if (this.props.movies.length === 0)
+    if (this.props.movies.length === 0) 
       this.newMovie();
   }
 
   componentDidUpdate (prevProps) {
-    if (prevProps.filtres !== this.props.filtres && (this.props.filtres.genre.value !== null || this.props.filtres.years.value !== null || this.props.filtres.sortby.value !== null)) {
-      this.props.initialise(1);
+    if (prevProps.filtres !== this.props.filtres && 
+      (this.props.filtres.genre.value !== null || this.props.filtres.years.value !== null || this.props.filtres.sortby.value !== null)) {
+      this.props.initialise();
       this.props.initialiseTextSearch();
       this.props.filtresRequest(this.props.filtres, 1);
     }
     else if (prevProps.textSearch !== this.props.textSearch 
       && (this.props.textSearch !== '')) {
-      this.props.initialise(1);
+      this.props.initialise();
       this.props.initialiseFiltres();
       this.props.textSearchRequest(this.props.textSearch, 1);
     }
     else if ((this.props.filtres.genre.value === null && this.props.filtres.years.value === null && this.props.filtres.sortby.value === null) 
       && (this.props.textSearch === '' && prevProps.textSearch !== this.props.textSearch)) {
-      this.props.initialise(1);
+      this.props.initialise();
       this.props.popularRequest(1);
     }
   }
 
   newMovie = () => {
-    if (this.props.nbPage !== 0 && this.props.page > this.props.nbPage) 
+    if (
+      // this.props.nbPage !== 0 && 
+      this.props.page > this.props.nbPage) 
       this.setState({ hasMore: false });
     else if (this.props.next === 'filtres')
       this.props.filtresRequest(this.props.filtres, this.props.page + 1);
@@ -57,8 +60,7 @@ class MoviesList extends Component {
         <InfiniteScroll
           dataLength={this.props.movies.length}
           next={this.newMovie}
-          hasMore={this.state.hasMore}
-          endMessage={<p style={{ textAlign: "center" }}><b>Yay! Vous avez tout vu</b></p>}>
+          hasMore={this.state.hasMore}>
           {movies}
         </InfiniteScroll>
       </div>
@@ -80,7 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    initialise: (value) => dispatch(actions.initialise(value)),
+    initialise: () => dispatch(actions.initialise()),
     initialiseFiltres: () => dispatch(actions.initialiseFiltres()),
     initialiseTextSearch: () => dispatch(actions.initialiseTextSearch()),
     popularRequest: (page) => dispatch(actions.popularRequest(page)),

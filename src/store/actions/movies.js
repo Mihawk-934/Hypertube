@@ -2,10 +2,9 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import { API_KEY, PATH_BASE, PATH_DISCOVER, PATH_MOVIE, PATH_SEARCH, PATH_PAGE, PATH_ADULT, PATH_LANGUE } from  '../../containers/Home/MoviesList/api';
 
-export const initialise = (value) => {
+export const initialise = () => {
     return {
         type: actionTypes.INITIALISE,
-        value: value
     }
 };
 
@@ -42,7 +41,7 @@ export const movies = (movies, nbPage, page, next, noResult) => {
         nbPage: nbPage,
         page: page,
         next: next,
-        noResult: noResult
+        noResult: noResult 
     }
 };
 

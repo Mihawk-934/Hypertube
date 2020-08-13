@@ -41,7 +41,7 @@ const optionsYears = [];
 
 class Categrories extends Component {
   handleChange = (value, id) => {
-    let filtres = {...this.props.filtres};
+    let filtres = { ...this.props.filtres };
     filtres[id] = value;
     this.props.actionFiltre(filtres);
   };
@@ -54,7 +54,6 @@ class Categrories extends Component {
         this.props.popularRequest(1);
       }
     }
-   
   }
 
   render() {

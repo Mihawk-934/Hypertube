@@ -5,6 +5,7 @@
     background-position: center;
     display: flex;
     flex-direction: column;
+    background-color: black;
     /* align-items: center; */
     width: 100%;
     min-height: 100vh;
@@ -13,9 +14,6 @@
     right: 0;
     color:white;
     font-family: 'Oswald';
-   
-    
-
 }
 
 .Gauche {
