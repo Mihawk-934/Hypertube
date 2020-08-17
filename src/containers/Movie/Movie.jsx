@@ -6,19 +6,13 @@ import Slider from './Slider/Slider';
 import { Container } from 'react-bootstrap';
 import Presentation from './Presentation/Presentation';
 import './Movie.css';
-
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
 class MovieId extends Component {
     _isMounted = false;
     state = {
-        movie : '',
-        genre: [],
-        years: '',
-        youtubeKey: '',
-        id: '',
-        acteurs: []
+        movie : ''
     };
 
     componentDidMount () {
@@ -29,7 +23,6 @@ class MovieId extends Component {
     };
 
     componentDidUpdate (prevProps) {
-        // Aos.init();
         if (this.props.match.params.id !== prevProps.match.params.id)
             this.infoMovie();
     };
@@ -39,30 +32,25 @@ class MovieId extends Component {
     };
 
     infoMovie = () => {
-        this.setState({id: this.props.match.params.id}, () => {
-            axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos&language=fr`)
-                .then(response => this.setState({movie : response.data, genre : response.data.genres, years: response.data.release_date.substr(0, 4)}, () => this.idVideoYoutube()))
-                .catch(error => console.log(error));
-            axios.get(`https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=1e32f5c452c2267d5367589e9864ab1c`)
-                .then(response => {
-                    let acteurs = response.data.cast.splice(0, 4);
-                    acteurs = acteurs.map(acteur => {
-                        return {
-                            ...acteur,
-                            img: true
-                        }
-                    })
-                    this.setState({acteurs: acteurs})
-                })
-                .catch(err => console.log(err))
-            window.scrollTo(0, 0);
-        });
-    };
-
-    idVideoYoutube = () => {
-        axios.get(`https://api.themoviedb.org/3/movie/${this.state.movie.id}?api_key=ee52528a3d2bfff0312880daeaee21b3&append_to_response=videos&&language=frinclude_adult=false`)
-            .then(response => {this.setState({youtubeKey: response.data.videos.results[0].key})})
-            .catch(error => {this.setState({youtubeKey: null})}); //je remet la youtubeKey a null quand il n'y a pas d'ID youtube pour ce film.
+        window.scrollTo(0, 0);
+        axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos,credits,similar&language=fr`)
+            .then(response => {
+                let similar = response.data.similar.results.slice(0, 20);
+                let acteurs = response.data.credits.cast.splice(0, 4);
+                acteurs = acteurs.map(acteur => {
+                    return {...acteur,
+                        img: true
+                    }
+                }) 
+                let youtubeKey = null
+                if (response.data.videos.results.length !== 0)
+                    youtubeKey = response.data.videos.results[0].key
+                let data = {...response.data, release_date: response.data.release_date.substr(0, 4), acteurs : acteurs, youtubeKey : youtubeKey, similar: similar}
+                this.setState({movie: data})
+                }
+            )
+            .catch(err => console.log(err));
+            
     };
 
     submit = (e) => {
@@ -86,14 +74,9 @@ class MovieId extends Component {
             <div className="Page" style={movieBackdropStyles}>
                 <Container className='Container'>
                     <div data-aos="flip-left" data-aos-duration="2000">
-                        {this.state.movie && <Presentation
-                        movie={this.state.movie}
-                        youtubeKey={this.state.youtubeKey}
-                        years={this.state.years}
-                        acteurs={this.state.acteurs} 
-                        genre={this.state.genre}/>}
-                        {this.state.youtubeKey && <Video id={this.state.youtubeKey}/>}
-                        <Slider idMovie={this.state.id}/>
+                        {this.state.movie && <Presentation movie={this.state.movie}/>}
+                        {this.state.movie.youtubeKey && <Video id={this.state.movie.youtubeKey}/>}
+                        {this.state.movie.similar  && <Slider similar={this.state.movie.similar}/>}
                     </div>
                 </Container>
             </div>

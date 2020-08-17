@@ -5,14 +5,12 @@
     background-position: center;
     display: flex;
     flex-direction: column;
-    background-color: black;
-    /* align-items: center; */
     width: 100%;
     min-height: 100vh;
-    /* position: fixed; */
     top: 0;
     right: 0;
     color:white;
+    background-color: black;
     font-family: 'Oswald';
 }
 

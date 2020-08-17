@@ -18,12 +18,12 @@ const Presentation = (props) => (
                     }
                 </div>
                 <Icons/>
-                {/* {props.youtubeKey && <Modal id={props.youtubeKey}/>} */}
+                {/* {props.movie.youtubeKey && <Modal id={props.movie.youtubeKey}/>} */}
             </Col>
             <Col sm={12} md={8}>
                 <Row>
                     <Col> 
-                        <h1>{props.movie.title} <span style={{fontStyle: 'italic', fontSize:'30px'}}>({props.years})</span> </h1>
+                        <h1>{props.movie.title} <span style={{fontStyle: 'italic', fontSize:'30px'}}>({props.movie.release_date})</span> </h1>
                         {/* <p><FaEye style={{color:"green", height:'20px', width:'20px'}}/> Deja vu</p> */}
                         <h5>{props.movie.tagline}</h5>
                     </Col>
@@ -33,8 +33,8 @@ const Presentation = (props) => (
                     <Rubrique2 title="Note" data={props.movie.vote_average}/>
                     <Rubrique2 title="Popularité" data={props.movie.popularity}/>
                 </Row>
-                <Rubrique title='Genre' data={props.genre} css="LiMovie" map={true}/>
-                <Rubrique title='Acteurs' data={props.acteurs} map={true} img={true}/>
+                <Rubrique title='Genre' data={props.movie.genres} css="LiMovie" map={true}/>
+                <Rubrique title='Acteurs' data={props.movie.acteurs} map={true} img={true}/>
                 {/* <Rubrique title='Producteurs' data={props.acteurs} map={true}/>
                 <Rubrique title='Realisateur' data={props.acteurs} map={true}/> */}
                 <Rubrique title='Synopisis' data={props.movie.overview}/>

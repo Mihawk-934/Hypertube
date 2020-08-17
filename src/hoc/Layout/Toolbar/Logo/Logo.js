@@ -1,12 +1,10 @@
 import React from 'react';
-
-import { NavLink } from 'react-router-dom';
 import N from '../../../../assets/netflix.png';
 
 const Logo = () => (
-    <NavLink to="/home">
+    <a href="/home">
         <img src={N} alt="logo bobine film png" style={{height: "90px", width:'200px'}}/>
-    </NavLink>     
+    </a>     
 )
 
 export default Logo; 

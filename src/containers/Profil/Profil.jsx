@@ -69,7 +69,7 @@ class Register extends Component {
         let form = (
             <Form className="login-form eiga-form" onSubmit={this.submit}>
                 <div className="login-form-content">
-                    <h3 className='H2'>Modifier mes informations</h3>
+                    <h2 className='H2'>Modifier mes informations</h2>
                     <Form.Group>
                         <Form.Label>Avatar</Form.Label>
                         {/* <Photo /> */}

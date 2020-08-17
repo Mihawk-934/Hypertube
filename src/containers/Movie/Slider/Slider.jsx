@@ -5,65 +5,40 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Image } from 'react-bootstrap';
 import './Slider.css';
-import axios from 'axios';
 
-class SimpleSlider extends React.Component {
-  state = {
-    similarMovie: []
+const SimpleSlider = (props) => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 1000
   };
 
-  componentDidMount () {
-    if (!!this.props.idMovie) {
-      axios.get(`https://api.themoviedb.org/3/movie/${this.props.idMovie}/similar?api_key=1e32f5c452c2267d5367589e9864ab1c&language=fr&page=1`)
-        .then(response => this.setState({similarMovie: response.data.results.slice(0, 20)}))
-        .catch(error => console.log(error));
-    };
-  };
-
-  componentDidUpdate (prevProps) {
-    if (this.props.idMovie !== prevProps.idMovie && !!this.props.idMovie) {
-      axios.get(`https://api.themoviedb.org/3/movie/${this.props.idMovie}/similar?api_key=1e32f5c452c2267d5367589e9864ab1c&language=fr&page=1`)
-        .then(response => this.setState({similarMovie: response.data.results.slice(0, 20)}))
-        .catch(error => console.log(error));
-    };
-  };
-
-  clicked = (id) => {
-    this.props.history.push(`/movie/${id}`);
-  };
-
-  render() {
-    var settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4
-    };
-
-    let sliderItems = this.state.similarMovie.length === 0 ? null : (
-      <>
-        <h3>Films similaires :</h3>
-        <Slider {...settings} autoplay={true} autoplaySpeed={4000} speed={1000}>
-          {
-            this.state.similarMovie.map(movie => {
-              return (
-                <div key={movie.id} className='Image' onClick={() => this.clicked(movie.id)}>
-                  <Image style={{width:"100%", height:"400px"}} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='lol' />
-                </div>
-              )
-            })
-          }
-        </Slider>
-      </>
-    );
-    
-    return (
-      <>
-        {sliderItems}
-      </>
-    );
-  }
+  let sliderItems = props.similar.length === 0 ? null : (
+    <>
+      <h3>Films similaires :</h3>
+      <Slider {...settings} >
+        {
+          props.similar.map(movie => {
+            return (
+              <div key={movie.id} className='Image' onClick={() => props.history.push(`/movie/${movie.id}`)}>
+                <Image style={{width:"100%", height:"400px"}} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='lol' />
+              </div>
+            )
+          })
+        }
+      </Slider>
+    </>
+  );
+  
+  return (
+    <>
+      {sliderItems}
+    </>
+  );
 }
 
 export default withRouter(SimpleSlider);
