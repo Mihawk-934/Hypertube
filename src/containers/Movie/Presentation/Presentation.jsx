@@ -23,7 +23,7 @@ const Presentation = (props) => (
             <Col sm={12} md={8}>
                 <Row>
                     <Col> 
-                        <h1>{props.movie.title} <span style={{fontStyle: 'italic', fontSize:'30px'}}>({props.movie.release_date})</span> </h1>
+                <h1>{props.movie.title} {props.movie.release_date && <span style={{fontStyle: 'italic', fontSize:'30px'}}>({props.movie.release_date})</span>} </h1>
                         {/* <p><FaEye style={{color:"green", height:'20px', width:'20px'}}/> Deja vu</p> */}
                         <h5>{props.movie.tagline}</h5>
                     </Col>
