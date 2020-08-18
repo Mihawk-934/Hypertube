@@ -5,17 +5,17 @@ import Rubrique from './Rubrique/Rubrique';
 import Rubrique2 from './Rubrique2/Rubrique2';
 // import { FaEye } from "react-icons/fa";
 import Icons from './Icons/Icons';
-import noFilm from '../../../assets/noAffiche.png'
+// import noFilm from '../../../assets/noAffiche.png'
 
 const Presentation = (props) => (
     <Container>
         <Row>
             <Col sm={12} md={4}>
                 <>
-                    { props.movie.poster_path ? 
+                    {/* { props.movie.poster_path ?  */}
                         <Image style={{ width: "100%", height: "auto" }} src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`} alt={`poster ${props.movie.title}`}/> : 
-                        <Image style={{ width: "100%", height: "auto" }} src={noFilm} alt={`poster ${props.movie.title}`}/>
-                    }
+                         {/* <Image style={{ width: "100%", height: "auto" }} src={noFilm} alt={`poster ${props.movie.title}`}/> */}
+                    {/* } */}
                 </>
                 <Icons/>
                 {/* {props.movie.youtubeKey && <Modal id={props.movie.youtubeKey}/>} */}
