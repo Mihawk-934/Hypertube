@@ -36,13 +36,13 @@ class ButtonTop extends React.Component {
     render () {
         const { is_visible } = this.state;
         return (
-            <div>
+            <>
                 {is_visible && (
                     <div className="ButtonTop" onClick={this.scrollToTop}>
                         <FiArrowUpCircle className="Up" />
                     </div>
                 )}
-            </div>
+            </>
         );
     }  
 }

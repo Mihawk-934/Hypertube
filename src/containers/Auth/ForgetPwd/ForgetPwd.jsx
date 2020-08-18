@@ -62,7 +62,7 @@ class FogertPwd extends Component {
                     <MyButton data-test="button" disabled={this.state.disabled} />
                     {
                         this.state.responseServor ? 
-                        <p style={{textAlign:'center', color:'red'}}>{this.state.responseServor}</p> 
+                        <p className="errorAuth">{this.state.responseServor}</p> 
                         : null
                     }
                     <Form.Group className="Links">

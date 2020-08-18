@@ -13,6 +13,11 @@
     font-family: 'Oswald';
 }
 
+.errorAuth {
+    color:red;
+    text-align: center;
+}
+
 .Register{
     width: 480px;
     margin: auto;

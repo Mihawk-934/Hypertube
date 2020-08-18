@@ -20,12 +20,12 @@ const SimpleSlider = (props) => {
   return (
     <>
       <h3>Films similaires :</h3>
-      <Slider {...settings} >
+      <Slider {...settings}>
         {
           props.similar.map(movie => {
             return (
-              <div key={movie.id} className='Image' onClick={() => props.history.push(`/movie/${movie.id}`)}>
-                <Image style={{width:"100%", height:"400px"}} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='lol' />
+              <div key={movie.id} className='blockImage' onClick={() => props.history.push(`/movie/${movie.id}`)}>
+                <Image className="Image" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='lol' />
               </div>
             )
           })

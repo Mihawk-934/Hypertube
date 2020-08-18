@@ -14,7 +14,7 @@ const Rubrique = (props) => {
                     props.data.map(data => {
                         return (
                             <Col sm={3} key={data.id} style={{display:'flex', flexDirection:'column',}}>
-                                { data.profile_path ?  <img style={{borderRadius:'50%', margin:'auto'}} src={`https://image.tmdb.org/t/p/w100_and_h100_face/${data.profile_path}`} alt='lol'/> : null }
+                                { data.profile_path ?  <img style={{borderRadius:'50%', margin:'auto', marginTop: 0}} src={`https://image.tmdb.org/t/p/w100_and_h100_face/${data.profile_path}`} alt='lol'/> : null }
                                     { !data.profile_path && data.img ? <FaUserCircle style={{borderRadius:'50%', margin:'auto', width:'100px', height:'100px'}}/> : null}
                                 <p className={props.css} style={{textAlign:'center'}}>{data.name}</p>
                             </Col>

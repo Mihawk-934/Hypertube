@@ -15,7 +15,7 @@ const Video = (props) => {
     : <img src={Img} alt='' className="embed-responsive embed-responsive-16by9" style={{marginTop:"50px", marginBottom:"50px", border:'2px solid white'}}/>
      
     return (
-       <>
+        <>
             {affichageVideo}
         </>
     )

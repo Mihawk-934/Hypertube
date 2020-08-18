@@ -86,7 +86,7 @@ class Register extends Component {
           <MyButton data-test="button" disabled={this.state.disabled} />
         </div>
         <div style={{display:'flex', flexDirection:'column', margin:'auto'}}>
-          <p style={{textAlign:'center', color:'red'}}>{this.props.errorServor}</p>
+          <p className="errorAuth">{this.props.errorServor}</p>
           <div style={{margin:'auto'}}>{success}</div>
         </div> 
       </Form>

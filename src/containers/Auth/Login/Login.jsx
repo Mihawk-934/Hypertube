@@ -83,7 +83,7 @@ class Login extends Component {
                         </Form.Text>
                     </Form.Group>
                     <MyButton data-test="button" disabled={this.state.disabled} />
-                    <p style={{textAlign:'center', color:'red'}}>{this.props.error}</p>
+                    <p className="errorAuth">{this.props.error}</p>
                 </div>
             </Form>
         )
