@@ -6,34 +6,11 @@ import Rubrique2 from './Rubrique2/Rubrique2';
 // import { FaEye } from "react-icons/fa";
 import Icons from './Icons/Icons';
 // import noFilm from '../../../assets/noAffiche.png'
-
+import './Presentation.css';
 import "react-circular-progressbar/dist/styles.css";
-
-import {
-    CircularProgressbar,
-    CircularProgressbarWithChildren,
-    buildStyles
-  } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 const Presentation = (props) => {
-
-    const styles = {
-        root: {
-          width: '100%',
-        },
-        path: {
-          stroke: `rgba(62, 152, 199)`,
-          strokeLinecap: 'round',
-          transition: 'stroke-dashoffset 0.5s ease 0s',
-        },
-        trail: {
-          stroke: 'red',
-        },
-        background: {
-            color:'red'
-        }
-      }
-
     return (
         <Container>
             <Row>
@@ -50,33 +27,31 @@ const Presentation = (props) => {
                 </Col>
                 <Col sm={12} md={8}>
                     <Row>
-                        <Col> 
-                    <h1>{props.movie.title} {props.movie.release_date && <span style={{fontStyle: 'italic', fontSize:'30px'}}>({props.movie.release_date})</span>} </h1>
+                        <Col sm={12} md={9} style={{marginTop:'10px'}}> 
+                            <h1 className="TitreMovie2" style={{fontSize:'40px'}}>{props.movie.title} {props.movie.release_date && <span style={{fontStyle: 'italic', fontSize:'30px'}}>({props.movie.release_date})</span>} </h1>
                             {/* <p><FaEye style={{color:"green", height:'20px', width:'20px'}}/> Deja vu</p> */}
-                            <h5>{props.movie.tagline}</h5>
+                            <h5 className="TaglineMovie2">{props.movie.tagline}</h5>
+                        </Col>
+                        <Col sm={12} md={3}> 
+                            <CircularProgressbar
+                                value={props.movie.vote_average*10}
+                                text={`${props.movie.vote_average*10}% `}
+                                strokeWidth={10}
+                                className="ProgressBar"
+                                styles={buildStyles({
+                                    strokeLinecap: "butt",
+                                    trailColor: "#fff",
+                                    textSize: '30px',
+                                })}
+                            />
+                            <p style={{textAlign:'center'}}>Note</p>
                         </Col>
                     </Row>
-                    <Row style={{marginTop: "40px"}}>
+                    <Row style={{marginTop:'17px'}}>
                         <Rubrique2 title="Durée" data={props.movie.runtime} min="min"/>
-                        
-                        <div >
-                           
-                                <CircularProgressbar
-                                    value={props.movie.vote_average*10}
-                                    text={`${props.movie.vote_average*10}% `}
-                                    circleRatio={0.75}
-                                    styles={buildStyles({
-                                        rotation: 1 / 2 + 1 / 8,
-                                        strokeLinecap: "butt",
-                                        trailColor: "#eee",
-                                    
-                                    })}
-                                />
-                        </div>
-                        
-
-                        {/* <Rubrique2 title="Note" data={props.movie.vote_average}/> */}
+                       
                         <Rubrique2 title="Popularité" data={props.movie.popularity}/>
+                         <Rubrique2 title="Pays" data={props.movie.production_countries[0].iso_3166_1}/>
                     </Row>
                     <Rubrique title='Genre' data={props.movie.genres} css="LiMovie" map={true}/>
                     <Rubrique title='Acteurs' data={props.movie.acteurs} map={true} img={true}/>

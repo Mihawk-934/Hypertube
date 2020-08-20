@@ -15,7 +15,7 @@ class MovieItems extends Component {
             <ul className="Ul">
               {this.props.movies.map(movie => {
                 return (
-                <div key={movie.id} data-aos="zoom-out-down" data-aos-duration="2000">
+                <div key={movie.id} data-aos="zoom-in-down" data-aos-duration="2000">
                   <MovieItem movie={movie} clicked={() => this.props.history.push(`/movie/${movie.id}`)}/>
                 </div>)
               })}

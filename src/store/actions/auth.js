@@ -81,9 +81,9 @@ export const authLogin = (email, password, history) => {
         };
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
             .then(response => {
+                localStorage.setItem('animation', true)
                 localStorage.setItem('token', response.data.idToken)
                 localStorage.setItem('id', response.data.localId)
-                localStorage.setItem('animation', true)
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 history.push('/home');
             })
@@ -100,7 +100,8 @@ export const socialTwitter = (provider,history) => {
     return dispatch => {
         dispatch(authStart());
         firebase.auth().signInWithPopup(provider)
-            .then(response => {  
+            .then(response => {
+                localStorage.setItem('animation', true)
                 localStorage.setItem('id', response.user.uid)
                 localStorage.setItem('token', response.credential.accessToken)
                 localStorage.setItem('name', response.user.displayName)
@@ -121,6 +122,7 @@ export const socialAuth = (provider,history) => {
         dispatch(authStart());
         firebase.auth().signInWithPopup(provider)
             .then(response => {
+                localStorage.setItem('animation', true)
                 localStorage.setItem('id', response.user.uid)
                 localStorage.setItem('token', response.credential.accessToken)
                 localStorage.setItem('name', response.user.displayName)

@@ -13,6 +13,8 @@ import Movie from './containers/Movie/Movie';
 import Profil from './containers/Profil/Profil';
 
 import MyOrder from './containers/Profil/MyOrder/MyOrder';
+import MyInfo from './containers/Profil/MyInfo/MyInfo';
+import MyList from './containers/Profil/MyList/MyList';
 
 import Aux from './hoc/Aux/Aux';
 import Layout from './hoc/Layout/Layout';
@@ -40,9 +42,19 @@ class App extends Component {
         <Route path="/logout" component={Logout}/>
         <Route path="/home" component={Home}/>
         {/* <Route path="/profil" component={Profil}/> */}
-        <Route path="/profil/MyOrder" exact component={MyOrder}/>
-        <Route path="/profil" component={Profil}/>
 
+        <Route
+        path="/profil"
+        render={({ match: { url } }) => (
+            <>
+                <Route path={`${url}/`} render={()=><Profil child={<Home/>} />} exact />
+                <Route path={`${url}/MyOrder`} render={()=><Profil child={<MyOrder/>} />} exact /> 
+                <Route path={`${url}/MyInfo`} render={()=><Profil child={<MyInfo/>} />} exact /> 
+                <Route path={`${url}/MyList`} render={()=><Profil child={<MyList/>} />} exact /> 
+            </>
+        )}
+    />
+       
         <Redirect to="/home"/>
       </Switch>
       )

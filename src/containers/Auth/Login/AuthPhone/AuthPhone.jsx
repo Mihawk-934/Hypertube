@@ -60,6 +60,7 @@ class Phone extends Component {
         window.confirmationResult
         .confirm(verificationId)
         .then(result => {
+            localStorage.setItem('animation', true)
             localStorage.setItem('id',result.user.uid)
             localStorage.setItem('token', result.user.ma)
             localStorage.setItem('show', true)

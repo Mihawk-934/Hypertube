@@ -15,11 +15,11 @@ const Rubrique = (props) => {
                     props.data.map(data => (
                         <Col sm={3} key={data.id} style={{display:'flex', flexDirection:'column'}}>                           
                             { data.profile_path ?  
-                                <a href={`https://www.themoviedb.org/person/${data.id}`} target="_blank" className="ARubrique">
-                                    <img className="ImgRubrique" src={`https://image.tmdb.org/t/p/w100_and_h100_face/${data.profile_path}`} alt='lol'/>
+                                <a href={`https://www.themoviedb.org/person/${data.id}`} target="_blank" rel="noopener noreferrer" className="ARubrique">
+                                    <img className="ImgRubrique" src={`https://image.tmdb.org/t/p/w100_and_h100_face/${data.profile_path}`}  alt='lol'/>
                                 </a> : null }
                             { !data.profile_path && data.img ? 
-                                <a href={`https://www.themoviedb.org/person/${data.id}`} target="_blank" className="ARubrique">
+                                <a href={`https://www.themoviedb.org/person/${data.id}`} target="_blank" rel="noopener noreferrer" className="ARubrique">
                                     <img alt= "" src={Img} className="NoImgRubrique"/> 
                                 </a> : null}    
                             <p className={props.css} style={{textAlign:'center'}}>{data.name}</p>
