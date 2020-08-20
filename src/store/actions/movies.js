@@ -4,19 +4,19 @@ import { API_KEY, PATH_BASE, PATH_DISCOVER, PATH_MOVIE, PATH_SEARCH, PATH_PAGE, 
 
 export const initialise = () => {
     return {
-        type: actionTypes.INITIALISE,
+        type: actionTypes.INITIALISE
     }
 };
 
 export const initialiseFiltres = () => {
     return {
-        type: actionTypes.INITIALISE_FILTRES,
+        type: actionTypes.INITIALISE_FILTRES
     }
 };
 
 export const initialiseTextSearch = () => {
     return {
-        type: actionTypes.INITIALISE_TEXTSEARCH,
+        type: actionTypes.INITIALISE_TEXTSEARCH
     }
 };
 

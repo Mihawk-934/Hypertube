@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import './Profil.css'
 
 import { useLocation } from 'react-router-dom';
 const MyProfil = ({child}) =>  {
-    const [color1, setColor1] = useState('LiProfil');
-    const [color2, setColor2] = useState('LiProfil');
-    const [color3, setColor3] = useState('LiProfil');
-
+    // const [color1, setColor1] = useState('LiProfil');
+    // const [color2, setColor2] = useState('LiProfil');
+    // const [color3, setColor3] = useState('LiProfil');
 
     function Params () {
         let params = useLocation();
@@ -41,7 +40,7 @@ const MyProfil = ({child}) =>  {
         <div className="PageProfil">
             <div className="NavProfil">
                 <ul className="UlProfil">
-                    <Link to="/profil/MyInfo">
+                    {/* <Link to="/profil/MyInfo">
                         <li className={color1} id='1'>Mes informations</li>
                     </Link>
                     <Link to="/profil/MyOrder">
@@ -49,7 +48,7 @@ const MyProfil = ({child}) =>  {
                     </Link>
                     <Link to="/profil/MyList">
                         <li className={color3} id='3' >Ma Liste</li>
-                    </Link>
+                    </Link> */}
                 </ul>
             </div>
             

@@ -4,13 +4,20 @@ import MoviesList from './MoviesList/MoviesList';
 import './Home.css';
 import Animation from './Animation/Animation';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 const Home = () =>  {
     const [aff, setAff] = useState(true);
+    const dispatch = useDispatch();
+    const hideAction = () => {
+        dispatch(actions.hideToolbarAndFooter());
+      } 
     
-    useEffect(() => {  
+    useEffect(() => {
         if (localStorage.hasOwnProperty('animation')) {
             setTimeout(() => {
+                hideAction()
                 localStorage.removeItem('animation');
                 setAff(false);
             }, 4000);

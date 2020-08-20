@@ -6,8 +6,9 @@ export const AUTH_LOGOUT = "AUTH_LOGOUT";
 export const SOCIAL_AUTH = 'SOCIAL_AUTH';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const HIDE_TOOLBAR_AND_FOOTER = 'HIDE_TOOLBAR_AND_FOOTER'
 
-////////// FILTRES //////////
+////////// MOVIES //////////
 export const MOVIES = "MOVIES";
 export const FILTRES = "FILTRES";
 export const TEXT_SEARCH = "TEXT_SEARCH";

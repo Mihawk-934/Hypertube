@@ -8,6 +8,7 @@ export {
     errorServor,
     authCheckState,
     authLogout,
+    hideToolbarAndFooter
 } from './auth';
 
 export {
@@ -19,5 +20,5 @@ export {
     filtresRequest,
     initialise,
     initialiseFiltres,
-    initialiseTextSearch
+    initialiseTextSearch,
 } from './movies'; 

@@ -3,7 +3,6 @@ import Iframe from 'react-iframe';
 import Img from '../../../assets/bande-annonce_non_disponibe.png';
 
 const Video = (props) => {
-    console.log(props.id);
     let affichageVideo = !!props.id ? 
     (   
         <div className="embed-responsive embed-responsive-16by9" style={{marginTop:"50px", marginBottom:"50px"}}>

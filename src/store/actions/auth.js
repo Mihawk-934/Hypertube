@@ -2,6 +2,12 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import firebase from '../../fire';
 
+export const hideToolbarAndFooter = () => {
+    return {
+        type: actionTypes.HIDE_TOOLBAR_AND_FOOTER,
+    }
+}
+
 export const errorServor = (error) => {
     return {
         type: actionTypes.AUTH_ERROR,

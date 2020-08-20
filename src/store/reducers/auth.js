@@ -6,7 +6,8 @@ const initialState = {
   userId: null,
   loading: false,
   errorServor: null,
-  registerSuccess: false
+  registerSuccess: false,
+  hideToolbatAndFooter: false
 };
 
 const authStart = ( state ) => {
@@ -25,7 +26,8 @@ const authSuccess = (state, action) => {
 const authLogout = (state) => {
   return updateObject(state, {
       token: null,
-      userId: null
+      userId: null,
+      hideToolbatAndFooter: false
   });
 };
 
@@ -41,6 +43,12 @@ const registerSuccess = (state, action) => {
   });
 };
 
+const hideToolbatAndFooter = (state) => {
+  return updateObject( state, { 
+    hideToolbatAndFooter: true
+  });
+};
+
 const reducer = ( state = initialState, action ) => {
   switch ( action.type ) {
     case actionTypes.AUTH_START: return authStart(state, action);
@@ -48,6 +56,7 @@ const reducer = ( state = initialState, action ) => {
     case actionTypes.AUTH_LOGOUT: return authLogout(state);
     case actionTypes.AUTH_ERROR: return errorServor(state, action);
     case actionTypes.REGISTER_SUCCESS: return registerSuccess(state, action);
+    case actionTypes.HIDE_TOOLBAR_AND_FOOTER: return hideToolbatAndFooter(state);
     default: return state;
   }
 };
