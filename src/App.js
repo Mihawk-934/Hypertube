@@ -12,6 +12,8 @@ import Home from './containers/Home/Home';
 import Movie from './containers/Movie/Movie';
 import Profil from './containers/Profil/Profil';
 
+import MyOrder from './containers/Profil/MyOrder/MyOrder';
+
 import Aux from './hoc/Aux/Aux';
 import Layout from './hoc/Layout/Layout';
 import * as actions from './store/actions/index';
@@ -37,7 +39,10 @@ class App extends Component {
         <Route path="/movie/:id" component={Movie}/>
         <Route path="/logout" component={Logout}/>
         <Route path="/home" component={Home}/>
+        {/* <Route path="/profil" component={Profil}/> */}
+        <Route path="/profil/MyOrder" exact component={MyOrder}/>
         <Route path="/profil" component={Profil}/>
+
         <Redirect to="/home"/>
       </Switch>
       )

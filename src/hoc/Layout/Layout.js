@@ -12,7 +12,7 @@ class Layout extends Component {
                     {this.props.children}
                 </main>
                 <ButtonTop />
-                <Footer />
+                { localStorage.getItem('token') ? <Footer /> : null }
             </>
         )
     }
