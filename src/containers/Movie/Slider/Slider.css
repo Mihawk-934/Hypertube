@@ -15,14 +15,16 @@
     height: 400px;
 }
 
-@media(max-width: 1000px) {
-    .Image {
-        height: 250px;
-    }
+.TitleSlider {
+    margin-left: 10px;
 }
 
-@media(max-width: 830px) {
+@media(max-width: 480px) {
     .Image {
-        height: 200px;
+        width: 80%;
+        margin: auto;
+    }
+    .TitleSlider {
+        text-align: center;
     }
 }
