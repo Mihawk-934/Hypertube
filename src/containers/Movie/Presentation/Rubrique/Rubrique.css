@@ -6,13 +6,12 @@
 .NoImgRubrique {
     border-radius: 50%;
     margin: auto;
-    width: 50px;
+    width: 100px;
     height: 100px;
     border: 2px solid transparent;
 }
 
 .ARubrique {
-    style: none;
     margin: auto;
     margin-top: 0;
 }

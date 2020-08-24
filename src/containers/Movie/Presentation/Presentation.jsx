@@ -49,9 +49,8 @@ const Presentation = (props) => {
                     </Row>
                     <Row style={{marginTop:'17px'}}>
                         <Rubrique2 title="Durée" data={props.movie.runtime} min="min"/>
-                       
                         <Rubrique2 title="Popularité" data={props.movie.popularity}/>
-                         <Rubrique2 title="Pays" data={props.movie.production_countries[0].iso_3166_1}/>
+                        {props.movie.production_countries[0] && <Rubrique2 title="Pays" data={props.movie.production_countries[0].iso_3166_1}/>}
                     </Row>
                     <Rubrique title='Genre' data={props.movie.genres} css="LiMovie" map={true}/>
                     <Rubrique title='Acteurs' data={props.movie.acteurs} map={true} img={true}/>
