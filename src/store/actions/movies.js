@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
-import { API_KEY, PATH_BASE, PATH_DISCOVER, PATH_MOVIE, PATH_SEARCH, PATH_PAGE, PATH_ADULT, PATH_LANGUE } from  '../../containers/Home/MoviesList/api';
+import { API_KEY, PATH_BASE, PATH_DISCOVER, PATH_MOVIE, PATH_SEARCH, PATH_PAGE, PATH_ADULT, PATH_LANGUE, PATH_POPULAR, PATH_VOTE, PATH_QUERY } from  '../../containers/Home/MoviesList/api';
 
 export const initialise = () => {
     return {
@@ -47,7 +47,7 @@ export const movies = (movies, nbPage, page, next, noResult) => {
 
 export const popularRequest = (page) => {
     return dispatch => {
-        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=1e32f5c452c2267d5367589e9864ab1c&language=fr&page=${page}`)
+        axios.get(`${PATH_BASE}${PATH_MOVIE}${PATH_POPULAR}${API_KEY}${PATH_ADULT}${PATH_LANGUE}${PATH_PAGE}${page}${PATH_VOTE}`)
             .then(response => {
                 dispatch(movies(response.data.results, response.data.total_pages, page, 'popular'));
             })
@@ -57,7 +57,7 @@ export const popularRequest = (page) => {
 
 export const filtresRequest = (filtres, page) => {
     return dispatch => {
-        let url = `${PATH_BASE}${PATH_DISCOVER}${PATH_MOVIE}${API_KEY}${PATH_PAGE}${page}${PATH_ADULT}${PATH_LANGUE}fr`;
+        let url = `${PATH_BASE}${PATH_DISCOVER}${PATH_MOVIE}${API_KEY}${PATH_PAGE}${page}${PATH_ADULT}${PATH_LANGUE}${PATH_VOTE}`;
         if (!!filtres.genre.value)
             url += `&with_genres=${filtres.genre.value}`;
         if (!!filtres.years.value)
@@ -66,7 +66,9 @@ export const filtresRequest = (filtres, page) => {
             url += `&sort_by=${filtres.sortby.value}`;
         axios.get(url)
             .then(response => {
-                dispatch(movies(response.data.results, response.data.total_pages, page, 'filtres'));
+                let noResult ;
+                response.data.total_results === 0 ? noResult = true : noResult = false; 
+                dispatch(movies(response.data.results, response.data.total_pages, page, 'filtres', noResult));
             })
             .catch(err => console.log(err));
     }
@@ -74,7 +76,7 @@ export const filtresRequest = (filtres, page) => {
 
 export const textSearchRequest = (textSearch, page) => {
     return dispatch => {
-        axios.get(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}${API_KEY}${PATH_PAGE}${page}${PATH_LANGUE}fr${PATH_ADULT}"&query=${textSearch}`)
+        axios.get(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}${API_KEY}${PATH_PAGE}${page}${PATH_LANGUE}${PATH_ADULT}${PATH_QUERY}${textSearch}${PATH_VOTE}`)
             .then(response => {
                 let noResult ;
                 response.data.total_results === 0 ? noResult = true : noResult = false; 

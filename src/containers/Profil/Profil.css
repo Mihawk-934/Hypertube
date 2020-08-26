@@ -4,8 +4,7 @@
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     min-height: 100vh;
     top: 0;
@@ -15,27 +14,27 @@
 }
 
 .NavProfil {
-    width: 50%;
-    margin-top: 50px;
+    width: 200px;
+    background-color: white;
+    box-shadow: 3px -3px 5px 5px #ccc;
 }
 
 .UlProfil {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     list-style: none;
 }
 
 .LiProfil, .LiClick {
-    width: 200px;
-    padding: 10px;
+    width: 140px;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    color: white;
+    color: black;
     border: 2px solid white;
     border-radius: 2px;
     font-family: PT Sans,sans-serif;
@@ -51,9 +50,25 @@
 }
 
 .Children {
-    width: 60%;
-    height: 1000px;
-    margin-top: 150px;
+    height: 500px;
     background-color: black;
     border: white 1px solid;
+}
+
+
+@media (max-width: 600px) {
+    .PageProfil {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .NavProfil {
+        box-shadow: -3px 5px 5px 5px #ccc;
+        width: 100%;
+    }
+    
+    .UlProfil {
+        display: flex;
+        flex-direction: row;
+    }
 }

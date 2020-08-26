@@ -1,11 +1,12 @@
 import React from 'react';
 import Sidebar from './Sidebar/SideBar';
 import MoviesList from './MoviesList/MoviesList';
-import './Home.css';
 import Animation from './Animation/Animation';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
+// import MyList from './MyList/MyList';
+import './Home.css';
 
 const Home = () =>  {
     const [aff, setAff] = useState(true);
@@ -28,6 +29,9 @@ const Home = () =>  {
     
     const Page = (
         <div className="Page">
+            {/* <div className="Carousel">
+                <MyList/>
+            </div> */}
             <div className="Gauche">
                 <Sidebar/>
             </div>
