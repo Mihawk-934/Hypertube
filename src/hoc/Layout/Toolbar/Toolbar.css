@@ -16,6 +16,11 @@
 .User {
     width: 70px;
     height: 70px;
+    border: 2px solid transparent;
+}
+
+.User:hover {
+    border: 2px solid white;
 }
 
 .Logout {

@@ -45,7 +45,7 @@ class App extends Component {
             render={({ match: { url } }) => (
               <>
                 <Route path={`${url}/`} render={()=><Profil child={<MyInfo/>} />} exact /> 
-                <Route path={`${url}/MyOrder`} render={()=><Profil child={<MyOrder/>} />} exact /> 
+                <Route path={`${url}/MyOrder`} render={()=><Profil child={<MyOrder/>} />} exact />
                 <Route path={`${url}/MyList`} render={()=><Profil child={<MyList/>} />} exact /> 
               </>
             )}/>

@@ -8,7 +8,7 @@ import './Toolbar.css';
 
 const Toolbar = () => {
     return (
-        <Navbar collapseOnSelect expand="lg" className="Toolbar" variant="dark">
+        <Navbar collapseOnSelect expand="sm" className="Toolbar" variant="dark">
             <Navbar.Brand><Logo/></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">

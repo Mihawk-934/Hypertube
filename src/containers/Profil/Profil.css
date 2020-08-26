@@ -1,8 +1,4 @@
 .PageProfil {
-    background-image: url('../../assets/profil.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -10,51 +6,82 @@
     top: 0;
     right: 0;
     color:white;
+    background-color: #f3f3f3;
     font-family: 'Oswald';
 }
 
 .NavProfil {
-    width: 200px;
+    width: 230px;
     background-color: white;
     box-shadow: 3px -3px 5px 5px #ccc;
 }
 
+.MyAccount {
+    font-family: 'Helvetica Neue';
+    text-transform: uppercase;
+    height: 100px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.6em;
+}
+
 .UlProfil {
+    height: 500px;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    list-style: none;
+    justify-content: space-around;
 }
 
 .LiProfil, .LiClick {
-    width: 140px;
+    font-size: 1.125em;
+    width: 100%;
     padding: 5px;
+    font-weight: 400;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
-    border: 2px solid white;
-    border-radius: 2px;
+    color: #757575;
     font-family: PT Sans,sans-serif;
+    border-left: 5px solid transparent;
 }
 
-.LiProfil:hover {
-    cursor: pointer;
-    background-color: rgb(61, 61, 61);
+.LogoProfil {
+    width: 50px;
+    height: 50px;
+    color: black;
 }
 
-.LiClick {
+.LiClick { 
     background-color: red;
 }
 
-.Children {
-    height: 500px;
-    background-color: black;
-    border: white 1px solid;
+.NavLinkProfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 5px solid transparent;
 }
 
+.NavLinkProfil:hover {
+    border-left: 5px solid red;
+    cursor: pointer;
+}
+
+.Children {
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: -1px -1px 7px 7px #ccc;
+    width: 750px;
+    border-radius: 10px;
+    border: white 1px solid;
+}
 
 @media (max-width: 600px) {
     .PageProfil {
@@ -70,5 +97,27 @@
     .UlProfil {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        height: 100px;
+    }
+
+    .LiProfil, .LiClick {
+       display: none;
+    }
+
+    .NavLinkProfil {
+        height: 100px;
+        border-left: none;
+        border-bottom: 5px solid transparent;
+    }
+
+    .NavLinkProfil:hover {
+        border-left: none;
+        border-bottom: 5px solid red;
+    }
+
+    .LogoProfil {
+        width: 60px;
+        height: 60px;
     }
 }

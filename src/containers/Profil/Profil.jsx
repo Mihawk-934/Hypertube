@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Profil.css'
+import { BiIdCard } from 'react-icons/bi'
+import { RiPlayListAddLine } from 'react-icons/ri'
 
 import { useLocation } from 'react-router-dom';
+
+
 const MyProfil = ({child}) =>  {
     const [color1, setColor1] = useState('LiProfil');
     const [color2, setColor2] = useState('LiProfil');
@@ -22,8 +26,6 @@ const MyProfil = ({child}) =>  {
         }, [params])
     }
    
-
-
     const clicked = (e) => {
         setColor1('LiProfil');
         setColor2('LiProfil');
@@ -36,19 +38,27 @@ const MyProfil = ({child}) =>  {
             setColor3('LiClick');
     };
     Params ();
+
+
     return (
         <div className="PageProfil">
             <div className="NavProfil">
-                <ul className="UlProfil">
-                    <Link to="/profil/MyInfo">
+                <div className="MyAccount">
+                    Mon Compte
+                </div>
+                <ul className="UlProfil" >
+                    <NavLink to="/profil/" className='NavLinkProfil' style={{textDecoration:'none'}}>
+                        <BiIdCard className='LogoProfil'/>
                         <li className={color1} id='1'>Mes informations</li>
-                    </Link>
-                    <Link to="/profil/MyOrder">
+                    </NavLink>
+                    <NavLink to="/profil/MyOrder" className='NavLinkProfil' style={{textDecoration:'none'}}>
+                        <RiPlayListAddLine className='LogoProfil'/>
                         <li className={color2} id='2'>Mes commandes</li>
-                    </Link>
-                    <Link to="/profil/MyList">
+                    </NavLink>
+                    <NavLink to="/profil/MyList" className='NavLinkProfil' style={{textDecoration:'none'}}>
+                        <BiIdCard className='LogoProfil'/>
                         <li className={color3} id='3' >Ma Liste</li>
-                    </Link>
+                    </NavLink>
                 </ul>
             </div>
             

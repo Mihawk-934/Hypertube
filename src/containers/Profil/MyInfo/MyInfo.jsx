@@ -4,7 +4,7 @@ const MyInfo = () => {
 
     return (
         <div>
-            MyInfo
+            okgotkgotkgtogktog
         </div>
     )
 }
