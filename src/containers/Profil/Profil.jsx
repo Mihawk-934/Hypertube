@@ -6,6 +6,7 @@ import { RiPlayListAddLine } from 'react-icons/ri'
 
 import { useLocation } from 'react-router-dom';
 
+import MyInfo from './MyInfo/MyInfo';
 
 const MyProfil = ({child}) =>  {
     const [color1, setColor1] = useState('LiProfil');
@@ -62,7 +63,7 @@ const MyProfil = ({child}) =>  {
                 </ul>
             </div>
             
-            <div className="Children">
+            <div className='Children'>
                 {child}
             </div>
         </div>

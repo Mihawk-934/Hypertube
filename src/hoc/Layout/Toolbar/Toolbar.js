@@ -8,12 +8,12 @@ import './Toolbar.css';
 
 const Toolbar = () => {
     return (
-        <Navbar collapseOnSelect expand="sm" className="Toolbar" variant="dark">
-            <Navbar.Brand><Logo/></Navbar.Brand>
+        <Navbar collapseOnSelect expand="sm" className="Toolbar" variant="dark" style={{padding:'0'}}>
+            <Navbar.Brand style={{padding:'0'}}><Logo/></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto"/>
-                <Nav>
+                <Nav style={{paddingRight:'10px'}}>
                     <NavLink to="/profil" className='NavUser'><Image src={User} className='User' roundedCircle/></NavLink>
                     <NavLink to="/logout" className='NavLogout'><FiLogOut className="Logout"/></NavLink>
                 </Nav>

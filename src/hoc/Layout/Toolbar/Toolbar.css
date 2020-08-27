@@ -1,6 +1,6 @@
 .Toolbar {
     background-color: black;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid rgb(112, 112, 112);
 }
 
 .NavUser {
