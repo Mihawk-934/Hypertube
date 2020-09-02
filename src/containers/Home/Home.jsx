@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import './Home.css';
 
+import MySlider from './Slider/Slider'
+
 const Home = () =>  {
     const [aff, setAff] = useState(true);
     const dispatch = useDispatch();
@@ -28,6 +30,7 @@ const Home = () =>  {
     
     const Page = (
         <div className="Page">
+            <MySlider />
             <div className="Gauche">
                 <Sidebar/>
             </div>

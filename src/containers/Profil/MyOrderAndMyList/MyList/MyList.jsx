@@ -1,5 +1,5 @@
 import React from 'react';
-import MyCarousel from '../MyCarousel/MyCarousel'
+import MyCarousel from '../MyCarousel/MyCarousel';
 
 const MyList = () => {
     return (

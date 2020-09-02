@@ -14,9 +14,9 @@ import Home from './containers/Home/Home';
 import Movie from './containers/Movie/Movie';
 import Profil from './containers/Profil/Profil';
 
-import MyOrder from './containers/Profil/MyOrder/MyOrder';
+import MyOrder from './containers/Profil/MyOrderAndMyList/MyOrder/MyOrder';
 import MyInfo from './containers/Profil/MyInfo/MyInfo';
-import MyList from './containers/Profil/MyList/MyList';
+import MyList from './containers/Profil/MyOrderAndMyList/MyList/MyList';
 import Social from './containers/Profil/Social/Social';
 
 import * as actions from './store/actions/index';

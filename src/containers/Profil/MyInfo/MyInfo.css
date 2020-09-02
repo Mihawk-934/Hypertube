@@ -28,14 +28,13 @@
     margin-top: 10px;
 }
 
-/*---------- MyList ----------*/
-
+/* ----- MyCaoursel ------ */
 .BlockMyList {
     height: 550px;
     margin: 20px;
-}
-
-@media(max-width: 600px) {
+  }
+  
+  @media(max-width: 600px) {
     .BlockMyList {
         height: 330px;
     }
