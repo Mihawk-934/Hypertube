@@ -1,0 +1,31 @@
+.liSocial {
+    list-style: none;
+    color: black;
+    margin-top: 20px;
+}
+
+.liSocial:before {
+    content: '✓';
+    color: gold;
+    margin-right: 20px;
+}
+
+.h4Social {
+    color: black;
+}
+
+.Switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+@media (max-width: 420px) {
+    .liSocial {
+        margin-top: 10px;
+    }
+    .Switch {
+        width: 100%;
+    }
+}

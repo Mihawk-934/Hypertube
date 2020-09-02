@@ -16,6 +16,7 @@ class MovieId extends Component {
     };
 
     componentDidMount () {
+        window.scrollTo(0, 0);
         Aos.init();
         this._isMounted = true;
         if (this._isMounted)
@@ -23,6 +24,7 @@ class MovieId extends Component {
     };
 
     componentDidUpdate (prevProps) {
+        window.scrollTo(0, 0);
         if (this.props.match.params.id !== prevProps.match.params.id)
             this.infoMovie();
     };
@@ -32,7 +34,6 @@ class MovieId extends Component {
     };
 
     infoMovie = () => {
-        window.scrollTo(0, 0);
         axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos,credits,similar&language=fr`)
             .then(response => {
                 let similar = response.data.similar.results.slice(0, 20);
@@ -50,7 +51,7 @@ class MovieId extends Component {
                 }
             )
             .catch(err => console.log(err));
-            
+          
     };
 
     submit = (e) => {

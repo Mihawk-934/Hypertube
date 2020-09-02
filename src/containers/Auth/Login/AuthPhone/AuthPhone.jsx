@@ -95,10 +95,11 @@ class Phone extends Component {
                             placeholder="ex:+33610122325"
                             error={this.state.errors.phone} 
                             maxLength='12'
-                            changed={(e) => this.handleInput(e, 1)}/>
+                            changed={(e) => this.handleInput(e, 1)} />
                         <p> 
-                            Entrer votre numero de mobile pour recevoir un code par SMS  </p>
-                        <MyButton id="recaptcha-container" disabled={this.state.disable} clicked={this.state.show === false ? (e) => this.sendCode(e) : this.receiveCode}/>
+                            Entrer votre numero de mobile pour recevoir un code par SMS 
+                        </p>
+                        <MyButton id="recaptcha-container" disabled={this.state.disable} clicked={(e) => this.sendCode(e)}/>
                     </div>
                 </Form>
             )
@@ -117,11 +118,11 @@ class Phone extends Component {
                             error={this.state.errors.codeVerification} 
                             maxLength='6'
                             value={this.state.values.codeVerification}
-                            changed={(e) => this.handleInput(e, 2)}/>
+                            changed={(e) => this.handleInput(e, 2)} />
                         <p> 
                             Entrer le code reçu par SMS
                         </p>
-                        <MyButton id="recaptcha-container" disabled={this.state.disable} clicked={this.state.show === false ? (e) => this.sendCode(e) : this.receiveCode}/>
+                        <MyButton id="recaptcha-container" disabled={this.state.disable} clicked={this.receiveCode}/>
                     </div>
                 </Form>
             )

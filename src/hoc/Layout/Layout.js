@@ -15,6 +15,7 @@ const Layout = (props) =>  {
         if (localStorage.getItem('token'))
             hideAction()   
     }, [])
+    
     const hide = useSelector((state => state.auth.hideToolbatAndFooter))
 
     return (

@@ -24,10 +24,9 @@ const InfoUser = () => {
                     <input className='Input' type="text" id="lastName" placeholder="Adresse" />
                     <div className='Error'></div>
                 </div>
-
             </div>
         </div>
     )
 }
 
-export default InfoUser;
+export default InfoUser; 

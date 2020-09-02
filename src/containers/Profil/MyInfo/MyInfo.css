@@ -112,7 +112,7 @@
     text-align: center;
 }
 
-/* ---------- cbUser ----------*/
+/*---------- cbUser ----------*/
 
 .BlockCbUser {
     height: 250px;
@@ -123,5 +123,43 @@
     .BlockCbUser {
         margin: 0;
         margin-top: 20px;
+    }
+}
+
+/*---------- MyList ----------*/
+
+.BlockMyList {
+    height: 550px;
+    margin: 20px;
+}
+
+@media(max-width: 600px) {
+    .BlockMyList {
+        height: 330px;
+    }
+}
+
+/*-------- Social ----------*/
+
+.GaucheSocial {
+    width: 80%;
+    border-right: 2px solid grey;
+}
+
+.BlockSocial1, .BlockSocial2 {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+@media (max-width: 852px) {
+    .BlockSocial1, .BlockSocial2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Gauche {
+        width: 100%;
+        border-right: none;
     }
 }

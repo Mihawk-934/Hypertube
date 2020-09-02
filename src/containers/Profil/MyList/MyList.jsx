@@ -1,11 +1,9 @@
 import React from 'react';
+import MyCarousel from '../MyCarousel/MyCarousel'
 
 const MyList = () => {
-
     return (
-        <div>
-            MyList
-        </div>
+       <MyCarousel title="MyList" h4="MyListh4"/>
     )
 }
 

@@ -5,7 +5,6 @@ import Animation from './Animation/Animation';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
-// import MyList from './MyList/MyList';
 import './Home.css';
 
 const Home = () =>  {
@@ -29,9 +28,6 @@ const Home = () =>  {
     
     const Page = (
         <div className="Page">
-            {/* <div className="Carousel">
-                <MyList/>
-            </div> */}
             <div className="Gauche">
                 <Sidebar/>
             </div>

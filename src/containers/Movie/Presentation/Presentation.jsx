@@ -17,7 +17,7 @@ const Presentation = (props) => {
                 <Col sm={12} md={4}>
                     <>
                         {/* { props.movie.poster_path ?  */}
-                            <Image style={{ width: "100%", height: "auto" }} src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`} alt={`poster ${props.movie.title}`}/>
+                        {props.movie.poster_path &&<Image style={{ width: "100%", height: "auto" }} src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`} alt={`poster ${props.movie.title}`}/>}
                             {/* :  */}
                             {/* <Image style={{ width: "100%", height: "auto" }} src={noFilm} alt={`poster ${props.movie.title}`}/> */}
                         {/* } */}

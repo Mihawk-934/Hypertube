@@ -17,6 +17,7 @@ import Profil from './containers/Profil/Profil';
 import MyOrder from './containers/Profil/MyOrder/MyOrder';
 import MyInfo from './containers/Profil/MyInfo/MyInfo';
 import MyList from './containers/Profil/MyList/MyList';
+import Social from './containers/Profil/Social/Social';
 
 import * as actions from './store/actions/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -46,7 +47,8 @@ class App extends Component {
               <>
                 <Route path={`${url}/`} render={()=><Profil child={<MyInfo/>} />} exact /> 
                 <Route path={`${url}/MyOrder`} render={()=><Profil child={<MyOrder/>} />} exact />
-                <Route path={`${url}/MyList`} render={()=><Profil child={<MyList/>} />} exact /> 
+                <Route path={`${url}/MyList`} render={()=><Profil child={<MyList/>} />} exact />
+                <Route path={`${url}/Social`} render={()=><Profil child={<Social/>} />} exact /> 
               </>
             )}/>
           <Redirect to="/home"/>

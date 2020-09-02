@@ -1,11 +1,9 @@
 import React from 'react';
+import MyCarousel from '../MyCarousel/MyCarousel'
 
 const MyOrder = () => {
-
     return (
-        <div>
-            MyOrder
-        </div>
+        <MyCarousel title="MyOrder" h4="MyOrderh4"/>
     )
 }
 
