@@ -1,6 +1,7 @@
 import React from 'react';
 import Cards from 'react-credit-cards';
-import 'react-credit-cards/es/styles-compiled.css'
+import 'react-credit-cards/es/styles-compiled.css';
+import './CbUser.css';
 
 const CbUser = () => {
     return (

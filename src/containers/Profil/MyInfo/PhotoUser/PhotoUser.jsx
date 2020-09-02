@@ -2,6 +2,7 @@ import React from 'react';
 import Img from '../../../../assets/miclaude.png';
 import { MdAddAPhoto } from 'react-icons/md';
 import '../MyInfo.css';
+import './PhotoUser.css';
 
 const PhotoUser = () => {
     return (

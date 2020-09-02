@@ -21,11 +21,34 @@
     width: 20%;
 }
 
+.GaucheSocial {
+    width: 80%;
+    border-right: 2px solid grey;
+}
+
+.BlockSocial1, .BlockSocial2 {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
 @media (max-width: 420px) {
     .liSocial {
         margin-top: 10px;
     }
     .Switch {
         width: 100%;
+    }
+}
+
+@media (max-width: 852px) {
+    .BlockSocial1, .BlockSocial2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .GaucheSocial {
+        width: 100%;
+        border-right: none;
     }
 }

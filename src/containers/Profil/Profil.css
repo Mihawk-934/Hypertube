@@ -1,4 +1,4 @@
-.PageProfil {
+.PageProfil { 
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -29,50 +29,6 @@
     font-size: 1.3em;
 }
 
-.UlProfil {
-    height: 300px;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.LiProfil, .LiClick {
-    font-size: 1em;
-    width: 100%;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-family: PT Sans,sans-serif;
-    border-left: 5px solid transparent;
-}
-
-.LogoProfil {
-    width: 40px;
-    height: 40px;
-    color: black;
-}
-
-.LiClick { 
-    background-color: red;
-}
-
-.NavLinkProfil {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-left: 5px solid transparent;
-}
-
-.NavLinkProfil:hover {
-    border-left: 5px solid red;
-    cursor: pointer;
-}
-
 .Children {
     margin: auto;
     margin-top: 35px;
@@ -80,40 +36,13 @@
 }
 
 @media (max-width: 1025px) {
-    .MyAccount {
-        height: 70px;
-    }
-
     .PageProfil {
         display: flex;
         flex-direction: column;
     }
 
-    .NavProfil {
-        box-shadow: -3px 5px 5px 5px #ccc;
-        width: 100%;
-    }
-    
-    .UlProfil {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+    .MyAccount {
         height: 70px;
-    }
-
-    .LiProfil, .LiClick {
-       display: none;
-    }
-
-    .NavLinkProfil {
-        height: 70px;
-        border-left: none;
-        border-bottom: 5px solid transparent;
-    }
-
-    .NavLinkProfil:hover {
-        border-left: none;
-        border-bottom: 5px solid red;
     }
 }
 

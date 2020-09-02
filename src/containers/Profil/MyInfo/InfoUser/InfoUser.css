@@ -1,0 +1,42 @@
+.BlockUserInfo {
+    margin: 10px;
+}
+
+.Label {
+    margin-top: 7px;
+    font-size: 25px;
+    color: black;
+    height: 40px;
+}
+
+.Duo {
+    padding: 10px;
+    height: 70px;
+    width: 70%;
+    margin: auto;
+}
+
+.Input {
+    margin-top: 7px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+    font-size: 20px;
+    color: black;
+    outline:none;
+    background-color: rgb(237, 237, 237);
+    padding: 10px;
+}
+
+.Input:hover,
+.Input:active,
+.Input.active {
+    color: black;
+}
+
+.Error {
+    margin-top: 3px;
+    color: red;
+    text-align: center;
+}

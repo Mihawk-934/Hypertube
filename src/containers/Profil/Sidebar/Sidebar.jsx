@@ -4,8 +4,8 @@ import { BiIdCard } from 'react-icons/bi';
 import { RiPlayListAddLine } from 'react-icons/ri';
 import { FiShoppingCart } from 'react-icons/fi';
 import { GrGroup } from 'react-icons/gr';
-
 import { useLocation } from 'react-router-dom';
+import './Sidebar.css';
 
 const Sidebar = () => {
     const [color1, setColor1] = useState('LiProfil');

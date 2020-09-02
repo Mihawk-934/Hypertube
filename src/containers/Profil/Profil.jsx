@@ -1,6 +1,6 @@
 import React from 'react';
-import './Profil.css'
 import Sidebar from './Sidebar/Sidebar';
+import './Profil.css'
 
 const MyProfil = ({child}) =>  (
     <div className="PageProfil">
