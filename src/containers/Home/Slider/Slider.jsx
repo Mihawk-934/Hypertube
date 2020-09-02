@@ -1,12 +1,15 @@
 import React from 'react';
-import { Carousel, Button } from 'react-bootstrap';
-import './Slider.css'
+import { Carousel } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import './Slider.css';
 
 const SliderHome = () => (
     <Carousel className="Slider" indicators={false} controls={false} interval={5000}>
          <Carousel.Item className="SliderItem">
             <img src='https://images8.alphacoders.com/567/567772.jpg' alt="Third slide" />
-            <button>Rejoignez-nous</button>
+            <NavLink to="/profil/Social">
+                <button>Rejoignez-nous</button>
+            </NavLink>
         </Carousel.Item>
 
         <Carousel.Item className="SliderItem">
