@@ -10,7 +10,7 @@
 .LiProfil, .LiClick {
     font-size: 1em;
     width: 100%;
-    padding: 5px;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,15 +31,22 @@
 
 .NavLinkProfil {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     border-left: 5px solid transparent;
 }
 
 .NavLinkProfil:hover {
-    border-left: 5px solid red;
+    background-color: grey;
     cursor: pointer;
+}
+
+.NavLinkProfilClick {
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    border-left: 5px solid red;
 }
 
 @media (max-width: 1025px) {

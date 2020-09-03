@@ -11,7 +11,7 @@ const InfoUser = () => {
                 </div>
                 <div className="BlockUserInfo">
                     <div className='Duo'>
-                        <input className='Input' type="text" id="lastName" placeholder="Mail" />
+                        <input className='Input' type="mail" id="mail" placeholder="Mail" />
                         <div className='Error'></div>
                     </div>
                 </div>
@@ -23,15 +23,15 @@ const InfoUser = () => {
                 </div>
                 <div className="BlockUserInfo">
                     <div className='Duo'>
-                        <input className='Input' type="text" id="lastName" placeholder="Nom" />
+                        <input className='Input' type="text" id="nom" placeholder="Nom" />
                         <div className='Error'></div>
                     </div>
                     <div className='Duo'>
-                        <input className='Input' type="text" id="lastName" placeholder="Prenom" />
+                        <input className='Input' type="text" id="prenom" placeholder="Prenom" />
                         <div className='Error'></div>
                     </div>
                     <div className='Duo'>
-                        <input className='Input' type="text" id="lastName" placeholder="Adresse" />
+                        <input className='Input' type="text" id="adresse" placeholder="Adresse" />
                         <div className='Error'></div>
                     </div>
                 </div>

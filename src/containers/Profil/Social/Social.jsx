@@ -21,7 +21,7 @@ const Social = () => {
                         </ul>
                     </div>
                     <div className="Switch">
-                        <Switch onColor="#DC143C" />
+                        {/* <Switch onColor="#DC143C" /> */}
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@ const Social = () => {
                         </ul>
                     </div>
                     <div className="Switch">
-                        <Switch onColor="#DC143C" />
+                        {/* <Switch onColor="#DC143C" /> */}
                     </div>
                 </div>
             </div>

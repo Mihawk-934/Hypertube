@@ -5,56 +5,55 @@ import { RiPlayListAddLine } from 'react-icons/ri';
 import { FiShoppingCart } from 'react-icons/fi';
 import { GrGroup } from 'react-icons/gr';
 import { useLocation } from 'react-router-dom';
+import useStateWithCallback from 'use-state-with-callback';
 import './Sidebar.css';
 
 const Sidebar = () => {
-    const [color1, setColor1] = useState('LiProfil');
-    const [color2, setColor2] = useState('LiProfil');
-    const [color3, setColor3] = useState('LiProfil');
+    const [color1, setColor1] = useState('NavLinkProfil');
+    const [color2, setColor2] = useState('NavLinkProfil');
+    const [color3, setColor3] = useState('NavLinkProfil');
+    const [color4, setColor4] = useState('NavLinkProfil');
 
-    function Params () {
-        let params = useLocation();
-        useEffect (() => {
-            console.log(params)
-            // if (child.type.name='MyInfo')
-            //     setColor1('LiClick')
-            // else if (child.type.name='MyOrder')
-            //     setColor2('LiClick')
-            // else if (child.type.name='MyList')
-            //     setColor3('LiClick')
-        }, [params])
+    let location = useLocation();
+    let [pathname, setPathname] = useStateWithCallback("", ()=> color());
+
+    const color = () =>{
+        setColor1('NavLinkProfil');
+        setColor2('NavLinkProfil');
+        setColor3('NavLinkProfil');
+        setColor4('NavLinkProfil');
+
+        if (pathname === '/profil/')
+            setColor1('NavLinkProfilClick');
+        else if (pathname === '/profil/MyOrder')
+            setColor2('NavLinkProfilClick');
+        else if (pathname === '/profil/MyList')
+            setColor3('NavLinkProfilClick');
+        else if (pathname === '/profil/Social')
+            setColor4('NavLinkProfilClick');
     }
     
-    const clicked = (e) => {
-        setColor1('LiProfil');
-        setColor2('LiProfil');
-        setColor3('LiProfil');
-        if (e.target.id === '1') 
-            setColor1('LiClick');
-        if (e.target.id === '2')
-            setColor2('LiClick');
-        if (e.target.id === '3')
-            setColor3('LiClick');
-    };
-    Params ();
+    useEffect(() => {
+        setPathname(location.pathname);
+    }, []);
 
     return (
         <ul className="UlProfil" >
-            <NavLink to="/profil/" className='NavLinkProfil' style={{textDecoration:'none'}}>
+            <NavLink to="/profil/" className={color1} style={{textDecoration:'none'}} >
                 <BiIdCard className='LogoProfil'/>
-                <li className={color1} id='1'>Mes informations</li>
+                <li className='LiProfil'>Mes informations</li>
             </NavLink>
-            <NavLink to="/profil/MyOrder" className='NavLinkProfil' style={{textDecoration:'none'}}>
+            <NavLink to="/profil/MyOrder" className={color2} style={{textDecoration:'none'}}>
                 <FiShoppingCart className='LogoProfil'/>
-                <li className={color2} id='2'>Mes commandes</li>
+                <li className='LiProfil'>Mes commandes</li>
             </NavLink>
-            <NavLink to="/profil/MyList" className='NavLinkProfil' style={{textDecoration:'none'}}>
+            <NavLink to="/profil/MyList" className={color3} style={{textDecoration:'none'}}>
                 <RiPlayListAddLine className='LogoProfil'/>
-                <li className={color3} id='3' >Ma Liste</li>
+                <li className='LiProfil'>Ma Liste</li>
             </NavLink>
-            <NavLink to="/profil/Social" className='NavLinkProfil' style={{textDecoration:'none'}}>
+            <NavLink to="/profil/Social" className={color4} style={{textDecoration:'none'}}>
                 <GrGroup className='LogoProfil'/>
-                <li className={color3} id='4' >Social</li>
+                <li className='LiProfil'>Social</li>
             </NavLink>
         </ul>
     )

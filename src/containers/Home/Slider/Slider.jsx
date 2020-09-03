@@ -5,7 +5,7 @@ import './Slider.css';
 
 const SliderHome = () => (
     <Carousel className="Slider" indicators={false} controls={false} interval={5000}>
-         <Carousel.Item className="SliderItem">
+        <Carousel.Item className="SliderItem">
             <img src='https://images8.alphacoders.com/567/567772.jpg' alt="Third slide" />
             <NavLink to="/profil/Social">
                 <button>Rejoignez-nous</button>
