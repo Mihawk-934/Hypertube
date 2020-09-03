@@ -1,16 +1,15 @@
 .UlProfil {
-    height: 300px;
+    height: 310px;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .LiProfil, .LiClick {
     font-size: 1em;
     width: 100%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,17 +18,23 @@
     border-left: 5px solid transparent; 
 }
 
-.LogoProfil {
+.LiClick { 
+    font-weight: bold;
+}
+
+.LogoProfil, .LogoProfilClick {
+    padding-top: 10px;
     width: 40px;
     height: 40px;
     color: black;
 }
 
-.LiClick { 
-    background-color: red;
+.LogoProfilClick {
+    color: red;
 }
 
-.NavLinkProfil {
+.NavLinkProfil, .NavLinkProfilClick {
+    height: 80px;
     display: flex;
     flex-direction: column;  
     align-items: center;
@@ -37,16 +42,13 @@
     border-left: 5px solid transparent;
 }
 
-.NavLinkProfil:hover {
-    background-color: grey;
-    cursor: pointer;
+.NavLinkProfilClick {
+    border-left: 5px solid red;
 }
 
-.NavLinkProfilClick {
-    display: flex;
-    flex-direction: column;  
-    align-items: center;
-    border-left: 5px solid red;
+.NavLinkProfil:hover, .NavLinkProfilClick:hover {
+    background-color:#ccc;
+    cursor: pointer;
 }
 
 @media (max-width: 1025px) {
@@ -59,6 +61,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: space-around;
         height: 70px;
     }
 
@@ -66,14 +69,13 @@
        display: none;
     }
 
-    .NavLinkProfil {
+    .NavLinkProfil , .NavLinkProfilClick{
+        width: 70px;
         height: 70px;
         border-left: none;
-        border-bottom: 5px solid transparent;
     }
 
-    .NavLinkProfil:hover {
+    .NavLinkProfilClick {
         border-left: none;
-        border-bottom: 5px solid red;
     }
 }
