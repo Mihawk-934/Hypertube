@@ -6,7 +6,7 @@ import MyInput from "../../../components/MyInput/MyInput";
 import MyButton from "../../../components/MyButton/MyButton";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as actions from '../../../store/actions/index';
+import * as actions from '../../../store/actions/index'; 
 import { Form, Spinner } from "react-bootstrap";
 import  '../auth.css';
 

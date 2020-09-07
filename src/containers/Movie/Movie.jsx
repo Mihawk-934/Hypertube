@@ -5,9 +5,9 @@ import Video from './Video/Video';
 import Slider from './Slider/Slider';
 import { Container } from 'react-bootstrap';
 import Presentation from './Presentation/Presentation';
-import './Movie.css';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import './Movie.css';
 
 class MovieId extends Component {
     _isMounted = false;
@@ -51,7 +51,6 @@ class MovieId extends Component {
                 }
             )
             .catch(err => console.log(err));
-          
     };
 
     submit = (e) => {
@@ -76,7 +75,7 @@ class MovieId extends Component {
                 <Container className='Container'>
                     <div data-aos="flip-left" data-aos-duration="2000">
                         {this.state.movie && <Presentation movie={this.state.movie}/>}
-                        <Video id={this.state.movie.youtubeKey}/>
+                        {this.state.movie && <Video id={this.state.movie.youtubeKey}/>}
                         {this.state.movie.similar && this.state.movie.similar.length !== 0&& <Slider similar={this.state.movie.similar}/>}
                     </div>
                 </Container>

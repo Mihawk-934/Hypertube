@@ -2,15 +2,14 @@ import React from 'react';
 import '../MoviesItems.css';
 // import { FaEye } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import { IoIosTime } from "react-icons/io";
+import { FaCartPlus } from "react-icons/fa";
 import { Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 const MovieItem = (props) => (
     <li className="LiMoviesItem" key={props.movie.id} >
         <div className="triangle">
-        <span className="Note">{props.movie.vote_average}</span>
+            <span className="Note">{props.movie.vote_average}</span>
         </div>
-        
         <div className='BlockImage'>
             {
                 props.movie.poster_path === null ? <div className='Img' style={{backgroundColor:"black"}} onClick={props.clicked}>Image Non Disponible</div> :
@@ -22,8 +21,8 @@ const MovieItem = (props) => (
                     <FaHeart className ='Favoris'/>
                 </OverlayTrigger>
                 <OverlayTrigger  placement='bottom'
-                    overlay={<Tooltip id='voir'>A voir plus tard</Tooltip>}>
-                    <IoIosTime className ='Voir'/>
+                    overlay={<Tooltip id='voir'>Aujouter au panier</Tooltip>}>
+                    <FaCartPlus className='Voir'/>
                 </OverlayTrigger>
             </div>
         </div>

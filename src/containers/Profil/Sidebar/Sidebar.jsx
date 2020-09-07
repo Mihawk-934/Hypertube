@@ -43,7 +43,7 @@ const Sidebar = () => {
         setColor11('LiProfil');
         setColor12('LiProfil');
 
-        if (pathname === '/profil/') {
+        if (pathname === '/profil') {
             setColor1('NavLinkProfilClick');
             setColor5('LogoProfilClick');
             setColor9('LiClick');
@@ -71,7 +71,7 @@ const Sidebar = () => {
 
     return (
         <ul className="UlProfil" >
-            <NavLink to="/profil/" className={color1} style={{textDecoration:'none'}} >
+            <NavLink to="/profil" className={color1} style={{textDecoration:'none'}}>
                 <BiIdCard className={color5}/>
                 <li className={color9}>Mes informations</li>
             </NavLink>

@@ -22,3 +22,12 @@ export {
     initialiseFiltres,
     initialiseTextSearch,
 } from './movies'; 
+
+export {
+    resetCart,
+    // addToCart,
+    removeToCart,
+    increase,
+    decrease,
+    getTotals
+} from './cart';

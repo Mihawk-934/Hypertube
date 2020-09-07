@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import './Home.css';
 
-import MySlider from './Slider/Slider'
+//import MySlider from './Slider/Slider'
 
 const Home = () =>  {
     const [aff, setAff] = useState(true);
@@ -30,7 +30,7 @@ const Home = () =>  {
     
     const Page = (
         <div className="Page">
-            <MySlider />
+            {/*<MySlider />*/}
             <div className="Gauche">
                 <Sidebar/>
             </div>

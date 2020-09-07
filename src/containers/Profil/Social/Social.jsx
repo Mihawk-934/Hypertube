@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Switch from "react-switch";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Social.css';
 
 const Social = () => {
+    const [btnMembre, setBtnMembre] = useState(false);
+    const [btnNewsletter, setBtnNewsletter] = useState(false);
+
+    const handleChange = (e, id) => {
+        if (id === 'membre') {
+            setBtnMembre(prev => !prev);
+            btnMembre ? toast.success("Membre TRUE") : toast.error("Membre FALSE");
+        }
+        else if (id === 'newsletter') {
+            setBtnNewsletter(prev => !prev);
+            btnNewsletter ? toast.success("News TRUE") : toast.error("News FALSE");
+        }
+    }
+
     return (
         <div className='PageMyInfo'>
             <h1 className='Title'>Social</h1>
@@ -21,7 +37,7 @@ const Social = () => {
                         </ul>
                     </div>
                     <div className="Switch">
-                        {/* <Switch onColor="#DC143C" /> */}
+                        <Switch onChange={(e) => handleChange(e,'membre')} checked={btnMembre}/>
                     </div>
                 </div>
             </div>
@@ -39,7 +55,8 @@ const Social = () => {
                         </ul>
                     </div>
                     <div className="Switch">
-                        {/* <Switch onColor="#DC143C" /> */}
+                        <Switch onChange={(e) => handleChange(e,'newsletter')} checked={btnNewsletter}/>
+                        <ToastContainer position="top-center" pauseOnFocusLoss type="dark"/>
                     </div>
                 </div>
             </div>

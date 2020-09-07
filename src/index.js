@@ -13,12 +13,14 @@ import { Provider } from 'react-redux';
 
 import authReducer from './store/reducers/auth';
 import moviesReducer from './store/reducers/movies';
+import cartReducer from './store/reducers/cart';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    movies: moviesReducer
+    movies: moviesReducer,
+    cart: cartReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

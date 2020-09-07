@@ -17,6 +17,17 @@
     height: auto;
 }
 
+.Souris {
+    position: absolute;
+    top: 19%;
+    left: 39%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background-color: transparent;
+}
+
 .Slider button {
     position: absolute;
     top: 15%;

@@ -7,12 +7,6 @@
     margin: auto;
 }
 
-.NavLogout {
-    display:flex;
-    align-items: center;
-    margin: auto;
-}
-
 .User {
     width: 70px;
     height: 70px;
@@ -23,13 +17,19 @@
     border: 2px solid white;
 }
 
-.Logout {
+.NavIcon {
+    display:flex;
+    align-items: center;
+    margin: auto;
+}
+
+.Icon {
     width: 40px;
     height: 40px;
     color: white;
 }
 
-.Logout:hover {
+.Icon:hover {
     color: red; 
 }
 

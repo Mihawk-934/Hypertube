@@ -22,6 +22,7 @@ import Social from './containers/Profil/Social/Social';
 import * as actions from './store/actions/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
 
 class App extends Component {
   render() {
@@ -31,7 +32,7 @@ class App extends Component {
         <Route path="/register" exact component={Register}/>
         <Route path="/forget_password" component={Pwd}/>
         <Redirect to='/'/>
-      </Switch>
+      </Switch>   
     );
 
     if (localStorage.getItem('token')) {
@@ -41,8 +42,8 @@ class App extends Component {
           <Route path="/movie/:id" component={Movie}/>
           <Route path="/logout" component={Logout}/>
           <Route path="/home" component={Home}/>
-          <Route
-            path="/profil"
+          <Route path="/cart" component={ShoppingCart} />
+          <Route path="/profil/"
             render={({ match: { url } }) => (
               <>
                 <Route path={`${url}/`} render={()=><Profil child={<MyInfo/>} />} exact /> 

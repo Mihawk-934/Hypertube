@@ -3,6 +3,7 @@ import { FaHeart, FaCartPlus } from "react-icons/fa";
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Icons = () => {
+
     return (
         <div className='Icons'>
             <OverlayTrigger  placement='bottom'

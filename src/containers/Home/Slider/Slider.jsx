@@ -3,12 +3,15 @@ import { Carousel } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import './Slider.css';
 
+import { FaMousePointer } from 'react-icons/fa';
+
 const SliderHome = () => (
     <Carousel className="Slider" indicators={false} controls={false} interval={5000}>
         <Carousel.Item className="SliderItem">
             <img src='https://images8.alphacoders.com/567/567772.jpg' alt="Third slide" />
             <NavLink to="/profil/Social">
-                <button>Rejoignez-nous</button>
+                <button>Rejoignez la communauté Netflix !</button>
+                <FaMousePointer className="Souris"/>
             </NavLink>
         </Carousel.Item>
 

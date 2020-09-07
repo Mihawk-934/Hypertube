@@ -15,3 +15,14 @@ export const TEXT_SEARCH = "TEXT_SEARCH";
 export const INITIALISE = 'INITIALISE';
 export const INITIALISE_FILTRES = 'INITIALISE_FILTRES';
 export const INITIALISE_TEXTSEARCH = 'INITIALISE_TEXTSEARCH';
+
+////////// CART //////////
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_TO_CART = "REMOVE_TO_CART";
+export const RESET_CART = "RESET_CART";
+
+//----- VIDEO YOUTUBE.
+export const INCREASE = "INCREASE";
+export const DECREASE = "DECREASE";
+export const CLEAR_CART = "CLEAR_CART";
+export const GET_TOTAL = "GET_TOTAL";
