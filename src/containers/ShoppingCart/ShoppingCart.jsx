@@ -38,7 +38,7 @@ const ShoppingCart = () => {
                     </li>))
                 }
             </ul>
-                <div className="Checkout">
+            <div className="Checkout">
                 <p>Total: {total}$</p>
                 <button>Valider</button>
                 <button onClick={resetCart}>VIDER LE PANIER</button>

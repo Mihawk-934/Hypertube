@@ -32,9 +32,19 @@ const initialState = {
     qte: 0
 };
 
-const addToCart = (state) => {
-  return updateObject( state, { 
-    
+const addToCart = (state, action) => {
+    console.log(action)
+    let tab= [...state.cart];
+    let value = {
+        title: action.movie.title,
+        price: 1000,
+        id: action.movie.id,
+        qte : 1
+    }
+    console.log(value);
+    console.log(tab)
+    tab.push(value)
+  return updateObject( state, { cart: tab
   })
 }
 

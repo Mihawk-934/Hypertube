@@ -25,7 +25,7 @@ export {
 
 export {
     resetCart,
-    // addToCart,
+    addToCart,
     removeToCart,
     increase,
     decrease,

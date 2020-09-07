@@ -21,8 +21,8 @@ const Presentation = (props) => {
                             {/* :  */}
                             {/* <Image style={{ width: "100%", height: "auto" }} src={noFilm} alt={`poster ${props.movie.title}`}/> */}
                         {/* } */}
-                    </>
-                    <Icons/>
+                    </>{console.log(props.movie)}
+                    <Icons movie={props.movie}/>
                     {/* {props.movie.youtubeKey && <Modal id={props.movie.youtubeKey}/>} */}
                 </Col>
                 <Col sm={12} md={8}>

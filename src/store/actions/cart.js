@@ -2,11 +2,13 @@ import * as actionTypes from './actionTypes';
 // import axios from 'axios';
 // import firebase from '../../fire';
 
-// export const addToCart = () => {
-//     return {
-//         type: actionTypes.ADD_TO_CART
-//     }
-// }
+export const addToCart = (movie) => {
+    console.log(movie)
+    return {
+        type: actionTypes.ADD_TO_CART,
+        movie: movie
+    }
+}
 
 export const removeToCart = (id) => {
     return {
