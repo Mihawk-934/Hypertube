@@ -62,8 +62,9 @@ export const authRegister = (email, password, history) => {
             password: password,
             returnSecureToken: true
         };
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
             .then(response => {
+                //requete objet {mail prenom nom ..}
                 dispatch(errorServor('Votre compte viens d\'etre creer, vous allez etre rediriger dans quelques instant'));
                 dispatch(registerSuccess(true));
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
@@ -85,11 +86,12 @@ export const authLogin = (email, password, history) => {
             password: password,
             returnSecureToken: true
         };
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
             .then(response => {
-                localStorage.setItem('animation', true)
-                localStorage.setItem('token', response.data.idToken)
-                localStorage.setItem('id', response.data.localId)
+                localStorage.setItem('animation', true);
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('id', response.data.localId);
+                localStorage.setItem('social', true);
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 history.push('/home');
             })

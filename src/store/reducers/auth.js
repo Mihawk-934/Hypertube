@@ -20,7 +20,7 @@ const authSuccess = (state, action) => {
       userId: action.userId,
       error: null,
       loading: false
-   } );
+   });
 };
 
 const authLogout = (state) => {

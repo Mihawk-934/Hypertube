@@ -57,7 +57,6 @@ class Register extends Component {
   submit = e => {
     e.preventDefault();
     this.props.onAuth(this.state.values.mail, this.state.values.password, this.props.history);
-    // this.props.onSubmit();
   };
 
   render() {

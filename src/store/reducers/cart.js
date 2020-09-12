@@ -2,50 +2,31 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    cart: [
-        {
-            title: 'FILM 1',
-            price: 1000,
-            id: 1,
-            qte : 1
-        },
-        {
-            title: 'FILM 2',
-            price: 2000,
-            id: 2,
-            qte: 1
-        },
-        {
-            title: 'FILM 3',
-            price: 3000,
-            id: 3,
-            qte: 1
-        },
-        {
-            title: 'FILM 4',
-            price: 4000,
-            id: 4,
-            qte: 1
-        },
-    ],
+    cart: [],
     total: 0,
     qte: 0
 };
 
 const addToCart = (state, action) => {
-    console.log(action)
-    let tab= [...state.cart];
+    let tab = [...state.cart];
+
     let value = {
         title: action.movie.title,
         price: 1000,
         id: action.movie.id,
-        qte : 1
+        qte: 1,
+        img: action.movie.poster_path
     }
-    console.log(value);
-    console.log(tab)
-    tab.push(value)
-  return updateObject( state, { cart: tab
-  })
+    let ok = true;
+    tab.filter(cartItem => {
+        if (cartItem.id === action.movie.id) {
+            cartItem.qte += 1
+            ok = false
+        }
+    })
+    if (ok === true)
+        tab.push(value)
+    return updateObject( state, { cart: tab })
 }
 
 const removeToCart = (state, action) => {
@@ -92,7 +73,6 @@ const getTotals = (state) => {
         }
     );
     total = parseFloat(total.toFixed(2));
-
     return {...state, total, qte}
 }
 

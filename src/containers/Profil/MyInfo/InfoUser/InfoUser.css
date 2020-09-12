@@ -11,13 +11,12 @@
 
 .Duo {
     padding: 10px;
-    height: 70px;
     width: 70%;
     margin: auto;
 }
 
 .Input {
-    margin-top: 7px;
+    margin-top: 10px;
     width: 100%;
     height: 40px;
     border: none;
@@ -26,7 +25,7 @@
     color: black;
     outline:none;
     background-color: rgb(237, 237, 237);
-    padding: 10px;
+    padding: 15px;
 }
 
 .Input:hover,

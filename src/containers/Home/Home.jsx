@@ -2,12 +2,11 @@ import React from 'react';
 import Sidebar from './Sidebar/SideBar';
 import MoviesList from './MoviesList/MoviesList';
 import Animation from './Animation/Animation';
+// import MySlider from './Slider/Slider'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import './Home.css';
-
-//import MySlider from './Slider/Slider'
 
 const Home = () =>  {
     const [aff, setAff] = useState(true);
@@ -26,11 +25,12 @@ const Home = () =>  {
         }
         else
             setAff(false)
-    }, []);
+    }, [hideAction]);
+    //REGARDER VIDEO HOOKS YOUTUBE (useCallBack).
     
     const Page = (
         <div className="Page">
-            {/*<MySlider />*/}
+            {/* <MySlider /> */}
             <div className="Gauche">
                 <Sidebar/>
             </div>
