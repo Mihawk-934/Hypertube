@@ -99,6 +99,10 @@
     width: 100%;
     margin: 20px 0;
 }
+
+.login-form-submit:disabled {
+    cursor: not-allowed;
+}
   
 .alternate-login {
     position: relative;

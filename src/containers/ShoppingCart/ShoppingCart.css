@@ -16,7 +16,7 @@
     flex-direction: row;
 }
 
-.titleCart {
+.titleRecap, .titlePanier {
     font-size: 22px;
     font-weight: 500;
     padding-left: 8px;
@@ -27,6 +27,12 @@
 .GaucheCart {
     width: 675px;
     margin: 0;
+}
+
+.cartEmpty {
+    color: black;
+    padding: 8px;
+    font-style: italic;
 }
 
 .liMovie {
@@ -141,9 +147,16 @@
     color: white;
 }
 
+.buttonPaiment:disabled {
+    background-color:#c5c5c5c5;
+    color: rgb(177, 177, 177);
+    cursor: not-allowed;
+    /* cursor: disabled; */
+}
+
 .blockButton {
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
 .buttonClear {
@@ -153,4 +166,48 @@
     margin-top: 35px;
     color: black;
     border-bottom: 1px solid black;
+}
+
+.window1100 {
+    display: none;
+}
+
+@media (max-width: 1050px) {
+    .Cart {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .GaucheCart {
+        width: 90%;
+        margin: auto;
+    }
+
+    .titlePanier {
+        text-align: center;
+    }
+
+    .window1100 {
+        display: contents;
+    }
+
+    .totalPrice {
+        border-top: none;
+    }
+
+    .DroiteCart {
+        width: 90%;
+        margin: 30px auto 0;
+    }
+
+    .liMovie {
+        margin-top: 50px;
+        border-top: 1px solid black;
+    }
+
+    .cartEmpty {
+        margin-top: 50px;
+        border-top: 1px solid black;
+        padding-top: 15px;
+    }
 }

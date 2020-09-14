@@ -2,15 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    cart: [
-        {
-            id: 337401,
-            img: "/mxTqWTzLPpi4hjiF8qT5MfPwmjJ.jpg",
-            price: 9.99,
-            qte: 1,
-            title: "Mulan"
-        }
-    ],
+    cart: [],
     total: 0,
     qte: 0
 };
@@ -76,7 +68,7 @@ const getTotals = (state) => {
             return cartTotal;
         },
         {
-            total: 0,
+            total: 0.00,
             qte: 0
         }
     );
