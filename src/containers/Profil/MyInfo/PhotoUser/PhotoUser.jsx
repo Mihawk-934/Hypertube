@@ -5,7 +5,6 @@ import '../MyInfo.css';
 import './PhotoUser.css';
 
 const PhotoUser = () => {
-
     return (
         <div className="BlockContainer">
             <div className="TitleBackground">

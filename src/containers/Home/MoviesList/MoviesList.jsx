@@ -36,9 +36,7 @@ class MoviesList extends Component {
   }
 
   newMovie = () => {
-    if (
-      // this.props.nbPage !== 0 && 
-      this.props.page > this.props.nbPage) 
+    if (this.props.page > this.props.nbPage)  // this.props.nbPage !== 0 && 
       this.setState({ hasMore: false });
     else if (this.props.next === 'filtres')
       this.props.filtresRequest(this.props.filtres, this.props.page + 1);
@@ -51,7 +49,7 @@ class MoviesList extends Component {
   render() {
     let movies = null;
     if (this.props.movies !== null && this.props.movies.length > 0) 
-      movies = <MovieItems movies={this.props.movies} clicked={() => this.clicked()}/>
+      movies = <MovieItems movies={this.props.movies}/>
     if (this.props.noResult)
       movies = <p style={{ color: "white" }}>Il y a 0 resultat.</p>
 

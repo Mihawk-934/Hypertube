@@ -5,7 +5,6 @@ import User from '../../../assets/miclaude.png';
 import { Navbar, Nav, Image } from 'react-bootstrap';
 import { FiLogOut } from "react-icons/fi";
 import { RiShoppingBasketLine } from "react-icons/ri";
-
 import './Toolbar.css';
 
 const Toolbar = () => {
@@ -16,7 +15,7 @@ const Toolbar = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto"/>
                 <Nav style={{paddingRight:'10px'}}>
-                    <NavLink to="/cart" className='NavIcon'> <RiShoppingBasketLine className="Icon"/></NavLink>
+                    <NavLink to="/cart" className='NavIcon'><RiShoppingBasketLine className="Icon"/></NavLink>
                     <NavLink to="/profil" className='NavUser'><Image src={User} className='User' roundedCircle/></NavLink>
                     <NavLink to="/logout" className='NavIcon'><FiLogOut className="Icon"/></NavLink>
                 </Nav>

@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
-import './ShoppingCart.css';
+import { RiArrowLeftSFill, RiArrowRightSFill } from 'react-icons/ri';
 import * as actions from '../../store/actions/index';
+import { useHistory } from 'react-router-dom';
+import './ShoppingCart.css';
 
 const ShoppingCart = () => {
     const movies = useSelector(state => state.cart.cart);
     const total = useSelector(state => state.cart.total);
+    const qte = useSelector(state => state.cart.qte);
+    const history = useHistory();
     const dispatch = useDispatch();
     const resetCart = () => { dispatch(actions.resetCart()) };
     const removeProduct = (id) => { dispatch(actions.removeToCart(id)) };
@@ -20,45 +22,63 @@ const ShoppingCart = () => {
     })
 
     let cart = (
-        <>
-            <ul style={{padding:'0'}}>
+        <div className="Cart">
+            <ul className="GaucheCart" style={{padding:'0'}}>
+                <h4 className="titleCart">Panier</h4>
+                {/* {movies.length !==0 && <span style={{fontStyle:'italic'}}>({movies.length})</span>} */}
                 {movies.map(movie => (
-                    <li className="BlockFilm" key={movie.id}>
-                        <img style={{width:'150px', height:'200px'}} src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id}/>
-                        <div className="InfoFilm" >
-                            <h4 style={{color:'black'}}>{movie.title}</h4>
-                            <div style={{display:'flex', flexDirection:'row'}}>
-                                <p style={{color: 'rgb(117, 117, 117)', fontFamily: 'helvetica neue'}}>Quantité </p>
-                                <MdKeyboardArrowLeft className="iconsQte" onClick={() => movie.qte === 1 ? removeProduct(movie.id) : decrease(movie.id)} /> 
-                                <p style={{color:'black'}}>{movie.qte}</p>
-                                <MdKeyboardArrowRight className="iconsQte" onClick={() => increase(movie.id)} />
+                    <li className="liMovie" key={movie.id}>
+                        <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id}
+                            onClick={() => history.push(`/movie/${movie.id}`)}/>
+                        <div className="infoMovie">
+                            <p className='titleMovie'>{movie.title}</p>
+                            <p className='pMovie'>US</p>
+                            <p className='pMovie'>Durée 120min</p>
+                            <div className="qteMovie">
+                                <p className='pMovie'>Quantité </p>
+                                <RiArrowLeftSFill className="qteIcon" onClick={() => movie.qte === 1 ? removeProduct(movie.id) : decrease(movie.id)} /> 
+                                <p className='pMovie'>{movie.qte}</p>
+                                <RiArrowRightSFill className="qteIcon" onClick={() => increase(movie.id)} />
                             </div>
-                            <AiOutlineCloseCircle className="DeleteProduct" onClick={() => removeProduct(movie.id)}/>
+                            <p className='deleteMovie' onClick={() => removeProduct(movie.id)}>Supprimer</p>
                         </div>
-                        <div style={{width:'190px'}}>
-                            <p style={{color:'black', fontWeight:'bold', textAlign:'right'}}>{movie.price}$</p> 
+                        <div className="priceMovie">
+                            <p className="price">{movie.price} €</p> 
                         </div>
                     </li>))
                 }
+                {movies.length > 1 && <p className="buttonClear" onClick={resetCart}>Vider le Panier</p>}
             </ul>
-            <div className="Checkout">
-                <p>Total: {total}$</p>
-                <button>Valider</button>
-                <button onClick={resetCart}>VIDER LE PANIER</button>
+            <div className="DroiteCart"> 
+                <h4 className="titleCart">Récapitulatif</h4>
+                <div className="Recapitulatif">
+                    <div className="rubriqueRecapitulatif">
+                        <p className="infoGauche">Nombre d'articles</p>
+                        <p className="infoDroite">{qte}</p>
+                    </div>
+                    <div className="rubriqueRecapitulatif">
+                        <p className="infoGauche">Date de prise en charge et d'expédition estimée</p>
+                        <p className="infoDroite" style={{textDecoration:'line-through'}}> 0 € </p>
+                    </div>
+                    <p style={{textAlign:'center'}}>Expedition offerte</p>
+                    <div className='totalPrice'>
+                        <p className="totalPriceGauche">Total</p>
+                        <p className="totalPriceDroite">{total} €</p>
+                    </div>
+                </div>
+                <div className='blockButton'>
+                    <button className="buttonPaiment">Paiement</button>
+                </div>
             </div>
-        </>
+        </div>
     )
 
-    if (movies.length === 0) {
+    if (movies.length === 0)
         cart = <p style={{color:'black'}}>Is currently empty</p>
-    }
   
     return (
         <div className="PageCart">
-            <div className="BlockCart">
-                <h1 className='Title'>Mon Panier {movies.length !==0 && <span style={{fontStyle:'italic'}}>({movies.length})</span>}</h1>
-                {cart}   
-            </div>
+            {cart}   
         </div>
     )
 }

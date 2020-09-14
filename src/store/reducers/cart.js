@@ -2,7 +2,15 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
 const initialState = {
-    cart: [],
+    cart: [
+        {
+            id: 337401,
+            img: "/mxTqWTzLPpi4hjiF8qT5MfPwmjJ.jpg",
+            price: 9.99,
+            qte: 1,
+            title: "Mulan"
+        }
+    ],
     total: 0,
     qte: 0
 };
@@ -21,7 +29,7 @@ const addToCart = (state, action) => {
     tab.filter(cartItem => {
         if (cartItem.id === action.movie.id) {
             cartItem.qte += 1
-            ok = false
+            ok = false;
         }
     })
     if (ok === true)
