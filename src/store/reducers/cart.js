@@ -12,10 +12,12 @@ const addToCart = (state, action) => {
 
     let value = {
         title: action.movie.title,
-        price: 1000,
+        price: 9.99,
         id: action.movie.id,
         qte: 1,
-        img: action.movie.poster_path
+        img: action.movie.poster_path,
+        duree: action.movie.runtime,
+        pays: action.movie.production_countries[0].iso_3166_1
     }
     let ok = true;
     tab.filter(cartItem => {
@@ -68,7 +70,7 @@ const getTotals = (state) => {
             return cartTotal;
         },
         {
-            total: 0.00,
+            total: 0,
             qte: 0
         }
     );

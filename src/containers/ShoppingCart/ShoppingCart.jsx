@@ -18,6 +18,7 @@ const ShoppingCart = () => {
     const getTotals = () => { dispatch(actions.getTotals()) };
 
     useEffect(() => {
+        console.log(movies)
         getTotals();
     })
 
@@ -25,13 +26,14 @@ const ShoppingCart = () => {
          <>
             {/* {movies.length !==0 && <span style={{fontStyle:'italic'}}>({movies.length})</span>} */}
             {movies.map(movie => (
+                
                 <li className="liMovie" key={movie.id}>
                     <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id}
                         onClick={() => history.push(`/movie/${movie.id}`)}/>
                     <div className="infoMovie">
                         <p className='titleMovie'>{movie.title}</p>
-                        <p className='pMovie'>US</p>
-                        <p className='pMovie'>Durée 120min</p>
+                        <p className='pMovie'>{movie.pays}</p>
+                        <p className='pMovie'>Durée {movie.duree} min</p>
                         <div className="qteMovie">
                             <p className='pMovie'>Quantité </p>
                             <RiArrowLeftSFill className="qteIcon" onClick={() => movie.qte === 1 ? removeProduct(movie.id) : decrease(movie.id)} /> 

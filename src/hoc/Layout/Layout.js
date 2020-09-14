@@ -5,6 +5,8 @@ import Footer from './Footer/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import  * as actions from '../../store/actions/index';
 
+import Logo from './Toolbar/Logo/Logo';
+
 const Layout = (props) =>  {
     const dispatch = useDispatch();
     const hideAction = () => {
@@ -20,7 +22,9 @@ const Layout = (props) =>  {
 
     return (
         <>
-            { hide && <Toolbar /> }
+            { hide ? <Toolbar /> :  <div>
+            <Logo/>
+        </div>}
             <main>
                 {props.children}
             </main>
