@@ -8,8 +8,8 @@
     background-position: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     width: 100%;
     min-height: 100vh;
     top: 0;
@@ -29,7 +29,7 @@
     background-color: rgba(20, 22, 24, 0.9);
 }
   
-.login-form-title{
+.login-form-title {
     text-align: center;
     background-color: #cc343f;
     padding: 10px;
@@ -175,8 +175,16 @@
     justify-content: space-between;
 }
 
-@media(max-width: 414px){
+@media(max-width: 490px){
     .Register {
         margin-top: 10px;
+        width: 98%;
+    }
+    .login-form-content {
+        padding: 10px 30px;
+    }
+    .Links {
+        flex-direction: column;
+        align-items: center;
     }
 }

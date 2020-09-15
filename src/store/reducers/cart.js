@@ -8,6 +8,7 @@ const initialState = {
 };
 
 const addToCart = (state, action) => {
+    console.log(action);
     let tab = [...state.cart];
 
     let value = {
@@ -17,7 +18,7 @@ const addToCart = (state, action) => {
         qte: 1,
         img: action.movie.poster_path,
         duree: action.movie.runtime,
-        pays: action.movie.production_countries[0].iso_3166_1
+        note: action.movie.vote_average
     }
     let ok = true;
     tab.filter(cartItem => {

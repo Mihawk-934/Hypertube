@@ -72,6 +72,10 @@
     cursor: pointer;
 }
 
+.qteIcon:active {
+    color:red;
+}
+
 .priceMovie {
     width: 184px;
     text-align: right;

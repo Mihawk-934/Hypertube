@@ -112,7 +112,7 @@ const InfoUser = () => {
                             onChange={(e)=> setAddress(e.target.value)} required />
                     </div>
                     <div style={{width: '200px'}}className='Duo'>
-                        <MyButton style={{backgroundImage: 'radial-gradient(circle at 50% 50%, #ae0000, #000000)'}}/>
+                        <MyButton />
                     </div>
                 </form>
             </div>

@@ -21,13 +21,13 @@ const Icons = (props) => {
 
     return (
         <div className='Icons'>
-            <OverlayTrigger placement='bottom' 
+            {/* <OverlayTrigger placement='bottom' 
                 overlay={<Tooltip id='favoris'>Ajouter aux favoris</Tooltip>}>
-                <FaHeart className='Fav' onClick={inCart}/>
-            </OverlayTrigger>
+                <FaHeart className='Fav' />
+            </OverlayTrigger> */}
             <OverlayTrigger placement='bottom'
                 overlay={<Tooltip id='voir'>Ajouter au panier</Tooltip>}>
-                <FaCartPlus className='Vu'/>
+                <FaCartPlus className='Vu' onClick={inCart}/>
             </OverlayTrigger>
         </div>
     )

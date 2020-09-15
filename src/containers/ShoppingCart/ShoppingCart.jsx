@@ -24,15 +24,13 @@ const ShoppingCart = () => {
 
     let cart = (
          <>
-            {/* {movies.length !==0 && <span style={{fontStyle:'italic'}}>({movies.length})</span>} */}
-            {movies.map(movie => (
-                
+            {movies.map(movie => (     
                 <li className="liMovie" key={movie.id}>
                     <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id}
                         onClick={() => history.push(`/movie/${movie.id}`)}/>
                     <div className="infoMovie">
                         <p className='titleMovie'>{movie.title}</p>
-                        <p className='pMovie'>{movie.pays}</p>
+                        <p className='pMovie'>Note {movie.note} / 10</p>
                         <p className='pMovie'>Durée {movie.duree} min</p>
                         <div className="qteMovie">
                             <p className='pMovie'>Quantité </p>
