@@ -28,7 +28,12 @@
     margin-top: 10px;
 }
 
+.toastCss {
+    text-align: center;
+}
+
 /* ----- MyCaoursel ------ */
+
 .BlockMyList {
     height: 550px;
     margin: 20px;

@@ -2,6 +2,7 @@ import React from 'react';
 import PhotoUser from './PhotoUser/PhotoUser';
 import InfoUser from './InfoUser/InfoUser';
 import CbUser from './CbUser/CbUser';
+import DeleteAccount from './DeleteAccount/DeleteAccount';
 import './MyInfo.css';
 
 const MyInfo = () => {
@@ -11,6 +12,7 @@ const MyInfo = () => {
             <PhotoUser/>
             <InfoUser/>
             <CbUser/>
+            <DeleteAccount />
         </div>
     )
 }

@@ -23,7 +23,7 @@ const Icons = (props) => {
         <div className='Icons'>
             {/* <OverlayTrigger placement='bottom' 
                 overlay={<Tooltip id='favoris'>Ajouter aux favoris</Tooltip>}>
-                <FaHeart className='Fav' />
+                <FaHeart className='Fav' onClick={inCart}/>
             </OverlayTrigger> */}
             <OverlayTrigger placement='bottom'
                 overlay={<Tooltip id='voir'>Ajouter au panier</Tooltip>}>

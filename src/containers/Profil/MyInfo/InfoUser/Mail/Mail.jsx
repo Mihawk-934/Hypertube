@@ -1,8 +1,6 @@
 import React, { useEffect, useState }  from 'react';
 import MyButton from '../../../../components/MyButton/MyButton';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import './InfoUser.css';
 
 const InfoUser = () => {
@@ -25,9 +23,7 @@ const InfoUser = () => {
                 setName(response.data.name)   
                 setLastname(response.data.lastname)
             })
-            .catch(err => { 
-                // console.log(err)
-            })
+            .catch(err => { console.log(err)})
         axios.get(`https://movies-27cd5.firebaseio.com/${idLocal}/mail.json/`)
             .then(response => { 
                 setMail(response.data.mail) 
@@ -48,27 +44,15 @@ const InfoUser = () => {
             .then(response => { 
                 const mail = { mail : response.data.mail };
                 axios.put(`https://movies-27cd5.firebaseio.com/${id}/mail.json/`,mail)
-                    .then(res => {  
-                        toast.success('Info perso mise à jour.', {
-                            autoClose: 3000,
-                            closeButton: false,
-                            className: "toastCss"
-                        })
+                    .then(response => { 
+                        console.log(response) 
                     })
                     .catch(err => { 
-                        toast.error('Erreur, veuillez ressayer plus tard 😮.', {
-                            autoClose: 3000,
-                            closeButton: false,
-                            className: "toastCss"
-                        })
+                        console.log(err) 
                     })
             })
             .catch(err => {
-                toast.error('Erreur, veuillez ressayer plus tard 😮.', {
-                    autoClose: 3000,
-                    closeButton: false,
-                    className: "toastCss"
-                })
+                // console.log(err.response.data.error.message)
             })      
     }
  
@@ -80,27 +64,20 @@ const InfoUser = () => {
             address: address,
         };
         axios.put(`https://movies-27cd5.firebaseio.com/${id}/user.json/`,data)
-            .then(res => {
-                toast.success('Info perso mise à jour.', {
-                    autoClose: 3000,
-                    closeButton: false
-                })
+            .then(response => {
+                console.log(response);  
             })
             .catch(err => {
-                toast.error('Erreur, veuillez ressayer plus tard 😮.', {
-                    autoClose: 3000,
-                    closeButton: false
-                })
+                // console.log(err.response)
             })    
     }
  
     return (
         <>
-            <ToastContainer position="top-center" pauseOnFocusLoss />
-           { localStorage.getItem('noSocial') && 
+           {localStorage.getItem('social') && 
             <div className="BlockContainer">
                 <div className="TitleBackground">
-                    <h4 className='h4'>Adresse mail</h4>
+                    <h4 className='h4'>Informations Personelles</h4>
                 </div>
                 <form onSubmit={handleSubmitMail} className="BlockUserInfo">
                     <div className='Duo'>
@@ -112,7 +89,7 @@ const InfoUser = () => {
                         <MyButton />
                     </div>
                 </form>
-            </div> }
+            </div>}
 
             <div className="BlockContainer">
                 <div className="TitleBackground">

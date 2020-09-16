@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import N from '../../../../assets/kiss.png';
 
 const Logo = () => (
-    <Link to={ localStorage.getItem("token") ? "/home" : "/register"}>
+    <a href={ localStorage.getItem("token") ? "/home" : "/"}>
         <img src={N} alt="logo" style={{width:'160px'}}/>
-    </Link>
-) 
+    </a>     
+)
 
 export default Logo; 

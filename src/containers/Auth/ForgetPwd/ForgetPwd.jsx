@@ -8,7 +8,6 @@ import Wrapper from '../../../hoc/Wrapper/Wrapper';
 import { Form } from 'react-bootstrap';
 import '../auth.css';
 
-
 class FogertPwd extends Component {
     state = {
         errors: {},
@@ -36,7 +35,8 @@ class FogertPwd extends Component {
 
     submit = (e) => {
         e.preventDefault();
-        firebase.auth().sendPasswordResetEmail(this.state.values.mail).then(response =>{
+        firebase.auth().sendPasswordResetEmail(this.state.values.mail)
+        .then(res =>{
             this.setState({responseServor:'Un mail viens de vous etre envoyer'})
         })
         .catch(err => {

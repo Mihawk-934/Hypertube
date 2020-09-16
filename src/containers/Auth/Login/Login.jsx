@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import { checkInput } from "../../../components/utility/utility";
 import MyInput from "../../../components/MyInput/MyInput";
 import MyButton from '../../../components/MyButton/MyButton';
 import Wrapper from '../../../hoc/Wrapper/Wrapper';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import * as actions from '../../../store/actions/index';
 import { Form } from 'react-bootstrap';
 import '../auth.css';
@@ -87,7 +86,6 @@ class Login extends Component {
                 </div>
             </Form>
         )
-
         return (
             <Wrapper form={form} title="Connexion" social={true}/>
         );
@@ -96,7 +94,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        error: state.auth.errorServor,
+        error: state.auth.errorServor
     };
 };
 

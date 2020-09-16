@@ -19,9 +19,7 @@ export const INITIALISE_TEXTSEARCH = 'INITIALISE_TEXTSEARCH';
 ////////// CART //////////
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_TO_CART = "REMOVE_TO_CART";
-export const RESET_CART = "RESET_CART";
-
 export const INCREASE = "INCREASE";
 export const DECREASE = "DECREASE";
-export const CLEAR_CART = "CLEAR_CART";
+export const RESET_CART = "RESET_CART";
 export const GET_TOTAL = "GET_TOTAL";

@@ -36,7 +36,7 @@ class MovieId extends Component {
     infoMovie = () => {
         axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos,credits,similar&language=fr`)
             .then(response => {
-                let similar = response.data.similar.results.slice(0, 20);
+                let similar = response.data.similar.results.slice(0, 20).filter(movie => movie.poster_path !== null);
                 let acteurs = response.data.credits.cast.splice(0, 4);
                 acteurs = acteurs.map(acteur => {
                     return {...acteur,
@@ -76,7 +76,7 @@ class MovieId extends Component {
                     <div data-aos="flip-left" data-aos-duration="2000">
                         {this.state.movie && <Presentation movie={this.state.movie}/>}
                         {this.state.movie && <Video id={this.state.movie.youtubeKey}/>}
-                        {this.state.movie.similar && this.state.movie.similar.length !== 0&& <Slider similar={this.state.movie.similar}/>}
+                        {this.state.movie.similar && this.state.movie.similar.length !== 0 && <Slider similar={this.state.movie.similar}/>}
                     </div>
                 </Container>
             </div>

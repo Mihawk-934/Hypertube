@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 
 class Logout extends Component {
     componentDidMount() {
-        this.props.onLogout();     
+        this.props.resetFiltres();
+        this.props.resetTextSearch();
+        this.props.initialise();
+        this.props.popularRequest(1);
+        this.props.onLogout();
     }
 
     render () {
@@ -17,7 +21,11 @@ class Logout extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogout: () => dispatch(actions.authLogout())
+        onLogout: () => dispatch(actions.authLogout()),
+        resetFiltres: () => dispatch(actions.initialiseFiltres()),
+        resetTextSearch: () => dispatch(actions.initialiseTextSearch()),
+        initialise: () => dispatch(actions.initialise()),
+        popularRequest: (page) => dispatch(actions.popularRequest(page)),
     };
 }
 

@@ -22,7 +22,7 @@ export const initialiseTextSearch = () => {
 
 export const filtres = (filtres) => {
     return {
-        type: actionTypes.FILTRES,
+        type: actionTypes.FILTRES, 
         filtres: filtres
     }
 };

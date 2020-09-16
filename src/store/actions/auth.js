@@ -91,7 +91,8 @@ export const authLogin = (email, password, history) => {
                 localStorage.setItem('animation', true);
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('id', response.data.localId);
-                localStorage.setItem('social', true);
+                localStorage.setItem('mail',response.data.email);
+                localStorage.setItem('noSocial', true);
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 history.push('/home');
             })
@@ -119,7 +120,6 @@ export const socialTwitter = (provider,history) => {
                 history.push('/home');
             })
             .catch(err => {
-                console.log('eerrrr msg = ', err.message)
                 dispatch(authFail(err.message));
             })  
     };

@@ -1,6 +1,4 @@
 .PageAuth {
-    /* background-image: url('https://cdn.pixabay.com/photo/2013/04/11/02/20/film-102681_1280.jpg'); */
-    /* background-image: url('../../assets/mosaique.png'); */
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../assets/mosaique.png');
     background-color: rgba(0, 0, 0, 0.35);
     background-repeat: no-repeat;
@@ -8,8 +6,6 @@
     background-position: center;
     display: flex;
     flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
     width: 100%;
     min-height: 100vh;
     top: 0;
@@ -25,7 +21,6 @@
 
 .Register{
     width: 480px;
-    /* margin: auto; */
     background-color: rgba(20, 22, 24, 0.9);
 }
   

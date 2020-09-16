@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Switch from "react-switch";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Social.css';
 
@@ -11,11 +11,11 @@ const Social = () => {
     const handleChange = (e, id) => {
         if (id === 'membre') {
             setBtnMembre(prev => !prev);
-            btnMembre ? toast.success("Membre TRUE") : toast.error("Membre FALSE");
+            btnMembre ? toast.success("Membre TRUE", {  className: "toastCss" }) : toast.error("Membre FALSE", {  className: "toastCss" });
         }
         else if (id === 'newsletter') {
             setBtnNewsletter(prev => !prev);
-            btnNewsletter ? toast.success("News TRUE") : toast.error("News FALSE");
+            btnNewsletter ? toast.success("News TRUE", {  className: "toastCss" }) : toast.error("News FALSE", {  className: "toastCss" });
         }
     }
 
@@ -56,7 +56,7 @@ const Social = () => {
                     </div>
                     <div className="Switch">
                         <Switch onChange={(e) => handleChange(e,'newsletter')} checked={btnNewsletter}/>
-                        <ToastContainer position="top-center" pauseOnFocusLoss type="dark"/>
+                        <ToastContainer transition={Zoom} position="top-center" pauseOnFocusLoss type="dark"/>
                     </div>
                 </div>
             </div>
