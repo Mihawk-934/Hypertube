@@ -47,7 +47,12 @@ export const authLogout = () => {
     localStorage.removeItem('token') 
     localStorage.removeItem('name')
     localStorage.removeItem('photo')
+    localStorage.removeItem('photoPhone')
     localStorage.removeItem('email')
+    localStorage.removeItem('noSocial');
+
+    localStorage.removeItem('show');
+
     return {
         type: actionTypes.AUTH_LOGOUT,
     };
@@ -97,8 +102,9 @@ export const authLogin = (email, password, history) => {
                 localStorage.setItem('animation', true);
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('id', response.data.localId);
-                localStorage.setItem('mail',response.data.email);
+                localStorage.setItem('email',response.data.email);
                 localStorage.setItem('noSocial', true);
+                dispatch(photo(response.data.localId));
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 history.push('/home');
             })
@@ -151,14 +157,40 @@ export const socialAuth = (provider,history) => {
     };
 };
 
+export const socialFacebook = (provider,history) => {
+    return dispatch => {
+        dispatch(authStart());
+        firebase.auth().signInWithPopup(provider)
+            .then(response => {
+                localStorage.setItem('animation', true)
+                localStorage.setItem('id', response.user.uid)
+                localStorage.setItem('token', response.credential.accessToken)
+                localStorage.setItem('name', response.user.displayName)
+                localStorage.setItem('photo', 'https://png.pngtree.com/png-clipart/20190927/ourlarge/pngtree-facebook-logo-png-in-golden-glitter-luxury-design-png-image_1762766.jpg');
+                localStorage.setItem('email', response.user.email)
+                dispatch(authSuccess(response.credential.idToken, response.user.uid));
+                history.push('/home');  
+            })
+            .catch(err => {
+                dispatch(authFail(err.message));
+            })  
+    };
+};
+
 export const authCheckState = () => {
     return (dispatch) => {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id')
         if (!token)
             dispatch(authLogout());
-        else 
-            dispatch(authSuccess(token,id));
+        else {
+            if (localStorage.getItem('photo') || localStorage.getItem('photoPhone'))
+                dispatch(authSuccess(token,id)); 
+            else {
+                dispatch(authSuccess(token,id)); 
+                dispatch(photo(id))
+            }
+        }
     };
 };
 

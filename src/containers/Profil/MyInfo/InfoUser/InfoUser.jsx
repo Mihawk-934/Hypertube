@@ -15,7 +15,7 @@ const InfoUser = () => {
 
     useEffect(() => {
         if (mail.length === 0)
-            setMail(localStorage.getItem('mail'))
+            setMail(localStorage.getItem('email'))
         setIdToken(localStorage.getItem('token'));
         setId(localStorage.getItem('id'));
         let idLocal = localStorage.getItem('id');

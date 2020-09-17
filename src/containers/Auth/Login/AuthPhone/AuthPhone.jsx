@@ -60,12 +60,13 @@ class Phone extends Component {
         window.confirmationResult
         .confirm(verificationId)
         .then(result => {
-            localStorage.setItem('animation', true)
-            localStorage.setItem('id',result.user.uid)
-            localStorage.setItem('token', result.user.ma)
-            localStorage.setItem('show', true)
+            localStorage.setItem('photoPhone', 'https://img.over-blog-kiwi.com/2/71/08/42/20190322/ob_3e6dd6_f4f45f93-efae-4acd-a7c7-0fefe62c85dd.png');
+            localStorage.setItem('animation', true);
+            localStorage.setItem('id',result.user.uid);
+            localStorage.setItem('token', result.user.ma);
+            localStorage.setItem('show', true);
             this.props.onPhone(result.user.ma,result.user.uid);
-            this.props.history.push('/home')
+            this.props.history.push('/home');
         })
         .catch(error => {
             this.setState({codeError:'Error'});

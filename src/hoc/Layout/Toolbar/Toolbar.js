@@ -10,10 +10,15 @@ import './Toolbar.css';
 const Toolbar = () => {
     const url = useSelector(state => state.auth.photo);
     let photo;
-    if (url !== null)
+
+    if (localStorage.getItem('photo'))
+        photo = localStorage.getItem('photo');
+    else if (localStorage.getItem('photoPhone'))
+        photo= localStorage.getItem('photoPhone');
+    else if (url !== null)
         photo = url;
     else 
-        photo='https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'
+        photo = 'https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png';
 
     return (
         <Navbar collapseOnSelect expand="sm" className="Toolbar" variant="dark" style={{padding:'0'}}>

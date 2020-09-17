@@ -15,6 +15,6 @@ const MyInfo = () => {
             <DeleteAccount />
         </div>
     )
-}
+} 
 
 export default MyInfo;

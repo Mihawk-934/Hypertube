@@ -15,7 +15,9 @@ class Social extends Component {
 
     authsocial = (provider) => {
         if (provider === providerT)
-            this.props.socialAuthTwitter(provider,this.props.history);
+            this.props.socialTwitter(provider,this.props.history);
+        else if (provider === providerF)
+            this.props.socialFacebook(provider,this.props.history);
         else
             this.props.socialAuth(provider,this.props.history);
     }
@@ -63,7 +65,8 @@ class Social extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         socialAuth:(provider,history) => dispatch(actions.socialAuth(provider,history)),
-        socialAuthTwitter:(provider,history) => dispatch(actions.socialTwitter(provider,history)),
+        socialFacebook:(provider,history) => dispatch(actions.socialFacebook(provider,history)),
+        socialTwitter:(provider,history) => dispatch(actions.socialTwitter(provider,history)),
 
     };
 };

@@ -30,7 +30,7 @@ const ShoppingCart = () => {
                         onClick={() => history.push(`/movie/${movie.id}`)}/>
                     <div className="infoMovie">
                         <p className='titleMovie'>{movie.title}</p>
-                        <p className='pMovie'>{movie.pays}</p>
+                        <p className='pMovie'>Note {movie.note}/10</p>
                         <p className='pMovie'>Durée {movie.duree} min</p>
                         <div className="qteMovie">
                             <p className='pMovie'>Quantité </p>

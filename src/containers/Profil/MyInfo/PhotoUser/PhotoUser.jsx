@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Img from '../../../../assets/miclaude.png';
-import { MdAddAPhoto } from 'react-icons/md';
+// import { MdAddAPhoto } from 'react-icons/md';
 import '../MyInfo.css';
 import './PhotoUser.css';
 import {useDispatch} from 'react-redux';
@@ -20,12 +19,17 @@ const PhotoUser = () => {
     const dispatch = useDispatch();
     const photoProfil = (image) => dispatch(actions.photoUrl(image))
 
-    let imageProfil = localStorage.getItem('photo');
+    let photoSocial = localStorage.getItem('photo');
+    let photoPhone = localStorage.getItem('photoPhone');
 
     useEffect (() => {
         if (localStorage.getItem('photo')) {
             setImage(localStorage.getItem('photo')) 
             photoProfil(localStorage.getItem('photo'));
+        }
+        else if (localStorage.getItem('photoPhone')){
+            setImage(localStorage.getItem('photoPhone')) 
+            photoProfil(localStorage.getItem('photoPhone'));
         }
         else {
             storage.getDownloadURL()
@@ -82,7 +86,7 @@ const PhotoUser = () => {
                  { image !== null ? 
                         <img src={image} alt='' style={{height:'140px', width:'140px',borderRadius:'10px'}}/>
                         : <div style={{height:'140px', width:'140px'}}/>}
-                        { !imageProfil && <div>
+                        { (!photoSocial && !photoPhone) && <div>
                             <input style={{color:'black'}}type='file' accept="image/*" onChange={handleChange}  /> 
                             <button onClick={handleUpload}>Upload</button>
                         </div> }    
