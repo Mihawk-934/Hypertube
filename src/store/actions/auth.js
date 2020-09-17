@@ -4,7 +4,13 @@ import firebase from '../../fire';
 
 export const hideToolbarAndFooter = () => {
     return {
-        type: actionTypes.HIDE_TOOLBAR_AND_FOOTER,
+        type: actionTypes.HIDE_TOOLBAR_AND_FOOTER
+    }
+}
+
+export const showToolbarAndFooter = () => {
+    return {
+        type: actionTypes.SHOW_TOOLBAR_AND_FOOTER
     }
 }
 
@@ -153,5 +159,23 @@ export const authCheckState = () => {
             dispatch(authLogout());
         else 
             dispatch(authSuccess(token,id));
+    };
+};
+
+export const photoUrl = (url) => {
+    return {
+        type: actionTypes.PHOTO,
+        photo: url
+    }
+}
+
+export const photo = (id) => {
+    return dispatch => {
+        dispatch(authStart());
+        firebase.storage().ref(`images/${id}/image`).getDownloadURL()
+            .then(function(url) {
+                dispatch(photoUrl(url))
+            })
+            .catch(err => { console.log(err) })
     };
 };

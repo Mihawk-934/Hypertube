@@ -12,7 +12,7 @@ const Home = () =>  {
     const [aff, setAff] = useState(true);
     const dispatch = useDispatch();
     const hideAction = () => {
-        dispatch(actions.hideToolbarAndFooter());
+        dispatch(actions.showToolbarAndFooter());
       } 
     
     useEffect(() => {

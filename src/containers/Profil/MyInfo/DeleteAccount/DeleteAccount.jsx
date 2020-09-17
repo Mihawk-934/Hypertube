@@ -4,10 +4,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Modal, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../../../store/actions/index';
 
 const DeleteAccount = () => {
     const history = useHistory();
     const [modal, setModal] = useState(false);
+
+    const dispatch = useDispatch();
+    const showAction = () => { dispatch(actions.hideToolbarAndFooter()) };
 
     const deleteAccount = () => {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:delete?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E',{"idToken": localStorage.getItem('token')}) 
@@ -18,10 +23,11 @@ const DeleteAccount = () => {
                     className:'toastCss'
                 })
                 localStorage.removeItem('token')
-                localStorage.removeItem('social')
+                localStorage.removeItem('noSocial')
                 localStorage.removeItem('id')
                 localStorage.removeItem('mail')
                 localStorage.removeItem('show')
+                showAction();
                 setModal(false);
             })
             .catch(err => {
@@ -79,7 +85,7 @@ const DeleteAccount = () => {
             <MyVerticallyCenteredModal
                 show={modal}
                 onHide={() => setModal(false)}
-                />
+                /> 
         </>
     )
 }

@@ -7,7 +7,8 @@ const initialState = {
   loading: false,
   errorServor: null,
   registerSuccess: false,
-  hideToolbatAndFooter: false
+  show: false,
+  photo: null
 };
 
 const authStart = ( state ) => {
@@ -27,13 +28,13 @@ const authLogout = (state) => {
   return updateObject(state, {
       token: null,
       userId: null,
-      hideToolbatAndFooter: false
+      show: false
   });
 };
 
 const errorServor = (state, action) => {
   return updateObject(state, {
-    errorServor: action.error
+    errorServor: action.error 
   });
 };
 
@@ -43,11 +44,23 @@ const registerSuccess = (state, action) => {
   });
 };
 
-const hideToolbatAndFooter = (state) => {
+const hideToolbarAndFooter = (state) => {
   return updateObject( state, { 
-    hideToolbatAndFooter: true
+    show: false
   });
 };
+
+const showToolbarAndFooter = (state) => {
+  return updateObject( state, { 
+    show: true
+  });
+};
+
+const photo = (state, action) => {
+  return updateObject(state, {
+    photo : action.photo
+  });
+}
 
 const reducer = ( state = initialState, action ) => {
   switch ( action.type ) {
@@ -56,7 +69,9 @@ const reducer = ( state = initialState, action ) => {
     case actionTypes.AUTH_LOGOUT: return authLogout(state);
     case actionTypes.AUTH_ERROR: return errorServor(state, action);
     case actionTypes.REGISTER_SUCCESS: return registerSuccess(state, action);
-    case actionTypes.HIDE_TOOLBAR_AND_FOOTER: return hideToolbatAndFooter(state);
+    case actionTypes.HIDE_TOOLBAR_AND_FOOTER: return hideToolbarAndFooter(state);
+    case actionTypes.SHOW_TOOLBAR_AND_FOOTER: return showToolbarAndFooter(state);
+    case actionTypes.PHOTO: return photo(state, action);
     default: return state;
   }
 };

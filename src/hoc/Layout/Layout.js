@@ -7,25 +7,23 @@ import  * as actions from '../../store/actions/index';
 
 const Layout = (props) =>  {
     const dispatch = useDispatch();
-    const hideAction = () => {
-        dispatch(actions.hideToolbarAndFooter())
-    }
-
+    const showAction = () => { dispatch(actions.showToolbarAndFooter()) };
+    
     useEffect(() => {
         if (localStorage.getItem('token'))
-            hideAction()   
+            showAction()   
     }, [])
     
-    const hide = useSelector((state => state.auth.hideToolbatAndFooter))
+    const show = useSelector((state => state.auth.show))
 
     return (
         <>
-            { hide && <Toolbar /> }
+            { show && <Toolbar /> }
             <main>
                 {props.children}
             </main>
             <ButtonTop />
-            { hide && <Footer /> }
+            { show && <Footer /> }
         </>
     )
 };

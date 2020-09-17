@@ -8,7 +8,10 @@ export {
     errorServor,
     authCheckState,
     authLogout,
-    hideToolbarAndFooter
+    hideToolbarAndFooter,
+    showToolbarAndFooter,
+    photo,
+    photoUrl
 } from './auth';
 
 export {
