@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { MdAddAPhoto } from 'react-icons/md';
-import '../MyInfo.css';
 import './PhotoUser.css';
 import {useDispatch} from 'react-redux';
 import * as actions from '../../../../store/actions/index';
@@ -40,7 +38,7 @@ const PhotoUser = () => {
                     }
                 })
                 .catch(err => {
-                    console.log(err)
+                    setImage('https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png');
                 })
         }
     }, [])
@@ -48,6 +46,7 @@ const PhotoUser = () => {
     const handleChange = (e) => {
         if (e.target.files[0]) {
             if (e.target.files[0] !== image ) {
+                console.log(e.target.files[0])
                 setImageTmp(e.target.files[0]);
                 setGood(true);
             }            
@@ -79,17 +78,12 @@ const PhotoUser = () => {
                 <h4 className='h4'>Photo de Profil</h4>
             </div>
             <div className="BlockImageProfil">
-                {/* <img src={Img} className='ImgProfil'alt=''/>
-                <div className='BlockLogo'>
-                    <MdAddAPhoto className='LogoAdd'/>
-                </div> */}
-                 { image !== null ? 
-                        <img src={image} alt='' style={{height:'140px', width:'140px',borderRadius:'10px'}}/>
-                        : <div style={{height:'140px', width:'140px'}}/>}
-                        { (!photoSocial && !photoPhone) && <div>
-                            <input style={{color:'black'}}type='file' accept="image/*" onChange={handleChange}  /> 
-                            <button onClick={handleUpload}>Upload</button>
-                        </div> }    
+                <img src={image} className='ImgProfil'alt=''/>
+                { (!photoSocial && !photoPhone) && 
+                <div className="BlockButton">
+                    <input style={{color:'black', cursor:'pointer'}} type='file' accept="image/*" onChange={handleChange} />
+                    <button className="ButtonUpload" onClick={handleUpload}>Upload</button>
+                </div> }    
             </div>
         </div>
     )

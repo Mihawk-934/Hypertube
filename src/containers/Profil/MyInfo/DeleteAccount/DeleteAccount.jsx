@@ -60,7 +60,7 @@ const DeleteAccount = () => {
                 </Modal.Header>
                 <Modal.Body  style={{backgroundColor:'black',color:'white'}}>
                     <p>
-                        Nous sommes triste de vous voir partir 😭 <br/>
+                        Nous sommes triste de vous voir partir <br/>
                         Etes vous sur de vouloir supprimer votre compte ?<br/>
                         Cette action entrainera une supression definitive de vos données
                     </p>

@@ -8,27 +8,29 @@ const initialState = {
 };
 
 const addToCart = (state, action) => {
-    let tab = [...state.cart];
+    let noSimilarFilm = true;
 
-    let value = {
-        title: action.movie.title,
-        price: 9.99,
-        id: action.movie.id,
-        qte: 1,
-        img: action.movie.poster_path,
-        duree: action.movie.runtime,
-        note: action.movie.vote_average
-    }
-    let ok = true;
-    tab.filter(cartItem => {
+    let tempCart = state.cart.map(cartItem => {
         if (cartItem.id === action.movie.id) {
-            cartItem.qte += 1
-            ok = false;
-        }
+            cartItem = { ...cartItem, qte: cartItem.qte + 1 };
+            noSimilarFilm = false
+        }    
+        return cartItem;
     })
-    if (ok === true)
-        tab.push(value)
-    return updateObject( state, { cart: tab })
+    if (noSimilarFilm) {
+        tempCart = [...state.cart];
+        let value = {
+            title: action.movie.title,
+            price: 9.99,
+            id: action.movie.id,
+            qte: 1,
+            img: action.movie.poster_path,
+            duree: action.movie.runtime,
+            note: action.movie.vote_average
+        }
+        tempCart.push(value)
+    }
+    return { ...state, cart: tempCart }
 }
 
 const removeToCart = (state, action) => {

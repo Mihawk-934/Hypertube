@@ -5,8 +5,7 @@ import * as actions from '../../../../store/actions/index';
 import { providerG, providerF,providerT } from '../../../../fire';
 import '../../auth.css';
 import AuthPhone from '../AuthPhone/AuthPhone';
-
-import { FcIphone} from "react-icons/fc";
+import { FcIphone } from "react-icons/fc";
 
 class Social extends Component {
     state = {

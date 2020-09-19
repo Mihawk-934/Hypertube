@@ -43,16 +43,7 @@ export const authFail = (error) => {
 };
  
 export const authLogout = () => {
-    localStorage.removeItem('id')
-    localStorage.removeItem('token') 
-    localStorage.removeItem('name')
-    localStorage.removeItem('photo')
-    localStorage.removeItem('photoPhone')
-    localStorage.removeItem('email')
-    localStorage.removeItem('noSocial');
-
-    localStorage.removeItem('show');
-
+    localStorage.clear();
     return {
         type: actionTypes.AUTH_LOGOUT,
     };
@@ -75,7 +66,6 @@ export const authRegister = (email, password, history) => {
         };
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
             .then(response => {
-                //requete objet {mail prenom nom ..}
                 dispatch(errorServor('Votre compte viens d\'etre creer, vous allez etre rediriger dans quelques instant'));
                 dispatch(registerSuccess(true));
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
@@ -208,6 +198,8 @@ export const photo = (id) => {
             .then(function(url) {
                 dispatch(photoUrl(url))
             })
-            .catch(err => { console.log(err) })
+            .catch(err => {    
+                // console.log(err)
+            })
     };
 };

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Navbar, Nav, Image } from 'react-bootstrap';
 import { FiLogOut } from "react-icons/fi";
-import { RiShoppingBasketLine } from "react-icons/ri";
+import { BsBag } from "react-icons/bs";
 import './Toolbar.css';
 
 const Toolbar = () => {
@@ -28,7 +28,12 @@ const Toolbar = () => {
                 <Nav className="mr-auto"/>
                 <Nav style={{paddingRight:'10px'}}>
                     <NavLink to="/cart" className='NavIcon'>
-                        <RiShoppingBasketLine className="Icon"/>
+                        <div>
+                        <BsBag className="Icon" style={{position:'relative'}}/>
+                            <p style={{position:'absolute', top:'38px', right:'152px', color:'white'}}>10</p>
+                            {/* <p style={{position:'absolute', top:'45px', color:'white'}}>10</p> */}
+                        </div>
+                        
                     </NavLink>
                     <NavLink to="/profil" className='NavUser'>
                         <Image src={photo} className='User' roundedCircle/>

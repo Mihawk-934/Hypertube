@@ -73,7 +73,7 @@ class MovieId extends Component {
         return (
             <div className="Page" style={movieBackdropStyles}>
                 <Container className='Container'>
-                    <div data-aos="flip-left" data-aos-duration="2000">
+                    <div data-aos="flip-left" data-aos-once data-aos-duration="3000">
                         {this.state.movie && <Presentation movie={this.state.movie}/>}
                         {this.state.movie && <Video id={this.state.movie.youtubeKey}/>}
                         {this.state.movie.similar && this.state.movie.similar.length !== 0 && <Slider similar={this.state.movie.similar}/>}

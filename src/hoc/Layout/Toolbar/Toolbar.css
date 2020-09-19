@@ -3,7 +3,7 @@
 }
 
 .NavUser {
-    margin: auto;
+    margin: 0 10px;
 }
 
 .User {
@@ -30,10 +30,4 @@
 
 .Icon:hover {
     color: red; 
-}
-
-@media (min-width: 991px) {
-    .NavUser {
-        margin: 0 10px;
-    }
 }
