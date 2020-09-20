@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Switch from "react-switch";
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,14 +8,26 @@ const Social = () => {
     const [btnMembre, setBtnMembre] = useState(false);
     const [btnNewsletter, setBtnNewsletter] = useState(false);
 
-    const handleChange = (e, id) => {
-        if (id === 'membre') {
-            setBtnMembre(prev => !prev);
+    const [ok, setOk] = useState(false);
+    const [ok1, setOk1] = useState(false)
+
+    useEffect(() => {
+        if (ok)
             btnMembre ? toast.success("Membre TRUE", {  className: "toastCss" }) : toast.error("Membre FALSE", {  className: "toastCss" });
+        if (ok1)
+            btnNewsletter ? toast.success("News TRUE", {  className: "toastCss" }) : toast.error("News FALSE", {  className: "toastCss" });
+    }, [btnMembre, btnNewsletter]);
+
+    const handleChange = (id) => {
+        setOk(true);
+        setOk1(true);
+        if (id === 'membre') {
+            setOk1(false)
+            setBtnMembre(prev => !prev);
         }
         else if (id === 'newsletter') {
+            setOk(false)
             setBtnNewsletter(prev => !prev);
-            btnNewsletter ? toast.success("News TRUE", {  className: "toastCss" }) : toast.error("News FALSE", {  className: "toastCss" });
         }
     }
 
@@ -37,7 +49,7 @@ const Social = () => {
                         </ul>
                     </div>
                     <div className="Switch">
-                        <Switch onChange={(e) => handleChange(e,'membre')} checked={btnMembre}/>
+                        <Switch onChange={() => handleChange('membre')} checked={btnMembre}/>
                     </div>
                 </div>
             </div>
@@ -55,7 +67,7 @@ const Social = () => {
                         </ul>
                     </div>
                     <div className="Switch">
-                        <Switch onChange={(e) => handleChange(e,'newsletter')} checked={btnNewsletter}/>
+                        <Switch onChange={() => handleChange('newsletter')} checked={btnNewsletter}/>
                         <ToastContainer transition={Zoom} position="top-center" pauseOnFocusLoss type="dark"/>
                     </div>
                 </div>

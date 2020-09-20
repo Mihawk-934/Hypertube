@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './PhotoUser.css';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actions from '../../../../store/actions/index';
 import firebase from '../../../../fire';
+import './PhotoUser.css';
 
 const PhotoUser = () => {
     let id = localStorage.getItem('id');
@@ -46,7 +46,6 @@ const PhotoUser = () => {
     const handleChange = (e) => {
         if (e.target.files[0]) {
             if (e.target.files[0] !== image ) {
-                console.log(e.target.files[0])
                 setImageTmp(e.target.files[0]);
                 setGood(true);
             }            
@@ -57,8 +56,12 @@ const PhotoUser = () => {
         if(good) {
             if (image !== undefined) {
                 await storage.put(imageTmp)
-                    .then(res => console.log(res))
-                    .catch(err => console.log(err))
+                    .then(res => { 
+                       // console.log(res)
+                    })
+                    .catch(err => {
+                        // console.log(err)
+                    })
             }
             await storage.getDownloadURL()
                 .then(function(url) {
@@ -67,7 +70,7 @@ const PhotoUser = () => {
                     setGood(false);                
                 })
                 .catch(err => {
-                    console.log(err)
+                    // console.log(err)
                 })
         }        
     }

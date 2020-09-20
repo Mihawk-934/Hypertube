@@ -22,9 +22,8 @@ const ShoppingCart = () => {
     })
 
     let cart = (
-         <>
+        <>
             {movies.map(movie => (
-                
                 <li className="liMovie" key={movie.id}>
                     <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id}
                         onClick={() => history.push(`/movie/${movie.id}`)}/>
@@ -54,37 +53,35 @@ const ShoppingCart = () => {
     return (
         <div className="PageCart">
             <div className="Cart">
-           
-            <ul className="GaucheCart" style={{padding:'0'}}>
-                <h4 className="titlePanier">Panier</h4>
-                <div style={{textAlign:'center'}}>
-                    <p className="window1100">{qte} Article{qte > 1 && <span>s</span>} | {total} €</p>
-                </div>
-                {cart} 
-                {movies.length > 1 && <p className="buttonClear" onClick={resetCart}>Vider le Panier</p>}
-            </ul>
-            <div className="DroiteCart"> 
-                <h4 className="titleRecap">Récapitulatif</h4>
-                <div className="Recapitulatif">
-                    <div className="rubriqueRecapitulatif">
-                        <p className="infoGauche">Nombre d'articles</p>
-                        <p className="infoDroite">{qte}</p>
+                <ul className="GaucheCart" style={{padding:'0'}}>
+                    <h4 className="titlePanier">Panier</h4>
+                    <div style={{textAlign:'center'}}>
+                        <p className="window1100">{qte} Article{qte > 1 && <span>s</span>} | {total} €</p>
                     </div>
-                    <div className="rubriqueRecapitulatif">
-                        <p className="infoGauche">Date de prise en charge et d'expédition estimée</p>
-                        <p className="infoDroite" style={{textDecoration:'line-through'}}> 0 € </p>
+                    {cart} 
+                    {movies.length > 1 && <p className="buttonClear" onClick={resetCart}>Vider le Panier</p>}
+                </ul>
+                <div className="DroiteCart"> 
+                    <h4 className="titleRecap">Récapitulatif</h4>
+                    <div className="Recapitulatif">
+                        <div className="rubriqueRecapitulatif">
+                            <p className="infoGauche">Nombre d'articles</p>
+                            <p className="infoDroite">{qte}</p>
+                        </div>
+                        <div className="rubriqueRecapitulatif">
+                            <p className="infoGauche">Date de prise en charge et d'expédition estimée</p>
+                            <p className="infoDroite" style={{textDecoration:'line-through'}}> 0 € </p>
+                        </div>
+                        <p style={{textAlign:'center', fontStyle: 'italic'}}>Expedition offerte jusqu'au 31/12/2020</p>
+                        <div className='totalPrice'>
+                            <p className="totalPriceGauche">Total</p>
+                            <p className="totalPriceDroite">{total} €</p>
+                        </div>
                     </div>
-                    <p style={{textAlign:'center', fontStyle: 'italic'}}>Expedition offerte jusqu'au 31/12/2020</p>
-                    <div className='totalPrice'>
-                        <p className="totalPriceGauche">Total</p>
-                        <p className="totalPriceDroite">{total} €</p>
+                    <div className='blockButton'>
+                        <button className="buttonPaiment" disabled={qte === 0 ? true : false }>Paiement</button>
                     </div>
                 </div>
-                <div className='blockButton'>
-                    <button className="buttonPaiment" disabled={qte === 0 ? true : false }>Paiement</button>
-                </div>
-            </div>
-
             </div> 
         </div>
     )

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { checkInput } from "../../../components/utility/utility";
 import Wrapper from '../../../hoc/Wrapper/Wrapper';
 import MyInput from "../../../components/MyInput/MyInput";
 import MyButton from "../../../components/MyButton/MyButton";
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import * as actions from '../../../store/actions/index'; 
 import { Form, Spinner } from "react-bootstrap";
 import  '../auth.css';
