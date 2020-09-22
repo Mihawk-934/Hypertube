@@ -24,6 +24,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
 
+import ConfirmOrder from './containers/ConfirmOrder/ConfirmOrder';
+
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
@@ -34,7 +36,7 @@ class App extends Component {
       <Switch>
         <Route path="/" exact component={Login}/>
         <Route path="/register" exact component={Register}/>
-        <Route path="/forget_password" component={Pwd}/>
+        <Route path="/forget_password" exact component={Pwd}/>
         <Redirect to='/'/>
       </Switch>   
     );
@@ -42,6 +44,7 @@ class App extends Component {
     if (localStorage.getItem('token')) {
       routes = (
         <Switch>
+         {localStorage.getItem('commandeSuccess') && <Route path="/confirmorder" component={ConfirmOrder}/> }
           <Route path="/home" component={Home}/>
           <Route path="/movie/:id" component={Movie}/>
           <Route path="/logout" component={Logout}/>

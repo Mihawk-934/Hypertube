@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RiArrowLeftSFill, RiArrowRightSFill } from 'react-icons/ri';
 import * as actions from '../../store/actions/index';
 import { useHistory } from 'react-router-dom';
 import './ShoppingCart.css';
+import axios from 'axios';
 
 const ShoppingCart = () => {
     const movies = useSelector(state => state.cart.cart);
@@ -16,10 +17,52 @@ const ShoppingCart = () => {
     const decrease = (id) => { dispatch(actions.decrease(id)) };
     const increase = (id) => { dispatch(actions.increase(id)) };
     const getTotals = () => { dispatch(actions.getTotals()) };
+    const [orderUser, setOrderUser] = useState([]);
+
+    useEffect(() => {
+        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
+        .then(res =>setOrderUser(res.data))
+        .catch(err => console.log(err))
+    }, [])
 
     useEffect(() => {
         getTotals();
     })
+
+    const handleSubmit = () => {
+        let films = JSON.parse(localStorage.getItem('Panier'))
+        let total = JSON.parse(localStorage.getItem("total"))
+        let qte = JSON.parse(localStorage.getItem("qte"))
+        let tab = { films, total, qte };
+        let newOrder;
+        orderUser === null ? newOrder = [] : newOrder = orderUser;
+        newOrder.push(tab)
+        axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`,newOrder)
+        .then(response => {
+            // resetCart();
+            localStorage.setItem('numOrder', Math.floor(Math.random() * Math.floor(1000000)))
+            localStorage.setItem('commandeSuccess', true);
+            history.push('/confirmorder')
+            //console.log('userrr//////',response.data)
+        })
+        .catch(err => {
+             console.log('DIDMOUNT',err)
+        })
+
+        const templateId = 'template_k9mcneq';
+        sendFeedback(templateId, {message_html: 'this.state.feedback', from_name: 'this.state.name', reply_to: 'mehdielkaddouri@gmail.com'})
+    }
+
+    const sendFeedback = (templateId, variables) => {
+        window.emailjs.send('123456789', templateId,variables)
+            .then(res => {
+                console.log('Email successfully sent!')
+            })
+            .catch(err => {
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            })
+    }
+      
 
     let cart = (
         <>
@@ -79,7 +122,7 @@ const ShoppingCart = () => {
                         </div>
                     </div>
                     <div className='blockButton'>
-                        <button className="buttonPaiment" disabled={qte === 0 ? true : false }>Paiement</button>
+                        <button className="buttonPaiment" disabled={qte === 0 ? true : false } onClick={()=>handleSubmit()}>Paiement</button>
                     </div>
                 </div>
             </div> 
