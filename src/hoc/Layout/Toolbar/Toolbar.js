@@ -29,9 +29,8 @@ const Toolbar = () => {
                 <Nav style={{paddingRight:'10px'}}>
                     <NavLink to="/cart" className='NavIcon'>
                         <div>
-                        <BsBag className="Icon" style={{position:'relative'}}/>
-                            {/* <p style={{position:'absolute', top:'38px', right:'152px', color:'white'}}>10</p> */}
-                            {/* <p style={{position:'absolute', top:'45px', color:'white'}}>10</p> */}
+                        <BsBag className="Icon"/>
+                            <p className="NumberCart" >10</p>
                         </div>
                         
                     </NavLink>

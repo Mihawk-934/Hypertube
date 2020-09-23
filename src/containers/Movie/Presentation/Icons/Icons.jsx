@@ -6,18 +6,16 @@ import * as actions from '../../../../store/actions/index';
 
 const Icons = (props) => {
     const [cart, setCart] = useState(false);
-
     const dispatch = useDispatch();
     const addTocart = (movie) => { dispatch(actions.addToCart(movie)) };
-        const inCart = () => {
-        setCart(prev => !prev); 
-    }
 
-    useEffect (() => {
-        if(cart === true)
-            addTocart(props.movie);
-        // if (cart === false)
-    }, [cart])
+    // const inCart = () => { setCart(prev => !prev)}
+
+    // useEffect (() => {
+    //     if(cart === true)
+    //         addTocart(props.movie);
+    //     if (cart === false)
+    // }, [cart])
 
     return (
         <div className='Icons'>
@@ -27,7 +25,7 @@ const Icons = (props) => {
             </OverlayTrigger>
             <OverlayTrigger placement='bottom'
                 overlay={<Tooltip id='voir'>Ajouter au panier</Tooltip>}>
-                <FaCartPlus className='Vu' onClick={inCart}/>
+                <FaCartPlus className='Vu' onClick={() => addTocart(props.movie)}/>
             </OverlayTrigger>
         </div>
     )

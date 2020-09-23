@@ -23,6 +23,7 @@ const ShoppingCart = () => {
 
     const [cbCompleted, setCbCompleted] = useState(null);
     const [infoUser, setInfoUser] = useState(null);
+    const [mail, setMail] = useState('');
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -32,8 +33,11 @@ const ShoppingCart = () => {
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
             .then(response => {setInfoUser(response.data.name) })
             .catch(err => console.log(err))  
+        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
+            .then(response => {setMail(response.data.mail)})
+            .catch(err => console.log(err))  
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
-            .then(res =>setOrderUser(res.data))
+            .then(res => setOrderUser(res.data))
             .catch(err => console.log(err))
     }, [])
 
@@ -52,23 +56,17 @@ const ShoppingCart = () => {
             newOrder.push(tab)
             axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`,newOrder)
             .then(response => {
-                resetCart();
                 localStorage.removeItem('qte');
-                localStorage.removeItem('Panier');
                 localStorage.removeItem('total');
                 localStorage.setItem('numOrder', Math.floor(Math.random() * Math.floor(1000000)))
                 localStorage.setItem('commandeSuccess', true);
                 history.push('/confirmorder')
-                //console.log('userrr//////',response.data)
             })
             .catch(err => {
                  console.log('DIDMOUNT',err)
             })
-    
             const templateId = 'template_k9mcneq';
-            //
-
-            sendFeedback(templateId, {message_html: 'this.state.feedback', from_name: 'this.state.name', reply_to: 'mehdielkaddouri@gmail.com'})
+            sendFeedback(templateId, {message_html: 'siuuuuuuu', from_name: infoUser, reply_to: mail})
         }
         else    
             setShowModal(true)
@@ -84,13 +82,11 @@ const ShoppingCart = () => {
             })
     }
       
-
     let cart = (
         <>
             {movies.map(movie => (
                 <li className="liMovie" key={movie.id}>
-                    <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id}
-                        onClick={() => history.push(`/movie/${movie.id}`)}/>
+                    <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id} onClick={() => history.push(`/movie/${movie.id}`)}/>
                     <div className="infoMovie">
                         <p className='titleMovie'>{movie.title}</p>
                         <p className='pMovie'>Note {movie.note}/10</p>

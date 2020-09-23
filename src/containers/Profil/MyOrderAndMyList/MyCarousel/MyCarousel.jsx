@@ -2,9 +2,14 @@ import React from 'react';
 import { Carousel } from '3d-react-carousal';
 import { useSelector } from 'react-redux';
 import './MyCarousel.css';
+import { useEffect, useState } from 'react';
 
 const MyCarousel = (props) => {
 
+    const [ok, setOk] = useState(true)
+    useEffect (() => {
+        return( () => setOk(false))
+    }, [])
     const movies = useSelector(state => state.movies.movies);
     const slides = movies.map(movie => (
         <div className="flip-card">
@@ -19,8 +24,7 @@ const MyCarousel = (props) => {
         </div>
     ));
 
-    return (
-       
+    return ( 
         <div className='PageMyInfo'>
             <h1 className='Title'>{props.title}</h1>
             <div className="BlockContainer">
@@ -28,7 +32,7 @@ const MyCarousel = (props) => {
                     <h4 className='h4'>{props.h4}</h4>
                 </div>
                 <div className="BlockMyList">
-                    {movies.length !== 0 && <Carousel slides={slides} autoplay={true} interval={10000}/>}
+                    {movies.length && ok !== 0 && <Carousel slides={slides} autoplay={true} />}
                 </div>
             </div>
         </div>

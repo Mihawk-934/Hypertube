@@ -74,7 +74,6 @@ class PhotoUser extends Component {
     };
     
     render () {
-        console.log(this.state.image)
         return (
             <div className="BlockContainer">
                 <div className="TitleBackground">

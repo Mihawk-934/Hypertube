@@ -32,10 +32,25 @@
     color: red; 
 }
 
+.NumberCart {
+    position: absolute;
+    top: 38px;
+    right: 181px;
+    color: white;
+}
+
+/* style={{position:'absolute', top:'38px', right:'181px', color:'white'}} */
 
 @media (max-width: 575px) {
     .NavUser, .NavIcon {
         margin: 10px auto 10px;
     }  
+    .NumberCart {
+        position: inherit;
+        text-align: center;
+    }
 }
 /* margin: 10px auto 10px; */
+
+
+
