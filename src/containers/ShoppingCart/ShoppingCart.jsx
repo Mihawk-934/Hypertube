@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 import './ShoppingCart.css';
 import axios from 'axios';
 
+import { Modal, Button } from 'react-bootstrap';
+
 const ShoppingCart = () => {
     const movies = useSelector(state => state.cart.cart);
     const total = useSelector(state => state.cart.total);
@@ -19,10 +21,20 @@ const ShoppingCart = () => {
     const getTotals = () => { dispatch(actions.getTotals()) };
     const [orderUser, setOrderUser] = useState([]);
 
+    const [cbCompleted, setCbCompleted] = useState(null);
+    const [infoUser, setInfoUser] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
+        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/CarteBleu.json/`)
+            .then(response => {setCbCompleted(response.data.number)})
+            .catch(err => console.log(err))    
+        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
+            .then(response => {setInfoUser(response.data.name) })
+            .catch(err => console.log(err))  
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
-        .then(res =>setOrderUser(res.data))
-        .catch(err => console.log(err))
+            .then(res =>setOrderUser(res.data))
+            .catch(err => console.log(err))
     }, [])
 
     useEffect(() => {
@@ -30,27 +42,36 @@ const ShoppingCart = () => {
     })
 
     const handleSubmit = () => {
-        let films = JSON.parse(localStorage.getItem('Panier'))
-        let total = JSON.parse(localStorage.getItem("total"))
-        let qte = JSON.parse(localStorage.getItem("qte"))
-        let tab = { films, total, qte };
-        let newOrder;
-        orderUser === null ? newOrder = [] : newOrder = orderUser;
-        newOrder.push(tab)
-        axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`,newOrder)
-        .then(response => {
-            // resetCart();
-            localStorage.setItem('numOrder', Math.floor(Math.random() * Math.floor(1000000)))
-            localStorage.setItem('commandeSuccess', true);
-            history.push('/confirmorder')
-            //console.log('userrr//////',response.data)
-        })
-        .catch(err => {
-             console.log('DIDMOUNT',err)
-        })
+        if (infoUser && cbCompleted) {
+            let films = JSON.parse(localStorage.getItem('Panier'))
+            let total = JSON.parse(localStorage.getItem("total"))
+            let qte = JSON.parse(localStorage.getItem("qte"))
+            let tab = { films, total, qte };
+            let newOrder;
+            orderUser === null ? newOrder = [] : newOrder = orderUser;
+            newOrder.push(tab)
+            axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`,newOrder)
+            .then(response => {
+                resetCart();
+                localStorage.removeItem('qte');
+                localStorage.removeItem('Panier');
+                localStorage.removeItem('total');
+                localStorage.setItem('numOrder', Math.floor(Math.random() * Math.floor(1000000)))
+                localStorage.setItem('commandeSuccess', true);
+                history.push('/confirmorder')
+                //console.log('userrr//////',response.data)
+            })
+            .catch(err => {
+                 console.log('DIDMOUNT',err)
+            })
+    
+            const templateId = 'template_k9mcneq';
+            //
 
-        const templateId = 'template_k9mcneq';
-        sendFeedback(templateId, {message_html: 'this.state.feedback', from_name: 'this.state.name', reply_to: 'mehdielkaddouri@gmail.com'})
+            sendFeedback(templateId, {message_html: 'this.state.feedback', from_name: 'this.state.name', reply_to: 'mehdielkaddouri@gmail.com'})
+        }
+        else    
+            setShowModal(true)
     }
 
     const sendFeedback = (templateId, variables) => {
@@ -92,6 +113,8 @@ const ShoppingCart = () => {
 
     if (movies.length === 0)
         cart = <p className="cartEmpty">Il n'y a aucun article dans votre panier.</p>
+
+   
   
     return (
         <div className="PageCart">
@@ -126,6 +149,19 @@ const ShoppingCart = () => {
                     </div>
                 </div>
             </div> 
+
+            <Modal show={showModal} size="md" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header  style={{backgroundColor:'black',color:'white'}}>
+                    <Modal.Title>Team Netflix</Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{backgroundColor:'black',color:'white'}}>
+                    <p>Vous devez completer vous information personnel dans votre profil avant de pouvoir profitez de nos services :)</p>
+                    <p>Cliquez sur le lien ci-dessous vous serez dirigez vers votre page de profil </p>
+                </Modal.Body>
+                <Modal.Footer style={{backgroundColor:'black',color:'white',display:'flex',justifyContent:'space-around'}}>
+                    <Button style={{backgroundColor:'red',color:'white', border:'none'}} onClick={() => { history.push('/profil')}}>Confirmer</Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

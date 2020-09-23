@@ -46,9 +46,11 @@ const InfoUser = () => {
         };
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
             .then(response => { 
-                const mail = { mail : response.data.mail };
-                axios.put(`https://movies-27cd5.firebaseio.com/${id}/mail.json/`,mail)
+                console.log('[1]', response)
+                const mail = { mail : response.data.email };
+                axios.put(`https://movies-27cd5.firebaseio.com/${id}/mail.json/`, mail)
                     .then(res => {  
+                        console.log(res)
                         toast.success('Info perso mise à jour.', {
                             autoClose: 3000,
                             closeButton: false,

@@ -3,6 +3,13 @@ import React from 'react';
 const ConfirmOrder = () => {
     let order = 'FUWTS' + localStorage.getItem('numOrder');
 
+    // useEffect(() => {
+    //     axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
+    //         .then(response => {setInfoUser(response.data.address) })
+    //         .catch(err => console.log(err))  
+        
+    // }, [])
+
     return (
         <div style={{height:'100vh', width:'65%', margin:'auto', marginTop:'50px'}}>
             <div style={{textAlign:'center'}}>
