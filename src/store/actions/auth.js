@@ -213,7 +213,7 @@ export const photo = (id) => {
                 dispatch(photoUrl(url))
             })
             .catch(err => {    
-                // console.log(err)
+                 console.log(err)
             })
     };
 };

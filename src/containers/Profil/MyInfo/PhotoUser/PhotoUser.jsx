@@ -8,6 +8,7 @@ import axios from 'axios';
 
 let fileName = 'image';
 let newDirectory = localStorage.getItem('id');
+let id = localStorage.getItem('id');
 let storage = firebase.storage().ref(`images/${newDirectory}/${fileName}`);
 
 class PhotoUser extends Component {
@@ -28,9 +29,9 @@ class PhotoUser extends Component {
         }
         else {
             let ref = this
-            axios.get(`https://movies-27cd5.firebaseio.com/${newDirectory}/photo.json/`)
+            axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
             .then(response => { 
-                console.log('[THEN PHOTO]')
+                console.log('oooo')
                 if(response.data.photo === true) {
                     storage.getDownloadURL()
                     .then(function(url) {
@@ -56,13 +57,16 @@ class PhotoUser extends Component {
                         if (this.state.image !== undefined) {
                             storage.put(this.state.imageTmp)
                                 .then(res => { 
-                                    console.log(res)
                                     let ref = this
                                     storage.getDownloadURL()
                                         .then(function(url) {
                                             console.log(url)
                                             ref.props.photoProfil(url);
                                             ref.setState({image:url, good: false})
+                                            const photo = { photo : true };
+                                            axios.put(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`, photo)
+                                                .then(res => {console.log(res)})
+                                                .catch(err => { console.log(err)})
                                         })
                                         .catch(err => {
                                             // console.log(err)
