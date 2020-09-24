@@ -29,16 +29,24 @@ const ShoppingCart = () => {
     useEffect(() => {
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/CarteBleu.json/`)
             .then(response => {setCbCompleted(response.data.number)})
-            .catch(err => console.log(err))    
+            .catch(err => {}
+                // console.log(err)
+            )    
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
             .then(response => {setInfoUser(response.data.name) })
-            .catch(err => console.log(err))  
+            .catch(err => {}
+                // console.log(err)
+            )    
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
             .then(response => {setMail(response.data.mail)})
-            .catch(err => console.log(err))  
+            .catch(err => {setMail(localStorage.getItem('email'))}
+                // console.log(err)
+            )   
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
             .then(res => setOrderUser(res.data))
-            .catch(err => console.log(err))
+            .catch(err => {}
+                // console.log(err)
+            )   
     }, [])
 
     useEffect(() => {

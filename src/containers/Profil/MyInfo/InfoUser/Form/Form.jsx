@@ -5,13 +5,11 @@ import { toast } from 'react-toastify';
 
 const InfoUser = () => {
     const [id, setId] = useState('');
-    // const [idToken, setIdToken] = useState('');
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
     const [address, setAddress] = useState('');
   
     useEffect(() => {    
-        // setIdToken(localStorage.getItem('token'));
         setId(localStorage.getItem('id'));
         let idLocal = localStorage.getItem('id');
         axios.get(`https://movies-27cd5.firebaseio.com/${idLocal}/user.json/`)
@@ -21,7 +19,7 @@ const InfoUser = () => {
                 setLastname(response.data.lastname)
             })
             .catch(err => { console.log(err)})
-    },[])
+    }, [])
  
     const handleSubmit = (e) => {
         e.preventDefault(); 

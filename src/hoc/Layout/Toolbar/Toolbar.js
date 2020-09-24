@@ -30,7 +30,7 @@ const Toolbar = () => {
                 <Nav style={{paddingRight:'10px'}}>
                     <NavLink to="/cart" className='NavIcon'>
                         <BsBag className="Icon"/>
-                        <p className="NumberCart">{number}</p>
+                        <p className="NumberCart">{number > 0 && number}</p>
                     </NavLink>
                     <NavLink to="/profil" className='NavUser'>
                         <Image src={photo} className='User' roundedCircle/>
