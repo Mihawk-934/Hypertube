@@ -5,12 +5,9 @@ import './PhotoUser.css';
 import { connect } from 'react-redux';
 import { MdAddCircle } from 'react-icons/md'
 
-let id = localStorage.getItem('id');
 let fileName = 'image';
-let newDirectory = id;
+let newDirectory = localStorage.getItem('id');
 let storage = firebase.storage().ref(`images/${newDirectory}/${fileName}`);
-let photoSocial = localStorage.getItem('photo');
-let photoPhone = localStorage.getItem('photoPhone');
 
 class PhotoUser extends Component {
     state = {
@@ -31,10 +28,9 @@ class PhotoUser extends Component {
         else {
             let ref = this
             storage.getDownloadURL()
-           
                 .then(function(url) {
                     if (url) {
-                       ref.setState({image: url}, console.log(ref.state.image));
+                        ref.setState({image: url});
                         ref.props.photoProfil(url);
                     }
                 })
@@ -81,7 +77,8 @@ class PhotoUser extends Component {
                 </div>
                 <div className="BlockImageProfil">
                     <img src={this.state.image} className='ImgProfil'alt=''/>
-                    { (!photoSocial && !photoPhone) && 
+                    {
+                        (!localStorage.getItem('photoPhone') && !localStorage.getItem('photoPhone')) && 
                         <div className='BlockLogo'>
                             <input style={{display: 'none'}} type='file' accept="image/*" onChange={this.handleChange} ref={fileInput => this.fileInput = fileInput}/>
                             <MdAddCircle className='LogoAdd' onClick={() => this.fileInput.click()}/>
@@ -95,9 +92,9 @@ class PhotoUser extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-      photoProfil: (image) => dispatch(actions.photoUrl(image)),
+        photoProfil: (image) => dispatch(actions.photoUrl(image)),
     };
-  };
+};
 
 
 export default connect(null, mapDispatchToProps) (PhotoUser);

@@ -61,7 +61,6 @@ class Categrories extends Component {
       control: () => ({
         display:"flex",
         backgroundColor:"black",
-        // border: '1px solid rgb(112, 112, 112)',
         marginRight:"15px",
         marginLeft:"15px",
         width:'200px',

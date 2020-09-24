@@ -29,9 +29,10 @@ const addToCart = (state, action) => {
         }
         tempCart.push(value)
     }
+
     let temps = JSON.stringify(tempCart)
     localStorage.setItem('Panier',temps)
-    return { ...state, cart: tempCart }
+    return { ...state, cart: tempCart, qte: state.qte + 1 }
 }
 
 const removeToCart = (state, action) => {

@@ -9,6 +9,7 @@ import './Toolbar.css';
 
 const Toolbar = () => {
     const url = useSelector(state => state.auth.photo);
+    const number = useSelector(state => state.cart.qte);
     let photo;
 
     if (localStorage.getItem('photo'))
@@ -28,11 +29,8 @@ const Toolbar = () => {
                 <Nav className="mr-auto"/>
                 <Nav style={{paddingRight:'10px'}}>
                     <NavLink to="/cart" className='NavIcon'>
-                        <div>
                         <BsBag className="Icon"/>
-                            <p className="NumberCart" >10</p>
-                        </div>
-                        
+                        <p className="NumberCart">{number}</p>
                     </NavLink>
                     <NavLink to="/profil" className='NavUser'>
                         <Image src={photo} className='User' roundedCircle/>

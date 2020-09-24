@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 
 const MyCarousel = (props) => {
 
+    const movies = useSelector(state => state.movies.movies);
     const [ok, setOk] = useState(true)
     useEffect (() => {
-        return( () => setOk(false))
+        return(() => setOk(false))
     }, [])
-    const movies = useSelector(state => state.movies.movies);
+
     const slides = movies.map(movie => (
         <div className="flip-card">
             <div className="flip-card-inner">
