@@ -9,23 +9,23 @@ class Logout extends Component {
         this.props.resetTextSearch();
         this.props.initialise();
         this.props.popularRequest(1);
+        this.props.initCart();
         this.props.onLogout();
     }
 
     render () {
-        return (
-           <Redirect to="/"/>
-        );
+        return <Redirect to="/"/>
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogout: () => dispatch(actions.authLogout()),
         resetFiltres: () => dispatch(actions.initialiseFiltres()),
         resetTextSearch: () => dispatch(actions.initialiseTextSearch()),
         initialise: () => dispatch(actions.initialise()),
         popularRequest: (page) => dispatch(actions.popularRequest(page)),
+        initCart: () => dispatch(actions.initCart()),
+        onLogout: () => dispatch(actions.authLogout())
     };
 }
 

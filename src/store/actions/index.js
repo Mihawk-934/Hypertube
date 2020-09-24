@@ -33,5 +33,6 @@ export {
     removeToCart,
     increase,
     decrease,
-    getTotals
+    getTotals,
+    initCart
 } from './cart';

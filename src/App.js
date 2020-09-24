@@ -2,29 +2,23 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import Layout from './hoc/Layout/Layout';
-
 import Register from './containers/Auth/Register/Register';
 import Login from './containers/Auth/Login/Login';
 import Logout from './containers/Auth/Logout/Logout';
 import Pwd from './containers/Auth/ForgetPwd/ForgetPwd';
-
 import Home from './containers/Home/Home';
 import Movie from './containers/Movie/Movie';
 import Profil from './containers/Profil/Profil';
-
 import MyOrder from './containers/Profil/MyOrderAndMyList/MyOrder/MyOrder';
 import MyInfo from './containers/Profil/MyInfo/MyInfo';
 import MyList from './containers/Profil/MyOrderAndMyList/MyList/MyList';
 import Social from './containers/Profil/Social/Social';
-
+import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
+import ConfirmOrder from './containers/ConfirmOrder/ConfirmOrder';
 import * as actions from './store/actions/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
-
-import ConfirmOrder from './containers/ConfirmOrder/ConfirmOrder';
 
 class App extends Component {
   componentDidMount() {

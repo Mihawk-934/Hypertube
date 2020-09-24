@@ -3,8 +3,8 @@ import { updateObject } from '../utility';
 
 const initialState = {
     cart: JSON.parse(localStorage.getItem('Panier')) || [],
-    total: JSON.parse(localStorage.getItem('total')),
-    qte: JSON.parse(localStorage.getItem('qte'))
+    total: localStorage.getItem('total'),
+    qte: localStorage.getItem('qte')
 };
 
 const addToCart = (state, action) => {
@@ -96,15 +96,20 @@ const getTotals = (state) => {
     return {...state, total, qte}
 }
 
+
+const initCart = () => {
+    return {cart: [], qte: 0, total:0}
+}
 const reducer = ( state = initialState, action ) => {
-  switch ( action.type ) {
-    case actionTypes.ADD_TO_CART: return addToCart(state, action);
-    case actionTypes.REMOVE_TO_CART: return removeToCart(state, action);
-    case actionTypes.RESET_CART: return resetCart(state, action);
-    case actionTypes.INCREASE: return increase(state, action);
-    case actionTypes.DECREASE: return decrease(state, action);
-    case actionTypes.GET_TOTAL: return getTotals(state);
-    default: return state;
+    switch ( action.type ) {
+        case actionTypes.ADD_TO_CART: return addToCart(state, action);
+        case actionTypes.REMOVE_TO_CART: return removeToCart(state, action);
+        case actionTypes.RESET_CART: return resetCart(state, action);
+        case actionTypes.INCREASE: return increase(state, action);
+        case actionTypes.DECREASE: return decrease(state, action);
+        case actionTypes.GET_TOTAL: return getTotals(state);
+        case actionTypes.INIT_CART: return initCart(state);
+        default: return state;
   }
 }; 
 

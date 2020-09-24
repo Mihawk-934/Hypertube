@@ -39,3 +39,9 @@ export const getTotals = () => {
         type: actionTypes.GET_TOTAL
     }
 }
+
+export const initCart = () => {
+    return {
+        type: actionTypes.INIT_CART
+    }
+}

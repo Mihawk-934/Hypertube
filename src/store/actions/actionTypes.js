@@ -19,6 +19,7 @@ export const INITIALISE_FILTRES = 'INITIALISE_FILTRES';
 export const INITIALISE_TEXTSEARCH = 'INITIALISE_TEXTSEARCH';
 
 ////////// CART //////////
+export const INIT_CART = "INIT_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_TO_CART = "REMOVE_TO_CART";
 export const INCREASE = "INCREASE";

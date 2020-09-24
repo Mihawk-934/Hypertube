@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { MdAddCircle } from 'react-icons/md';
 import * as actions from '../../../../store/actions/index';
 import firebase from '../../../../fire';
 import './PhotoUser.css';
-import { connect } from 'react-redux';
-import { MdAddCircle } from 'react-icons/md'
 
 let fileName = 'image';
 let newDirectory = localStorage.getItem('id');
@@ -95,6 +95,5 @@ const mapDispatchToProps = dispatch => {
         photoProfil: (image) => dispatch(actions.photoUrl(image)),
     };
 };
-
 
 export default connect(null, mapDispatchToProps) (PhotoUser);

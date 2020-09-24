@@ -54,7 +54,7 @@ const DeleteAccount = () => {
                 {...props}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered >
+               >
                 <Modal.Header  style={{backgroundColor:'black',color:'white'}}>
                     <Modal.Title>Team Netflix</Modal.Title>
                 </Modal.Header>
