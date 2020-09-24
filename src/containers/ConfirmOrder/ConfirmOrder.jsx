@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import * as actions from '../../store/actions/index';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,7 +9,11 @@ const ConfirmOrder = () => {
     let order = 'FUWTS' + localStorage.getItem('numOrder');
     const [adresse, setAdresse] = useState('')
     const dispatch = useDispatch();
-    const resetCart = () => { dispatch(actions.resetCart()) };
+
+    const resetCart = useCallback(() => { 
+        dispatch(actions.resetCart())
+    }, [dispatch]);
+
     const movies = useSelector(state => state.cart.cart);
     const [load,setLoad] = useState(true);
 
@@ -30,10 +34,9 @@ const ConfirmOrder = () => {
             localStorage.removeItem('Panier')
             localStorage.removeItem('spinner')
         }) 
-    }, [])
+    }, [resetCart])
 
     const slides = movies.map(movie => (<img src={`https://image.tmdb.org/t/p/original/${movie.img}`} className='ImgMyList' alt={movie.id} key={movie.id}/>     ));
-
 
     let show = load === true && localStorage.getItem('spinner')=== null ?
         <div style={{height:'100vh'}}>

@@ -16,7 +16,7 @@ const Social = () => {
             btnMembre ? toast.success("Membre TRUE", {  className: "toastCss" }) : toast.error("Membre FALSE", {  className: "toastCss" });
         if (ok1)
             btnNewsletter ? toast.success("News TRUE", {  className: "toastCss" }) : toast.error("News FALSE", {  className: "toastCss" });
-    }, [btnMembre, btnNewsletter]);
+    }, [btnMembre, btnNewsletter, ok, ok1]);
 
     const handleChange = (id) => {
         setOk(true);

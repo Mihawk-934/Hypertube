@@ -33,9 +33,9 @@ const InfoUser = () => {
                 setMail(response.data.mail) 
             })
             .catch(err => { 
-                // console.log(err)
+                //  console.log(err)
             })
-    },[]) 
+    },[mail.length]) 
  
     const handleSubmitMail = (e) => {
         e.preventDefault(); 

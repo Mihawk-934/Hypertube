@@ -67,7 +67,7 @@ const Sidebar = () => {
     
     useEffect(() => {
         setPathname(location.pathname);
-    }, []);
+    }, [setPathname, location.pathname]);
 
     return (
         <ul className="UlProfil" >
