@@ -18,7 +18,9 @@ const InfoUser = () => {
                 setName(response.data.name)   
                 setLastname(response.data.lastname)
             })
-            .catch(err => { console.log(err)})
+            .catch(err => {
+                // console.log(err)
+            })
     }, [])
  
     const handleSubmit = (e) => {

@@ -31,7 +31,6 @@ class PhotoUser extends Component {
             let ref = this
             axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
             .then(response => { 
-                console.log('oooo')
                 if(response.data.photo === true) {
                     storage.getDownloadURL()
                     .then(function(url) {
@@ -60,13 +59,16 @@ class PhotoUser extends Component {
                                     let ref = this
                                     storage.getDownloadURL()
                                         .then(function(url) {
-                                            console.log(url)
                                             ref.props.photoProfil(url);
                                             ref.setState({image:url, good: false})
                                             const photo = { photo : true };
                                             axios.put(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`, photo)
-                                                .then(res => {console.log(res)})
-                                                .catch(err => { console.log(err)})
+                                                .then(res => {
+                                                    // console.log(res)
+                                                })
+                                                .catch(err => { 
+                                                    // console.log(err)
+                                                })
                                         })
                                         .catch(err => {
                                             // console.log(err)

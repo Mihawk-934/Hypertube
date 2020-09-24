@@ -70,8 +70,12 @@ export const authRegister = (email, password, history) => {
                 dispatch(registerSuccess(true));
                 const photo = { photo : false };
                 axios.put(`https://movies-27cd5.firebaseio.com/${response.data.localId}/photo.json/`, photo)
-                    .then(res => {console.log(res)})
-                    .catch(err => { console.log(err)})
+                    .then(res => {
+                        // console.log(res)
+                    })
+                    .catch(err => {
+                        // console.log(err)
+                    })
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 setTimeout( () => {
                     history.push('/home')
@@ -93,11 +97,11 @@ export const authLogin = (email, password, history) => {
         };
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
             .then(response => {
-                axios.get(`https://movies-27cd5.firebaseio.com/${response.data.localId}/photo.json/`)
+                let id = response.data.localId;
+                axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
                 .then(response => { 
-                    console.log('[1] -> ',response.data.photo)
                     if(response.data.photo === true)
-                        dispatch(photo(response.data.localId));
+                        dispatch(photo(id));
                 })
                 .catch(err => { console.log(err)})
                 localStorage.setItem('animation', true);
@@ -191,7 +195,7 @@ export const authCheckState = () => {
                 axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
                 .then(response => { 
                     if(response.data.photo === true)
-                        dispatch(photo(response.data.localId));
+                        dispatch(photo(id));
                 })
             }
         }
