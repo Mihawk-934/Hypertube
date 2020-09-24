@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react';
-import MyButton from '../../../../components/MyButton/MyButton';
+import MyButton from '../../../../../components/MyButton/MyButton';
 import axios from 'axios';
-import './InfoUser.css';
+import { toast } from 'react-toastify';
 
 const InfoUser = () => {
     const [id, setId] = useState('');
@@ -10,7 +10,7 @@ const InfoUser = () => {
 
     useEffect(() => {
         if (mail.length === 0)
-            setMail(localStorage.getItem('mail'))
+            setMail(localStorage.getItem('email'))
         setIdToken(localStorage.getItem('token'));
         setId(localStorage.getItem('id'));
         let idLocal = localStorage.getItem('id');
@@ -19,9 +19,9 @@ const InfoUser = () => {
                 setMail(response.data.mail) 
             })
             .catch(err => { 
-                // console.log(err)
+                //  console.log(err)
             })
-    },[]) 
+    },[mail.length]) 
  
     const handleSubmitMail = (e) => {
         e.preventDefault(); 
@@ -32,17 +32,31 @@ const InfoUser = () => {
         };
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
             .then(response => { 
-                const mail = { mail : response.data.mail };
-                axios.put(`https://movies-27cd5.firebaseio.com/${id}/mail.json/`,mail)
-                    .then(response => { 
-                        console.log(response) 
+                console.log('[1]', response)
+                const mail = { mail : response.data.email };
+                axios.put(`https://movies-27cd5.firebaseio.com/${id}/mail.json/`, mail)
+                    .then(res => {  
+                        console.log(res)
+                        toast.success('Info perso mise à jour.', {
+                            autoClose: 3000,
+                            closeButton: false,
+                            className: "toastCss"
+                        })
                     })
                     .catch(err => { 
-                        console.log(err) 
+                        toast.error('Erreur, veuillez ressayer plus tard 😮.', {
+                            autoClose: 3000,
+                            closeButton: false,
+                            className: "toastCss"
+                        })
                     })
             })
             .catch(err => {
-                // console.log(err.response.data.error.message)
+                toast.error('Erreur, veuillez ressayer plus tard 😮.', {
+                    autoClose: 3000,
+                    closeButton: false,
+                    className: "toastCss"
+                })
             })      
     }
  

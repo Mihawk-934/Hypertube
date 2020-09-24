@@ -48,11 +48,13 @@ class PhotoUser extends Component {
                         if (this.state.image !== undefined) {
                             storage.put(this.state.imageTmp)
                                 .then(res => { 
+                                    console.log(res)
                                     let ref = this
                                     storage.getDownloadURL()
                                         .then(function(url) {
+                                            console.log(url)
                                             ref.props.photoProfil(url);
-                                            ref.setState({image:url, good: false}, console.log(ref.state.image))            
+                                            ref.setState({image:url, good: false})
                                         })
                                         .catch(err => {
                                             // console.log(err)
