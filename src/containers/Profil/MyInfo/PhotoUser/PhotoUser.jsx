@@ -4,6 +4,7 @@ import { MdAddCircle } from 'react-icons/md';
 import * as actions from '../../../../store/actions/index';
 import firebase from '../../../../fire';
 import './PhotoUser.css';
+import axios from 'axios';
 
 let fileName = 'image';
 let newDirectory = localStorage.getItem('id');
@@ -27,16 +28,23 @@ class PhotoUser extends Component {
         }
         else {
             let ref = this
-            storage.getDownloadURL()
-                .then(function(url) {
-                    if (url) {
-                        ref.setState({image: url});
-                        ref.props.photoProfil(url);
-                    }
-                })
-                .catch(err => {
+            axios.get(`https://movies-27cd5.firebaseio.com/${newDirectory}/photo.json/`)
+            .then(response => { 
+                console.log('[THEN PHOTO]')
+                if(response.data.photo === true) {
+                    storage.getDownloadURL()
+                    .then(function(url) {
+                        if (url) {
+                            ref.setState({image: url});
+                            ref.props.photoProfil(url);
+                        }
+                    })
+                    .catch(err => console.log(err))
+                }
+                else
                     this.setState({image : 'https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'})
-                })
+            })
+            .catch(err => console.log(err))
         }
     }
 
