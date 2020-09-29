@@ -32,6 +32,7 @@ const addToCart = (state, action) => {
 
     let temps = JSON.stringify(tempCart)
     localStorage.setItem('Panier',temps)
+    localStorage.setItem('qte', state.qte + 1)
     // let qte = {...state.qte}
     // qte = qte.qte + 1
     //regler pb qte chaine de char string number.
