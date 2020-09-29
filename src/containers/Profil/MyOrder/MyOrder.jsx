@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Carousel } from 'react-bootstrap';
 import axios from 'axios';
-import Slider from '../../Movie/Slider/Slider';
 
 const MyOrder = () => {
     const [orderUser, setOrderUser] = useState([]);
@@ -11,25 +11,24 @@ const MyOrder = () => {
             if (res.data !== null) 
                 setOrderUser(res.data)
         })
-        .catch(err => {}
-            // console.log(err)
-        )   
+        .catch(err => {})   
     }, [])
 
     let order = orderUser.map(order=> {
         return (
             <div key={order.numberOrder}className="BlockContainer">
                 <div className="TitleBackground">
-                    <h4 className='h4'>Commande {order.numberOrder}</h4>
+                    <h4 className='h4'>Commande {order.numberOrder} du {order.date}</h4>
                 </div>
-                <Slider similar={order.films}/>
-                {/* <div>
+                <Carousel className="Slider" indicators={order.films.length > 1 ? true : false} controls={order.films.length > 1 ? true : false} interval={5000}>
+                    {console.log(order.films.length)}
                     {order.films.map(movie => {
                         return (
-                            <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id} key={movie.id}/>
-                        )
+                            <Carousel.Item className="SliderItem" key={movie.id}>
+                                <img className="imgMovie" src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id} />
+                            </Carousel.Item>)
                     })}
-                </div> */}
+                 </Carousel>
             </div>
             )
         }

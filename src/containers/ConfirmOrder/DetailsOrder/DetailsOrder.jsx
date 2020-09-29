@@ -3,19 +3,16 @@ import axios from 'axios';
 import './DetailsOrder.css';
 
 const ConfirmOrder = () => {
-    const [adresse, setAdresse] = useState('')
-    const [command, setCommand] = useState([])
-    const [total, setTotal] = useState('')
-    const [date, setDate] = useState('')
-    const [numberOrder, setNumberOrder] = useState('')
+    const [adresse, setAdresse] = useState('');
+    const [command, setCommand] = useState([]);
+    const [total, setTotal] = useState('');
+    const [numberOrder, setNumberOrder] = useState('');
 
     useEffect(() => {
         axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
         .then(res => {
             setNumberOrder(res.data[localStorage.getItem('numOrder')].numberOrder)
-            console.log(res)
             setTotal(res.data[localStorage.getItem('numOrder')].total)
-            setDate(res.data[localStorage.getItem('numOrder')].date)
             setCommand(res.data[localStorage.getItem('numOrder')].films)
         })
         .catch(err => {})   

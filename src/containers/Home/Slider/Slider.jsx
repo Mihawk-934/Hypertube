@@ -3,6 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { FaMousePointer } from 'react-icons/fa';
 import './Slider.css';
+// import N from '../../../assets/promo.png'
 
 const SliderHome = () => (
     <Carousel className="Slider" indicators={false} controls={false} interval={5000}>

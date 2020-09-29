@@ -46,7 +46,10 @@ const ShoppingCart = () => {
             let films = JSON.parse(localStorage.getItem('Panier'));
             let total = JSON.parse(localStorage.getItem("total"));
             let qte = JSON.parse(localStorage.getItem("qte"));
-            let date = new Date();
+            let day = new Date().getDate();
+            let month = new Date().getMonth() + 1;
+            let years = new Date().getFullYear();
+            let date = day + '/' + month + '/' + years;
             let numberOrder = localStorage.getItem('id').substr(0, 10).toUpperCase() + (orderUser.length);
             let tab = { films, total, qte , date, numberOrder};
             let newOrder;
