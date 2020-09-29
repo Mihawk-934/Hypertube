@@ -20,7 +20,9 @@ const Layout = (props) =>  {
 
     return (
         <>
-            { show && <Toolbar /> }
+            <header>
+                { show && <Toolbar /> }
+            </header>
             <main>
                 {props.children}
             </main>

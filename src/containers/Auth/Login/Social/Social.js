@@ -29,7 +29,7 @@ class Social extends Component {
 
     render () {
         return (
-            <div>
+            <>
                 <div className="alternate-login">Ou</div>  
                 <div className="login-social-wrapper">
                     <button className="login-social" onClick={()=>this.authsocial(providerF)}>
@@ -51,8 +51,8 @@ class Social extends Component {
                         <FcIphone/>
                     </button>
                 </div>
-                {this.state.show ? <AuthPhone /> : null}
-            </div>
+                { this.state.show && <AuthPhone /> }
+            </>
         )
     }
 }
@@ -62,7 +62,6 @@ const mapDispatchToProps = dispatch => {
         socialAuth:(provider,history) => dispatch(actions.socialAuth(provider,history)),
         socialFacebook:(provider,history) => dispatch(actions.socialFacebook(provider,history)),
         socialTwitter:(provider,history) => dispatch(actions.socialTwitter(provider,history)),
-
     };
 };
   

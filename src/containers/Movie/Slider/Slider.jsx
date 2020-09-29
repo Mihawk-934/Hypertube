@@ -51,7 +51,7 @@ const SimpleSlider = (props) => {
           props.similar.map(movie => {
             return (
               <div key={movie.id} className='blockImage' onClick={() => props.history.push(`/movie/${movie.id}`)}>
-                <Image className="Image" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt='lol' />
+                <Image className="Image" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path || movie.img}`} alt={movie.title} />
               </div>
             )
           })

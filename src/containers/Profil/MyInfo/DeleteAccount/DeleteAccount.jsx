@@ -10,7 +10,6 @@ import * as actions from '../../../../store/actions/index';
 const DeleteAccount = () => {
     const history = useHistory();
     const [modal, setModal] = useState(false);
-
     const dispatch = useDispatch();
     const showAction = () => { dispatch(actions.hideToolbarAndFooter()) };
 
@@ -22,11 +21,7 @@ const DeleteAccount = () => {
                     closeButton: false,
                     className:'toastCss'
                 })
-                localStorage.removeItem('token')
-                localStorage.removeItem('noSocial')
-                localStorage.removeItem('id')
-                localStorage.removeItem('mail')
-                localStorage.removeItem('show')
+                localStorage.clear();
                 showAction();
                 setModal(false);
             })
@@ -48,12 +43,22 @@ const DeleteAccount = () => {
         })
     }
 
-    function MyVerticallyCenteredModal(props) {
-        return (
+    if (localStorage.getItem('token')=== null){
+        setTimeout(() => {
+          return(history.push('/register'))
+        // return(window.location.reload(false))
+        }, 3000);
+    }
+
+    return (
+        <>
+            { localStorage.getItem('noSocial') && <p style={{textAlign:'center', color:'black', cursor:'pointer'}} onClick={()=>setModal(true)}>Supprimer mon compte</p>}  
             <Modal
-                {...props}
+                show={modal}
+                onHide={() => setModal(false)}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
+                centered
                >
                 <Modal.Header  style={{backgroundColor:'black',color:'white'}}>
                     <Modal.Title>Team Netflix</Modal.Title>
@@ -70,23 +75,6 @@ const DeleteAccount = () => {
                     <Button style={{backgroundColor:'red',color:'white', border:'none'}} onClick={deleteAccount}>Confirmer</Button>
                 </Modal.Footer>
             </Modal>
-        );
-    }
-
-    if (localStorage.getItem('token')=== null){
-        setTimeout(() => {
-          return(history.push('/register'))
-        // return(window.location.reload(false))
-        }, 3000);
-    }
-
-    return (
-        <>
-            { localStorage.getItem('noSocial') && <p style={{textAlign:'center', color:'black', cursor:'pointer'}} onClick={()=>setModal(true)}>Supprimer mon compte</p>}  
-            <MyVerticallyCenteredModal
-                show={modal}
-                onHide={() => setModal(false)}
-                /> 
         </>
     )
 }

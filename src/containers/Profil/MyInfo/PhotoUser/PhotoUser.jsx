@@ -44,7 +44,7 @@ class PhotoUser extends Component {
                 else
                     this.setState({image : 'https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'})
             })
-            .catch(err => console.log(err))
+            .catch(err => this.setState({image : 'https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'}))
         }
     }
 

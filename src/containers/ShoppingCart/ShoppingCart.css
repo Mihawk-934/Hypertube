@@ -116,6 +116,15 @@
     text-align: right;
 }
 
+.totalPriceRecap {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 19px;
+    margin-bottom: 12px;
+    padding: 8px;
+}
+
 .totalPrice {
     width: 100%;
     display: flex;
@@ -201,13 +210,22 @@
     }
 
     .liMovie {
-        margin-top: 50px;
-        border-top: 1px solid black;
+        margin-top: 25px;
     }
 
     .cartEmpty {
         margin-top: 50px;
         border-top: 1px solid black;
         padding-top: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .imgMovie {
+        width: 130px;
+    }
+
+    .infoMovie {
+        padding-left: 10px;
     }
 }

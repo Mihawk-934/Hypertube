@@ -34,13 +34,15 @@ const InfoUser = () => {
             .then(res => {
                 toast.success('Info perso mise à jour.', {
                     autoClose: 3000,
-                    closeButton: false
+                    closeButton: false,
+                    className: "toastCss"
                 })
             })
             .catch(err => {
                 toast.error('Erreur, veuillez ressayer plus tard 😮.', {
                     autoClose: 3000,
-                    closeButton: false
+                    closeButton: false,
+                    className: "toastCss"
                 })
             })    
     }

@@ -59,10 +59,7 @@ class Register extends Component {
   };
 
   render() {
-    let success = null
-    if(this.props.registerSuccess)
-      success= <Spinner margin='auto' animation="border" variant="danger" />;
-
+   
     const form = (
       <Form className="login-form eiga-form" onSubmit={this.submit}>
         <div className="login-form-content">
@@ -85,7 +82,7 @@ class Register extends Component {
         </div>
         <div style={{display:'flex', flexDirection:'column', margin:'auto'}}>
           <p className="errorAuth">{this.props.errorServor}</p>
-          <div style={{margin:'auto'}}>{success}</div>
+          <div style={{margin:'auto'}}>{this.props.registerSuccess && <Spinner margin='auto' animation="border" variant="danger" />}</div>
         </div> 
       </Form>
     )

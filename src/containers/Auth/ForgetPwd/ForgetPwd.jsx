@@ -60,11 +60,7 @@ class FogertPwd extends Component {
                         error={this.state.errors["mail"]}
                         changed={(e) => this.changedHandler(e, 4, 40)} />
                     <MyButton data-test="button" disabled={this.state.disabled} />
-                    {
-                        this.state.responseServor ? 
-                        <p className="errorAuth">{this.state.responseServor}</p> 
-                        : null
-                    }
+                    { this.state.responseServor && <p className="errorAuth">{this.state.responseServor}</p> }
                     <Form.Group className="Links">
                         <Form.Text>
                             Pas encore membre ? <NavLink className="Link" to="/register">Par ici !</NavLink>

@@ -3,8 +3,8 @@ import { updateObject } from '../utility';
 
 const initialState = {
     cart: JSON.parse(localStorage.getItem('Panier')) || [],
-    total: localStorage.getItem('total'),
-    qte: localStorage.getItem('qte')
+    total: localStorage.getItem('total') || 0,
+    qte: JSON.parse(localStorage.getItem('qte')) || 0
 };
 
 const addToCart = (state, action) => {
@@ -32,6 +32,9 @@ const addToCart = (state, action) => {
 
     let temps = JSON.stringify(tempCart)
     localStorage.setItem('Panier',temps)
+    // let qte = {...state.qte}
+    // qte = qte.qte + 1
+    //regler pb qte chaine de char string number.
     return { ...state, cart: tempCart, qte: state.qte + 1 }
 }
 
@@ -49,7 +52,7 @@ const resetCart = (state ) => {
     let temps = JSON.stringify(obj)
     localStorage.setItem('Panier',temps)
     return updateObject( state, { 
-      cart: obj
+        cart: obj
     })
 }
 

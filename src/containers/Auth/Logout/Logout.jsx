@@ -14,9 +14,9 @@ class Logout extends Component {
     }
 
     render () {
-        return <Redirect to="/"/>
-    };
-};
+        return (<Redirect to="/"/>)
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
