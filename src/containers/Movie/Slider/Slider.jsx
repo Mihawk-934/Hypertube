@@ -11,7 +11,7 @@ const SimpleSlider = (props) => {
     width: '90%',
     dots: true,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: props.nbSlide,
     slidesToScroll: 4,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -45,13 +45,13 @@ const SimpleSlider = (props) => {
 
   return (
     <div style={{width:'92%', margin:'auto'}}>
-      <h2 className=' TitleSlider'>Films similaires :</h2>
+      <h2 className={props.titleCss}>{props.title}</h2>
       <Slider {...settings}>
         {
           props.similar.map(movie => {
             return (
-              <div key={movie.id} className='blockImage' onClick={() => props.history.push(`/movie/${movie.id}`)}>
-                <Image className="Image" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path || movie.img}`} alt={movie.title} />
+              <div key={movie.id} className='blockImage' style={{width:'50px'} }onClick={() => props.history.push(`/movie/${movie.id}`)}>
+                <Image className={props.image} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path || movie.img}`} alt={movie.title} />
               </div>
             )
           })

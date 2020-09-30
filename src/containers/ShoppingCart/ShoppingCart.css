@@ -51,7 +51,6 @@
 .infoMovie {
     padding-left: 30px;
     width: 320px;
-    height: 180px;
 }
 
 .titleMovie {
@@ -220,12 +219,33 @@
     }
 }
 
-@media (max-width: 360px) {
-    .imgMovie {
-        width: 130px;
+@media (max-width: 450px) {
+    .liMovie {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .infoMovie {
-        padding-left: 10px;
+        padding: 0;
+        text-align: center;
+    }
+
+    .titleMovie {
+        width: 90%;
+        margin: 20px auto 0;
+    }
+
+    .qteMovie {
+        justify-content: center;
+    }
+
+    .deleteMovie {
+        margin: 20px auto 10px;
+    }
+
+    .price {
+        margin: 20px 0 0;
+        text-align: center;
     }
 }

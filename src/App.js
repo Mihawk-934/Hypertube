@@ -12,7 +12,6 @@ import Movie from './containers/Movie/Movie';
 import Profil from './containers/Profil/Profil';
 import MyOrder from './containers/Profil/MyOrder/MyOrder';
 import MyInfo from './containers/Profil/MyInfo/MyInfo';
-import MyList from './containers/Profil/MyList/MyList';
 import Social from './containers/Profil/Social/Social';
 import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
 import ConfirmOrder from './containers/ConfirmOrder/ConfirmOrder';
@@ -49,7 +48,6 @@ class App extends Component {
               <>
                 <Route path={`${url}/`} render={()=><Profil child={<MyInfo/>} />} exact /> 
                 <Route path={`${url}/MyOrder`} render={()=><Profil child={<MyOrder/>} />} exact />
-                <Route path={`${url}/MyList`} render={()=><Profil child={<MyList/>} />} exact />
                 <Route path={`${url}/Social`} render={()=><Profil child={<Social/>} />} exact /> 
               </>
             )}/>

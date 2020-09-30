@@ -14,7 +14,7 @@ const Home = () =>  {
     const hideAction = useCallback(() => { 
         dispatch(actions.showToolbarAndFooter());
     }, [dispatch]);
-    
+
     useEffect(() => {
         if (localStorage.hasOwnProperty('animation')) {
             setTimeout(() => {

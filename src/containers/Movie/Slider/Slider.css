@@ -1,5 +1,13 @@
 .blockImage {
     cursor: pointer;
+    width: 170px;
+    transform: scale(0.9);
+    -webkit-filter: brightness(0.75);
+}
+
+.blockImageOrder  {
+    width:170px;
+    cursor: pointer;
     transform: scale(0.9);
     -webkit-filter: brightness(0.75);
 }
@@ -15,8 +23,17 @@
     height: 400px;
 }
 
+.ImageOrder {
+    width: 155px;
+    height: 300px;
+}
+
 .TitleSlider {
     margin-left: 10px;
+}
+
+.TitleSliderOrder {
+    color: black;
 }
 
 @media(max-width: 480px) {
@@ -24,7 +41,7 @@
         width: 80%;
         margin: auto;
     }
-    .TitleSlider {
+    .TitleSlider, .TitleSliderOrder {
         text-align: center;
     }
 }
