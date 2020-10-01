@@ -24,6 +24,7 @@ const addToCart = (state, action) => {
             id: action.movie.id,
             qte: 1,
             img: action.movie.poster_path,
+            poster: action.movie.backdrop_path,
             duree: action.movie.runtime,
             note: action.movie.vote_average
         }

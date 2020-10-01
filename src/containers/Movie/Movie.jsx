@@ -76,7 +76,7 @@ class MovieId extends Component {
                     <div data-aos="flip-left" data-aos-once data-aos-duration="3000">
                         {this.state.movie && <Presentation movie={this.state.movie}/>}
                         {this.state.movie && <Video id={this.state.movie.youtubeKey}/>}
-                        {this.state.movie.similar && this.state.movie.similar.length !== 0 && <Slider similar={this.state.movie.similar} title='Films similaires :' image='Image' titleCss='TitleSlider' nbSlide={4}/>}
+                        {this.state.movie.similar && this.state.movie.similar.length !== 0 && <Slider similar={this.state.movie.similar} title='Films similaires :' image='Image' titleCss='TitleSlider' component='Movie'/>}
                     </div>
                 </Container>
             </div>

@@ -12,16 +12,22 @@ const MyOrder = () => {
       .catch(err => {})   
   }, [])
 
-  let order = orderUser.map(order => (
-      <div style={{marginTop:'40px', marginBottom:'30px'}}>
-          <Slider similar={order.films} title={`Commande ${order.numberOrder} du ${order.date}`} image='ImageOrder' titleCss='TitleSliderOrder' nbSlide={order.films.length < 4 ? order.films.length : 4}/>  
-      </div>
-    )
-  )
+  let order;
 
+  if (orderUser.length === 0)
+    order = <p style={{fontStyle: 'italic', color: 'black'}}>Aucune commande.</p>
+  
+  else {
+    order = orderUser.map((order, index) => (
+      <div key={index} style={{marginTop:'40px', marginBottom:'30px'}}>
+          <Slider similar={order.films} title={`Commande ${order.numberOrder} du ${order.date}`} image='ImageOrder' titleCss='TitleSliderOrder' component='MyOrder'/>  
+      </div>)
+    )
+  }  
+  
   return (
     <div className='PageMyInfo'>
-      <h1 className='Title' style={{marginBottom:'50px'}}>Mes Commandes</h1>
+      <h1 className='Title' style={{marginBottom:'20px'}}>Historique de commande</h1>
       {order}
     </div>
   )
