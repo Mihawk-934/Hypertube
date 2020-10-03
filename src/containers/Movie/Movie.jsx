@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Video from './Video/Video';
-import Slider from './Slider/Slider';
+import Slider from '../../components/Slider/Slider';
 import { Container } from 'react-bootstrap';
 import Presentation from './Presentation/Presentation';
 import Aos from 'aos';

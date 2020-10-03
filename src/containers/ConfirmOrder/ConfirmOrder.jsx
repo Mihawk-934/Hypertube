@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Spinner from './Spinner/Spinner';
+import Spinner from '../../components/Spinner/Spinner';
 import DetailsCommand from './DetailsOrder/DetailsOrder';
 
 const ConfirmOrder = () => {
@@ -11,7 +11,7 @@ const ConfirmOrder = () => {
             timer = setTimeout(() => {
                 setLoad(false)
                 localStorage.setItem('spinner',true)
-            }, 3000);
+            }, 300000);
         }
         return (() => {
             clearTimeout(timer);
@@ -20,6 +20,12 @@ const ConfirmOrder = () => {
         }) 
     }, [])
 
-    return <>{ load && localStorage.getItem('spinner') === null ? <Spinner /> : <DetailsCommand />}</>
+    return (
+        <>
+            { load && localStorage.getItem('spinner') === null ? 
+                <Spinner css="SpinnerOrder" txt="Veuillez patienter , paiement en cours"/>
+                : <DetailsCommand />
+            }
+        </> )
 }
 export default ConfirmOrder; 

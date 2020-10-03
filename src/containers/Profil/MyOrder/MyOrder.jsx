@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Slider from '../../Movie/Slider/Slider';
+import Slider from '../../../components/Slider/Slider';
 import axios from 'axios';
 
 const MyOrder = () => {

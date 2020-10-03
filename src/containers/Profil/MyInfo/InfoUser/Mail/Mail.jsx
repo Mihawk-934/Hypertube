@@ -63,13 +63,20 @@ const InfoUser = () => {
     return (
         <div className="BlockContainer">
             <div className="TitleBackground">
-                <h4 className='h4'>Informations Personelles</h4>
+                <h4 className='h4'>Adresse Mail</h4>
             </div>
             <form onSubmit={handleSubmitMail} className="BlockUserInfo">
                 <div className='Duo'>
-                    <input className='Input' type="mail" id="mail" placeholder="Mail" 
-                        minLength="6" value={mail} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="email incorrect ex: netflix@gmail.com"
-                        onChange={(e)=> setMail(e.target.value)} required />
+                    <input className='Input'
+                        type="mail"
+                        id="mail"
+                        placeholder="Mail" 
+                        minLength="6"
+                        value={mail}
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        title="email incorrect ex: netflix@gmail.com"
+                        onChange={(e)=> setMail(e.target.value)}
+                        required />
                 </div>
                 <div style={{width: '200px'}} className='Duo'>
                     <MyButton />

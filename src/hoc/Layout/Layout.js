@@ -4,13 +4,14 @@ import ButtonTop from './ButtonTop/ButtonTop';
 import Footer from './Footer/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import  * as actions from '../../store/actions/index';
+import Tchat from './Tchat/Tchat';
 
 const Layout = (props) =>  {
     const dispatch = useDispatch();
     const showAction = useCallback(() => { 
         dispatch(actions.showToolbarAndFooter());
     }, [dispatch]);
-    
+
     useEffect(() => {
         if (localStorage.getItem('token'))
             showAction()   
@@ -28,6 +29,7 @@ const Layout = (props) =>  {
             </main>
             <ButtonTop />
             { show && <Footer /> }
+            { show && <Tchat />}
         </>
     )
 };

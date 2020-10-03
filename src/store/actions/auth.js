@@ -27,6 +27,13 @@ export const authStart = () => {
     };
 };
 
+export const authFail = (error) => {
+    return {
+        type: actionTypes.AUTH_FAILED,
+        error: error
+    };
+};
+
 export const authSuccess = (token, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
@@ -35,12 +42,6 @@ export const authSuccess = (token, userId) => {
     };
 };
 
-export const authFail = (error) => {
-    return {
-        type: actionTypes.AUTH_FAILED,
-        error: error
-    };
-};
  
 export const authLogout = () => {
     localStorage.clear();
@@ -76,6 +77,11 @@ export const authRegister = (email, password, history) => {
                     .catch(err => {
                         // console.log(err)
                     })
+                localStorage.setItem('animation', true);
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('id', response.data.localId);
+                localStorage.setItem('email',response.data.email);
+                localStorage.setItem('noSocial', true);
                 dispatch(authSuccess(response.data.idToken, response.data.localId));
                 setTimeout( () => {
                     history.push('/home')

@@ -3,6 +3,7 @@ import { updateObject } from '../utility';
 
 const initialState = {
   movies: [],
+  loading: false,
   page: 0,
   nbPage: null,
   textSearch: '',
@@ -15,13 +16,19 @@ const initialState = {
   noResult: false
 };
 
+const movieStart = (state) => {
+  return updateObject( state, {
+      loading: true
+   } );
+};
+
 const initialise = (state) => {
   return updateObject( state, { 
     page: 1,
     movies: [],
     nbPage: null
   })
-}
+} 
 
 const initialiseFiltres = (state) => {
   let filtres = {
@@ -57,6 +64,7 @@ const movies = (state, action) => {
   const tab = a.filter(movie => movie.poster_path !== null)
   let movies = [...new Set(tab.map(o => o.id))].map(id => tab.find(i => i.id === id))
   return updateObject( state, { 
+    loading: false,
     movies: movies,
     nbPage: action.nbPage,
     page: action.page,
@@ -67,6 +75,7 @@ const movies = (state, action) => {
 
 const reducer = ( state = initialState, action ) => {
   switch ( action.type ) {
+    case actionTypes.MOVIE_START: return movieStart(state);
     case actionTypes.MOVIES: return movies(state, action);
     case actionTypes.FILTRES: return filtres(state, action);
     case actionTypes.TEXT_SEARCH: return textSearch(state, action);

@@ -2,6 +2,12 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import { API_KEY, PATH_BASE, PATH_DISCOVER, PATH_MOVIE, PATH_SEARCH, PATH_PAGE, PATH_ADULT, PATH_LANGUE, PATH_POPULAR, PATH_VOTE, PATH_QUERY } from  '../../containers/Home/MoviesList/api';
 
+export const movieStart = () => {
+    return {
+        type: actionTypes.MOVIE_START
+    };
+};
+
 export const initialise = () => {
     return {
         type: actionTypes.INITIALISE
@@ -19,7 +25,7 @@ export const initialiseTextSearch = () => {
         type: actionTypes.INITIALISE_TEXTSEARCH
     }
 };
-
+ 
 export const filtres = (filtres) => {
     return {
         type: actionTypes.FILTRES, 
@@ -47,6 +53,7 @@ export const movies = (movies, nbPage, page, next, noResult) => {
 
 export const popularRequest = (page) => {
     return dispatch => {
+        dispatch(movieStart());
         axios.get(`${PATH_BASE}${PATH_MOVIE}${PATH_POPULAR}${API_KEY}${PATH_ADULT}${PATH_LANGUE}${PATH_PAGE}${page}${PATH_VOTE}`)
             .then(response => {
                 dispatch(movies(response.data.results, response.data.total_pages, page, 'popular'));
@@ -57,6 +64,7 @@ export const popularRequest = (page) => {
 
 export const filtresRequest = (filtres, page) => {
     return dispatch => {
+        dispatch(movieStart());
         let url = `${PATH_BASE}${PATH_DISCOVER}${PATH_MOVIE}${API_KEY}${PATH_PAGE}${page}${PATH_ADULT}${PATH_LANGUE}${PATH_VOTE}`;
         if (!!filtres.genre.value)
             url += `&with_genres=${filtres.genre.value}`;
@@ -76,6 +84,7 @@ export const filtresRequest = (filtres, page) => {
 
 export const textSearchRequest = (textSearch, page) => {
     return dispatch => {
+        dispatch(movieStart());
         axios.get(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}${API_KEY}${PATH_PAGE}${page}${PATH_LANGUE}${PATH_ADULT}${PATH_QUERY}${textSearch}${PATH_VOTE}`)
             .then(response => {
                 let noResult ;

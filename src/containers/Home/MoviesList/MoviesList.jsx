@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./MoviesList.css";
 import MovieItems from "./MoviesItems/MoviesItems";
 import * as actions from '../../../store/actions/index';
+import Spinner from '../../../components/Spinner/Spinner';
 
 class MoviesList extends Component {
   state = {
@@ -60,9 +61,9 @@ class MoviesList extends Component {
           dataLength={this.props.movies.length}
           next={this.newMovie}
           scrollableTarget={'false'}
-          hasMore={this.state.hasMore}
-          >
+          hasMore={this.state.hasMore}>
           {movies}
+          {this.props.loading && <Spinner css="SpinnerMovie" txt="Chargement en cours veuillez patientez ..."/>}
         </InfiniteScroll>
       </div>
     );
@@ -71,6 +72,7 @@ class MoviesList extends Component {
 
 const mapStateToProps = state => {
   return {
+    loading: state.movies.loading,
     page: state.movies.page,
     nbPage: state.movies.nbPage,
     filtres: state.movies.filtres,

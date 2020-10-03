@@ -1,38 +1,77 @@
 import React, { useState, useEffect } from 'react';
+import MyModal from '../../../components/Modal/Modal';
 import Switch from "react-switch";
+import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import './Social.css';
 
 const Social = () => {
     const [btnMembre, setBtnMembre] = useState(false);
     const [btnNewsletter, setBtnNewsletter] = useState(false);
-
     const [ok, setOk] = useState(false);
     const [ok1, setOk1] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+    const [name,setName] = useState(null)
+    const history = useHistory();
+
+    useEffect(()=>{
+        console.log('DIDMOUNTTTTT-->')
+        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/social.json/`)
+            .then(res => { setBtnMembre(res.data.social);})
+            .catch(err => {})
+        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`)
+            .then(res => { setBtnNewsletter(res.data.newsletter);})
+            .catch(err => {})
+        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
+            .then(res => {setName(res.data.name) })
+            .catch(err => {})
+    },[])
 
     useEffect(() => {
-        if (ok)
-            btnMembre ? toast.success("Membre TRUE", {  className: "toastCss" }) : toast.error("Membre FALSE", {  className: "toastCss" });
+        if (ok) {
+            btnMembre ? 
+            axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
+                .then(res => toast.success("Membre TRUE", {  className: "toastCss" }))
+                .catch(err => {})
+            : axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
+                .then(res => toast.success("Membre F", {  className: "toastCss" }))
+                .catch(err => {})
+        } 
         if (ok1)
-            btnNewsletter ? toast.success("News TRUE", {  className: "toastCss" }) : toast.error("News FALSE", {  className: "toastCss" });
+        {
+            btnNewsletter ? 
+            axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
+                .then(res => toast.success("Membre TRUE", {  className: "toastCss" }))
+                .catch(err => {})
+            : axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
+                .then(res => toast.success("Membre F", {  className: "toastCss" }))
+                .catch(err => {})
+        }
+           
     }, [btnMembre, btnNewsletter, ok, ok1]);
 
     const handleChange = (id) => {
-        setOk(true);
-        setOk1(true);
-        if (id === 'membre') {
-            setOk1(false)
-            setBtnMembre(prev => !prev);
+        if(name) {
+            setOk(true);
+            setOk1(true);
+            if (id === 'membre') {
+                setOk1(false)
+                setBtnMembre(prev => !prev);
+            }
+            else if (id === 'newsletter') {
+                setOk(false)
+                setBtnNewsletter(prev => !prev);
+            }
         }
-        else if (id === 'newsletter') {
-            setOk(false)
-            setBtnNewsletter(prev => !prev);
-        }
+        else 
+            setShowModal(true)   
     }
 
     return (
         <div className='PageMyInfo'>
+            <MyModal click={() => { history.push('/profil')}} showModal={showModal}/>
             <h1 className='Title'>Social</h1>
             <div className="BlockContainer">
                 <div className="TitleBackground">
@@ -53,7 +92,6 @@ const Social = () => {
                     </div>
                 </div>
             </div>
-
             <div className="BlockContainer">
                 <div className="TitleBackground">
                     <h4 className='h4'>Newsletter</h4>

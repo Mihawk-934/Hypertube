@@ -11,6 +11,7 @@ export const SHOW_TOOLBAR_AND_FOOTER = 'SHOW_TOOLBAR_AND_FOOTER';
 export const PHOTO = 'PHOTO';
 
 ////////// MOVIES //////////
+export const MOVIE_START = "MOVIE_START";
 export const MOVIES = "MOVIES";
 export const FILTRES = "FILTRES";
 export const TEXT_SEARCH = "TEXT_SEARCH";
@@ -25,4 +26,4 @@ export const REMOVE_TO_CART = "REMOVE_TO_CART";
 export const INCREASE = "INCREASE";
 export const DECREASE = "DECREASE";
 export const RESET_CART = "RESET_CART";
-export const GET_TOTAL = "GET_TOTAL";
+export const GET_TOTAL = "GET_TOTAL"; 

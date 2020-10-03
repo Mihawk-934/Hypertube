@@ -81,7 +81,7 @@ class Login extends Component {
                             <NavLink className="Link" to="/forget_password">Mot de passe oublié ?</NavLink>
                         </Form.Text>
                     </Form.Group>
-                    <MyButton data-test="button" disabled={this.state.disabled} />
+                    <MyButton data-test="button" disabled={this.state.disabled} value='Se  Connecter'/>
                     <p className="errorAuth">{this.props.error}</p>
                 </div>
             </Form>
