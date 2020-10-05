@@ -23,16 +23,16 @@ const ShoppingCart = () => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/CarteBleu.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/CarteBleu.json/`)
             .then(response => {setCbCompleted(response.data.number)})
             .catch(err => {})
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
             .then(response => {setInfoUser(response.data.name) })
             .catch(err => {})
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
             .then(response => {setMail(response.data.mail)})
             .catch(err => {setMail(localStorage.getItem('email'))})
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
             .then(res => {res.data === null ? setOrderUser([]) : setOrderUser(res.data)})
             .catch(err => {})
     }, [])
@@ -55,7 +55,7 @@ const ShoppingCart = () => {
             let newOrder;
             orderUser === null ? newOrder = [] : newOrder = orderUser;
             newOrder.push(tab)
-            axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`,newOrder)
+            axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/Order.json/`,newOrder)
             .then(response => {
                 localStorage.setItem('commandeSuccess', true);
                 localStorage.setItem('numOrder', orderUser.length - 1);

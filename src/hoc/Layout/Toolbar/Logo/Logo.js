@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Netflix from '../../../../assets/kiss.png';
+import Netflix from '../../../../assets/logo.png';
 
 const Logo = () => (
     <Link to={localStorage.getItem("token") ? "/home" : "/register"}>

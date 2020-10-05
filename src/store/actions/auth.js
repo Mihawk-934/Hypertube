@@ -76,7 +76,7 @@ export const authRegister = (email, password, history) => {
             dispatch(errorServor('Votre compte viens d\'etre creer, vous allez etre rediriger dans quelques instant'));
             dispatch(registerSuccess(true));
             const photo = { photo : false };
-            axios.put(`https://movies-27cd5.firebaseio.com/${response.data.localId}/photo.json/`, photo)
+            axios.put(`https://movies-52928.firebaseio.com/${response.data.localId}/photo.json/`, photo)
             .then(res => {})
             .catch(err => {})
             dispatch(tchat(false))
@@ -107,13 +107,13 @@ export const authLogin = (email, password, history) => {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
         .then(response => {
             let id = response.data.localId;
-            axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
+            axios.get(`https://movies-52928.firebaseio.com/${id}/photo.json/`)
             .then(response => { 
                 if(response.data.photo === true)
                     dispatch(photo(id));
             })
             .catch(err => { console.log(err)})
-            axios.get(`https://movies-27cd5.firebaseio.com/${id}/social.json/`)
+            axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
             .then(res => {
                 dispatch(tchat(res.data.social))
             })
@@ -206,12 +206,12 @@ export const authCheckState = () => {
                 dispatch(authSuccess(token,id)); 
             else {
                 dispatch(authSuccess(token,id));
-                axios.get(`https://movies-27cd5.firebaseio.com/${id}/social.json/`)
+                axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
                 .then(res => {
                     dispatch(tchat(res.data.social))
                 })
                 .catch(err => {})
-                axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
+                axios.get(`https://movies-52928.firebaseio.com/${id}/photo.json/`)
                 .then(response => { 
                     if(response.data.photo === true)
                         dispatch(photo(id));

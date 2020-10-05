@@ -24,13 +24,13 @@ const Social = () => {
     }, [dispatch]);
 
     useEffect(()=>{
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/social.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/social.json/`)
             .then(res => { setBtnMembre(res.data.social);})
             .catch(err => {})
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`)
             .then(res => { setBtnNewsletter(res.data.newsletter);})
             .catch(err => {})
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
             .then(res => {setName(res.data.name)})
             .catch(err => {})
     },[])
@@ -38,13 +38,13 @@ const Social = () => {
     useEffect(() => {
         if (ok) {
             btnMembre ? 
-            axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
+            axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
                 .then(res => {
                     toast.success("Nous sommes heureux de vous compter parmis nos membres.", {  className: "toastCss" })
                     tchat(btnMembre)
                 })
                 .catch(err => {})
-            : axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
+            : axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
                 .then(res => {
                     toast.error("Nous sommes triste de ne plus vous compter parmis nos membres.", {  className: "toastCss" })
                     tchat(btnMembre)
@@ -53,10 +53,10 @@ const Social = () => {
         } 
         if (ok1) {
             btnNewsletter ? 
-            axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
+            axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
                 .then(res => toast.success("Vous etes maintenant abonneer a notre newsletter", {  className: "toastCss" }))
                 .catch(err => {})
-            : axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
+            : axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
                 .then(res => toast.error("Vous etes desabonner a notre newsletter", {  className: "toastCss" }))
                 .catch(err => {})
         }

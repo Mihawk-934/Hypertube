@@ -14,7 +14,7 @@ const InfoUser = () => {
         setIdToken(localStorage.getItem('token'));
         setId(localStorage.getItem('id'));
         let idLocal = localStorage.getItem('id');
-        axios.get(`https://movies-27cd5.firebaseio.com/${idLocal}/mail.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${idLocal}/mail.json/`)
             .then(response => { 
                 setMail(response.data.mail) 
             })
@@ -34,7 +34,7 @@ const InfoUser = () => {
             .then(response => { 
                 console.log('[1]', response)
                 const mail = { mail : response.data.email };
-                axios.put(`https://movies-27cd5.firebaseio.com/${id}/mail.json/`, mail)
+                axios.put(`https://movies-52928.firebaseio.com/${id}/mail.json/`, mail)
                     .then(res => {  
                         console.log(res)
                         toast.success('Info perso mise à jour.', {

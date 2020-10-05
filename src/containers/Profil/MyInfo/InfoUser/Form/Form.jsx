@@ -12,7 +12,7 @@ const InfoUser = () => {
     useEffect(() => {    
         setId(localStorage.getItem('id'));
         let idLocal = localStorage.getItem('id');
-        axios.get(`https://movies-27cd5.firebaseio.com/${idLocal}/user.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${idLocal}/user.json/`)
             .then(response => {
                 setAddress(response.data.address) 
                 setName(response.data.name)   
@@ -30,7 +30,7 @@ const InfoUser = () => {
             lastname: lastname,
             address: address,
         };
-        axios.put(`https://movies-27cd5.firebaseio.com/${id}/user.json/`,data)
+        axios.put(`https://movies-52928.firebaseio.com/${id}/user.json/`,data)
             .then(res => {
                 toast.success('Info perso mise à jour.', {
                     autoClose: 3000,

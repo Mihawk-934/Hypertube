@@ -9,14 +9,14 @@ const ConfirmOrder = () => {
     const [numberOrder, setNumberOrder] = useState('');
 
     useEffect(() => {
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
         .then(res => {
             setNumberOrder(res.data[localStorage.getItem('numOrder')].numberOrder)
             setTotal(res.data[localStorage.getItem('numOrder')].total)
             setCommand(res.data[localStorage.getItem('numOrder')].films)
         })
         .catch(err => {})   
-        axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
             .then(response => {setAdresse(response.data.address) })
             .catch(err => console.log(err))  
     }, [])

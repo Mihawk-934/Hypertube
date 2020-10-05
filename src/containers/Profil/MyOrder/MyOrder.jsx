@@ -5,7 +5,7 @@ import axios from 'axios';
 const MyOrder = () => {
   const [orderUser, setOrderUser] = useState([]);
   useEffect(() => {
-    axios.get(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
+    axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
       .then(res => {
         res.data !== null && setOrderUser(res.data)
       })

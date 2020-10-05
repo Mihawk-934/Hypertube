@@ -16,7 +16,7 @@ const CbUser = () => {
     
     useEffect(() => {
         let idLocal = localStorage.getItem('id')
-        axios.get(`https://movies-27cd5.firebaseio.com/${idLocal}/CarteBleu.json/`)
+        axios.get(`https://movies-52928.firebaseio.com/${idLocal}/CarteBleu.json/`)
             .then(response => {
                 setCvc(response.data.cvc) 
                 setName(response.data.name)   
@@ -36,7 +36,7 @@ const CbUser = () => {
             cvc: cvc,
             expiry: expiry,
          };
-        axios.put(`https://movies-27cd5.firebaseio.com/${localStorage.getItem('id')}/CarteBleu.json/`, data)
+        axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/CarteBleu.json/`, data)
             .then(response => {
                 toast.success('Carte Bleu mise à jour.', {
                     autoClose: 3000,

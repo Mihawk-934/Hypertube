@@ -29,7 +29,7 @@ class PhotoUser extends Component {
         }
         else {
             let ref = this
-            axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
+            axios.get(`https://movies-52928.firebaseio.com/${id}/photo.json/`)
             .then(response => { 
                 if(response.data.photo === true) {
                     storage.getDownloadURL()
@@ -62,7 +62,7 @@ class PhotoUser extends Component {
                                             ref.props.photoProfil(url);
                                             ref.setState({image:url, good: false})
                                             const photo = { photo : true };
-                                            axios.put(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`, photo)
+                                            axios.put(`https://movies-52928.firebaseio.com/${id}/photo.json/`, photo)
                                                 .then(res => {
                                                     // console.log(res)
                                                 })
