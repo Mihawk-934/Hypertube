@@ -13,9 +13,11 @@ const Social = () => {
     const [btnMembre, setBtnMembre] = useState(false);
     const [btnNewsletter, setBtnNewsletter] = useState(false);
     const [ok, setOk] = useState(false);
-    const [ok1, setOk1] = useState(false)
+    const [ok1, setOk1] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [name,setName] = useState(null)
+    const [name,setName] = useState(null);
+    const [mail, setMail] = useState('');
+
     const history = useHistory();
 
     const dispatch = useDispatch();
@@ -33,6 +35,9 @@ const Social = () => {
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
             .then(res => {setName(res.data.name)})
             .catch(err => {})
+        axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
+            .then(response => {setMail(response.data.mail)})
+            .catch(err => {setMail(localStorage.getItem('email'))})
     },[])
 
     useEffect(() => {
@@ -54,7 +59,12 @@ const Social = () => {
         if (ok1) {
             btnNewsletter ? 
             axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
-                .then(res => toast.success("Vous etes maintenant abonneer a notre newsletter", {  className: "toastCss" }))
+                .then(res => {
+                    const templateId = 'template_eq0ley2'; 
+                    sendFeedback(templateId, {message_html: 'message_html', from_name: name, reply_to: mail});
+                    toast.success("Vous etes maintenant abonneer a notre newsletter", {  className: "toastCss" })
+
+                })
                 .catch(err => {})
             : axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
                 .then(res => toast.error("Vous etes desabonner a notre newsletter", {  className: "toastCss" }))
@@ -63,6 +73,12 @@ const Social = () => {
            
     }, [btnMembre, btnNewsletter, ok, ok1]);
     //utiliser useCallbackwithtruc pour thcat();
+
+    const sendFeedback = (templateId, variables) => {
+        window.emailjs.send('123456789', templateId,variables)
+        .then(res => {})
+        .catch(err => {})
+    }
 
     const handleChange = (id) => {
         if(name) {
@@ -80,6 +96,7 @@ const Social = () => {
         else 
             setShowModal(true)   
     }
+
 
     return (
         <div className='PageMyInfo'>
@@ -111,8 +128,8 @@ const Social = () => {
                     <div className="GaucheSocial">
                         <h4 className="h4Social">Avantages :</h4>
                         <ul style={{padding:'0'}}>
-                            <li className="liSocial">Info en exlusivité </li>
-                            <li className="liSocial">Profitez en exclu des info sur tout les film tendance</li>
+                            <li className="liSocial">Info en exlusivité.</li>
+                            <li className="liSocial">Profitez en exclu des info sur tout les film tendance.</li>
                         </ul>
                     </div>
                     <div className="Switch">

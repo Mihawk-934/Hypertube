@@ -66,7 +66,7 @@ const ShoppingCart = () => {
                 history.push('/confirmorder');
             }) 
             .catch(err => {})
-            const templateId = 'template_k9mcneq';
+            const templateId = 'template_k9mcneq'; 
             sendFeedback(templateId, {message_html: 'message_html', from_name: infoUser, reply_to: mail});
         }
         else    
