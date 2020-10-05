@@ -27,13 +27,6 @@ export const authStart = () => {
     };
 };
 
-export const authFail = (error) => {
-    return {
-        type: actionTypes.AUTH_FAILED,
-        error: error
-    };
-};
-
 export const authSuccess = (token, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
@@ -42,6 +35,12 @@ export const authSuccess = (token, userId) => {
     };
 };
 
+export const authFail = (error) => {
+    return {
+        type: actionTypes.AUTH_FAILED,
+        error: error
+    };
+};
  
 export const authLogout = () => {
     localStorage.clear();
@@ -57,6 +56,13 @@ export const registerSuccess = (value) => {
     };
 };
 
+export const tchat = (value) => {
+    return {
+        type: actionTypes.TCHAT,
+        value: value
+    };
+};
+
 export const authRegister = (email, password, history) => {
     return dispatch => {
         dispatch(authStart());
@@ -65,31 +71,28 @@ export const authRegister = (email, password, history) => {
             password: password,
             returnSecureToken: true
         };
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
-            .then(response => {
-                dispatch(errorServor('Votre compte viens d\'etre creer, vous allez etre rediriger dans quelques instant'));
-                dispatch(registerSuccess(true));
-                const photo = { photo : false };
-                axios.put(`https://movies-27cd5.firebaseio.com/${response.data.localId}/photo.json/`, photo)
-                    .then(res => {
-                        // console.log(res)
-                    })
-                    .catch(err => {
-                        // console.log(err)
-                    })
-                localStorage.setItem('animation', true);
-                localStorage.setItem('token', response.data.idToken);
-                localStorage.setItem('id', response.data.localId);
-                localStorage.setItem('email',response.data.email);
-                localStorage.setItem('noSocial', true);
-                dispatch(authSuccess(response.data.idToken, response.data.localId));
-                setTimeout( () => {
-                    history.push('/home')
-                }, 3000);
-            })
-            .catch(err => {
-                dispatch(errorServor('Cet email existe Deja!'));
-            })
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
+        .then(response => {
+            dispatch(errorServor('Votre compte viens d\'etre creer, vous allez etre rediriger dans quelques instant'));
+            dispatch(registerSuccess(true));
+            const photo = { photo : false };
+            axios.put(`https://movies-27cd5.firebaseio.com/${response.data.localId}/photo.json/`, photo)
+            .then(res => {})
+            .catch(err => {})
+            dispatch(tchat(false))
+            localStorage.setItem('animation', true);
+            localStorage.setItem('token', response.data.idToken);
+            localStorage.setItem('id', response.data.localId);
+            localStorage.setItem('email',response.data.email);
+            localStorage.setItem('noSocial', true);
+            dispatch(authSuccess(response.data.idToken, response.data.localId));
+            setTimeout( () => {
+                history.push('/home')
+            }, 3000);
+        })
+        .catch(err => {
+            dispatch(errorServor('Cet email existe Deja!'));
+        })
     };
 };
 
@@ -101,17 +104,22 @@ export const authLogin = (email, password, history) => {
             password: password,
             returnSecureToken: true
         };
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
-            .then(response => {
-                let id = response.data.localId;
-                axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
-                .then(response => { 
-                    if(response.data.photo === true)
-                        dispatch(photo(id));
-                })
-                .catch(err => { console.log(err)})
-                localStorage.setItem('animation', true);
-                localStorage.setItem('token', response.data.idToken);
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
+        .then(response => {
+            let id = response.data.localId;
+            axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
+            .then(response => { 
+                if(response.data.photo === true)
+                    dispatch(photo(id));
+            })
+            .catch(err => { console.log(err)})
+            axios.get(`https://movies-27cd5.firebaseio.com/${id}/social.json/`)
+            .then(res => {
+                dispatch(tchat(res.data.social))
+            })
+            .catch(err => {})
+            localStorage.setItem('animation', true);
+            localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('id', response.data.localId);
                 localStorage.setItem('email',response.data.email);
                 localStorage.setItem('noSocial', true);
@@ -197,7 +205,12 @@ export const authCheckState = () => {
             if (localStorage.getItem('photo') || localStorage.getItem('photoPhone'))
                 dispatch(authSuccess(token,id)); 
             else {
-                dispatch(authSuccess(token,id)); 
+                dispatch(authSuccess(token,id));
+                axios.get(`https://movies-27cd5.firebaseio.com/${id}/social.json/`)
+                .then(res => {
+                    dispatch(tchat(res.data.social))
+                })
+                .catch(err => {})
                 axios.get(`https://movies-27cd5.firebaseio.com/${id}/photo.json/`)
                 .then(response => { 
                     if(response.data.photo === true)

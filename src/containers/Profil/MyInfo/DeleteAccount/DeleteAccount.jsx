@@ -14,7 +14,7 @@ const DeleteAccount = () => {
     const showAction = () => { dispatch(actions.hideToolbarAndFooter()) };
 
     const deleteAccount = () => {
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:delete?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E',{"idToken": localStorage.getItem('token')}) 
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:delete?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces',{"idToken": localStorage.getItem('token')}) 
             .then(res =>{
                 toast.info('Votre a bien ete supprimer A bientot .', {
                     autoClose: 3000,

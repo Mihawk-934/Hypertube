@@ -18,8 +18,8 @@ const initialState = {
 
 const movieStart = (state) => {
   return updateObject( state, {
-      loading: true
-   } );
+    loading: true
+  });
 };
 
 const initialise = (state) => {
@@ -49,20 +49,20 @@ const initialiseTextSearch = (state) => {
 
 const filtres = (state, action) => {
   return updateObject( state, { 
-    filtres: action.filtres,
+    filtres: action.filtres
   })
 }
 
 const textSearch = (state, action) => {
   return updateObject( state, { 
-    textSearch: action.textSearch,
+    textSearch: action.textSearch
   })
 }
 
 const movies = (state, action) => {
   let a = [...state.movies, ...action.newMovies];
-  const tab = a.filter(movie => movie.poster_path !== null)
-  let movies = [...new Set(tab.map(o => o.id))].map(id => tab.find(i => i.id === id))
+  const tab = a.filter(movie => movie.poster_path !== null);
+  let movies = [...new Set(tab.map(o => o.id))].map(id => tab.find(i => i.id === id));
   return updateObject( state, { 
     loading: false,
     movies: movies,
@@ -73,8 +73,8 @@ const movies = (state, action) => {
   });
 };
 
-const reducer = ( state = initialState, action ) => {
-  switch ( action.type ) {
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
     case actionTypes.MOVIE_START: return movieStart(state);
     case actionTypes.MOVIES: return movies(state, action);
     case actionTypes.FILTRES: return filtres(state, action);
@@ -82,7 +82,7 @@ const reducer = ( state = initialState, action ) => {
     case actionTypes.INITIALISE: return initialise(state, action);
     case actionTypes.INITIALISE_FILTRES: return initialiseFiltres(state);
     case actionTypes.INITIALISE_TEXTSEARCH: return initialiseTextSearch(state);
-    default: return state;
+      default: return state;
   }
 }; 
 

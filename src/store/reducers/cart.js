@@ -12,7 +12,7 @@ const addToCart = (state, action) => {
     let tempCart = state.cart.map(cartItem => {
         if (cartItem.id === action.movie.id) {
             cartItem = { ...cartItem, qte: cartItem.qte + 1 };
-            noSimilarFilm = false
+            noSimilarFilm = false;
         }    
         return cartItem;
     })
@@ -28,31 +28,28 @@ const addToCart = (state, action) => {
             duree: action.movie.runtime,
             note: action.movie.vote_average
         }
-        tempCart.push(value)
+        tempCart.push(value);
     }
 
-    let temps = JSON.stringify(tempCart)
-    localStorage.setItem('Panier',temps)
-    localStorage.setItem('qte', state.qte + 1)
-    // let qte = {...state.qte}
-    // qte = qte.qte + 1
-    //regler pb qte chaine de char string number.
+    let temps = JSON.stringify(tempCart);
+    localStorage.setItem('Panier',temps);
+    localStorage.setItem('qte', state.qte + 1);
     return { ...state, cart: tempCart, qte: state.qte + 1 }
 }
 
 const removeToCart = (state, action) => {
-    let obj = state.cart.filter((cartItem) => cartItem.id !== action.id)
-    let temps = JSON.stringify(obj)
-    localStorage.setItem('Panier',temps)
+    let obj = state.cart.filter((cartItem) => cartItem.id !== action.id);
+    let temps = JSON.stringify(obj);
+    localStorage.setItem('Panier',temps);
     return updateObject( state, { 
         cart: obj
     })
 }
 
 const resetCart = (state ) => {
-    let obj = []
-    let temps = JSON.stringify(obj)
-    localStorage.setItem('Panier',temps)
+    let obj = [];
+    let temps = JSON.stringify(obj);
+    localStorage.setItem('Panier',temps);
     return updateObject( state, { 
         cart: obj
     })
@@ -75,8 +72,8 @@ const decrease = (state, action) => {
             cartItem = { ...cartItem, qte: cartItem.qte - 1 };
         return cartItem;
     })
-    let temps = JSON.stringify(tempCart)
-    localStorage.setItem('Panier',temps)
+    let temps = JSON.stringify(tempCart);
+    localStorage.setItem('Panier',temps);
     return { ...state, cart: tempCart }
 }
 
@@ -94,17 +91,17 @@ const getTotals = (state) => {
         }
     );
     total = parseFloat(total.toFixed(2));
-    let temps = JSON.stringify(total)
-    localStorage.setItem('total',temps)
-    let temps1 = JSON.stringify(qte)
-    localStorage.setItem('qte',temps1)
-    return {...state, total, qte}
+    let temps = JSON.stringify(total);
+    localStorage.setItem('total',temps);
+    let temps1 = JSON.stringify(qte);
+    localStorage.setItem('qte',temps1);
+    return {...state, total, qte};
 }
-
 
 const initCart = () => {
-    return {cart: [], qte: 0, total:0}
+    return {cart: [], qte: 0, total: 0}
 }
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.ADD_TO_CART: return addToCart(state, action);
@@ -114,8 +111,8 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.DECREASE: return decrease(state, action);
         case actionTypes.GET_TOTAL: return getTotals(state);
         case actionTypes.INIT_CART: return initCart(state);
-        default: return state;
-  }
+            default: return state;
+   }
 }; 
 
 export default reducer;

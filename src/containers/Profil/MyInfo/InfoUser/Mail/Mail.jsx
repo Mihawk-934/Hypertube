@@ -30,7 +30,7 @@ const InfoUser = () => {
             email: mail,
             returnSecureToken: true
         };
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E', authData)
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
             .then(response => { 
                 console.log('[1]', response)
                 const mail = { mail : response.data.email };

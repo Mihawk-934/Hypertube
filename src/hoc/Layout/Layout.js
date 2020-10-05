@@ -7,6 +7,8 @@ import  * as actions from '../../store/actions/index';
 import Tchat from './Tchat/Tchat';
 
 const Layout = (props) =>  {
+    const show = useSelector((state => state.auth.show));
+    const tchat = useSelector((state => state.auth.tchat));
     const dispatch = useDispatch();
     const showAction = useCallback(() => { 
         dispatch(actions.showToolbarAndFooter());
@@ -16,8 +18,6 @@ const Layout = (props) =>  {
         if (localStorage.getItem('token'))
             showAction()   
     }, [showAction])
-    
-    const show = useSelector((state => state.auth.show))
 
     return (
         <>
@@ -29,7 +29,7 @@ const Layout = (props) =>  {
             </main>
             <ButtonTop />
             { show && <Footer /> }
-            { show && <Tchat />}
+            { show && tchat && <Tchat />}
         </>
     )
 };

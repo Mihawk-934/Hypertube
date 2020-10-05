@@ -55,10 +55,10 @@ export const popularRequest = (page) => {
     return dispatch => {
         dispatch(movieStart());
         axios.get(`${PATH_BASE}${PATH_MOVIE}${PATH_POPULAR}${API_KEY}${PATH_ADULT}${PATH_LANGUE}${PATH_PAGE}${page}${PATH_VOTE}`)
-            .then(response => {
-                dispatch(movies(response.data.results, response.data.total_pages, page, 'popular'));
-            })
-            .catch(err => console.log(err));
+        .then(response => {
+            dispatch(movies(response.data.results, response.data.total_pages, page, 'popular'));
+        })
+        .catch(err => console.log(err));
     }
 };
 
@@ -73,12 +73,12 @@ export const filtresRequest = (filtres, page) => {
         if (!!filtres.sortby.value)
             url += `&sort_by=${filtres.sortby.value}`;
         axios.get(url)
-            .then(response => {
-                let noResult ;
-                response.data.total_results === 0 ? noResult = true : noResult = false; 
-                dispatch(movies(response.data.results, response.data.total_pages, page, 'filtres', noResult));
-            })
-            .catch(err => console.log(err));
+        .then(response => {
+            let noResult ;
+            response.data.total_results === 0 ? noResult = true : noResult = false; 
+            dispatch(movies(response.data.results, response.data.total_pages, page, 'filtres', noResult));
+        })
+        .catch(err => console.log(err));
     }
 };
 
@@ -86,11 +86,11 @@ export const textSearchRequest = (textSearch, page) => {
     return dispatch => {
         dispatch(movieStart());
         axios.get(`${PATH_BASE}${PATH_SEARCH}${PATH_MOVIE}${API_KEY}${PATH_PAGE}${page}${PATH_LANGUE}${PATH_ADULT}${PATH_QUERY}${textSearch}${PATH_VOTE}`)
-            .then(response => {
-                let noResult ;
-                response.data.total_results === 0 ? noResult = true : noResult = false; 
-                dispatch(movies(response.data.results, response.data.total_pages, page, 'textSearch', noResult));
-            })
-            .catch(err => console.log(err));
+        .then(response => {
+            let noResult ;
+            response.data.total_results === 0 ? noResult = true : noResult = false; 
+            dispatch(movies(response.data.results, response.data.total_pages, page, 'textSearch', noResult));
+        })
+        .catch(err => console.log(err));
     }
 };

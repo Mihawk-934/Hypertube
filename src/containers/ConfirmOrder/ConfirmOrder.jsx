@@ -11,7 +11,7 @@ const ConfirmOrder = () => {
             timer = setTimeout(() => {
                 setLoad(false)
                 localStorage.setItem('spinner',true)
-            }, 300000);
+            }, 3000);
         }
         return (() => {
             clearTimeout(timer);

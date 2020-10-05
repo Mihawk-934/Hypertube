@@ -4,7 +4,7 @@ import * as actions from '../../store/actions/index';
 import { useHistory } from 'react-router-dom';
 import './ShoppingCart.css';
 import axios from 'axios';
-import MyModal from './Modal/Modal';
+import MyModal from '../../components/Modal/Modal';
 import Articles from './Articles/Articles';
 import Paiement from './Paiment/Paiement';
 

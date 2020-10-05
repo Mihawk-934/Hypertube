@@ -8,27 +8,31 @@ const initialState = {
   errorServor: null,
   registerSuccess: false,
   show: false,
-  photo: null
+  photo: null,
+  tchat: false
 };
 
-const authStart = ( state ) => {
-  return updateObject( state, { error: null, loading: true } );
+const authStart = (state) => {
+  return updateObject( state, {
+    error: null, 
+    loading: true 
+  });
 };
 
 const authSuccess = (state, action) => {
   return updateObject( state, { 
-      token: action.idToken,
-      userId: action.userId,
-      error: null,
-      loading: false
-   });
+    token: action.idToken,
+    userId: action.userId,
+    error: null,
+    loading: false
+  });
 };
 
 const authLogout = (state) => { 
   return updateObject(state, {
-      token: null,
-      userId: null,
-      show: false
+    token: null,
+    userId: null,
+    show: false
   });
 };
 
@@ -62,8 +66,14 @@ const photo = (state, action) => {
   });
 }
 
-const reducer = ( state = initialState, action ) => {
-  switch ( action.type ) {
+const tchat = (state, action) => {
+  return updateObject(state, {
+    tchat : action.value
+  });
+}
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
     case actionTypes.AUTH_START: return authStart(state, action);
     case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
     case actionTypes.AUTH_LOGOUT: return authLogout(state);
@@ -72,7 +82,8 @@ const reducer = ( state = initialState, action ) => {
     case actionTypes.HIDE_TOOLBAR_AND_FOOTER: return hideToolbarAndFooter(state);
     case actionTypes.SHOW_TOOLBAR_AND_FOOTER: return showToolbarAndFooter(state);
     case actionTypes.PHOTO: return photo(state, action);
-    default: return state;
+    case actionTypes.TCHAT: return tchat(state, action);
+      default: return state;
   }
 };
 

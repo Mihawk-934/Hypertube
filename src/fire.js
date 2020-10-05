@@ -2,15 +2,15 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/storage';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDJQ2C-WHsJXu5xVCG5Z98XQ31gRJrSV_E",
-  authDomain: "movies-27cd5.firebaseapp.com",
-  databaseURL: "https://movies-27cd5.firebaseio.com",
-  projectId: "movies-27cd5",
-  storageBucket: "movies-27cd5.appspot.com",
-  messagingSenderId: "931598252128",
-  appId: "1:931598252128:web:fd1393ae30bdae3d26eb05",
-  measurementId: "G-212W78LS28"
+var firebaseConfig = {
+  apiKey: "AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces",
+  authDomain: "movies-52928.firebaseapp.com",
+  databaseURL: "https://movies-52928.firebaseio.com",
+  projectId: "movies-52928",
+  storageBucket: "movies-52928.appspot.com",
+  messagingSenderId: "517177247962",
+  appId: "1:517177247962:web:559e1d206b50b680bdfde3",
+  measurementId: "G-XDQM9NZY3B"
 };
 
 firebase.initializeApp(firebaseConfig);

@@ -12,7 +12,8 @@ export {
     hideToolbarAndFooter,
     showToolbarAndFooter,
     photo,
-    photoUrl
+    photoUrl,
+    tchat
 } from './auth';
 
 export {

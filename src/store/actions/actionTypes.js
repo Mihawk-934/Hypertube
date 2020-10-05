@@ -9,6 +9,7 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const HIDE_TOOLBAR_AND_FOOTER = 'HIDE_TOOLBAR_AND_FOOTER';
 export const SHOW_TOOLBAR_AND_FOOTER = 'SHOW_TOOLBAR_AND_FOOTER';
 export const PHOTO = 'PHOTO';
+export const TCHAT = 'TCHAT';
 
 ////////// MOVIES //////////
 export const MOVIE_START = "MOVIE_START";
