@@ -18,9 +18,6 @@ const InfoUser = () => {
                 setName(response.data.name)   
                 setLastname(response.data.lastname)
             })
-            .catch(err => {
-                // console.log(err)
-            })
     }, [])
  
     const handleSubmit = (e) => {
@@ -30,6 +27,7 @@ const InfoUser = () => {
             lastname: lastname,
             address: address,
         };
+        localStorage.setItem('name', name);
         axios.put(`https://movies-52928.firebaseio.com/${id}/user.json/`,data)
             .then(res => {
                 toast.success('Info perso mise à jour.', {

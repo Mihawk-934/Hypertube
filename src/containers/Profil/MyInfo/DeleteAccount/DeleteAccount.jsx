@@ -46,7 +46,6 @@ const DeleteAccount = () => {
     if (localStorage.getItem('token')=== null){
         setTimeout(() => {
           return(history.push('/register'))
-        // return(window.location.reload(false))
         }, 3000);
     }
 

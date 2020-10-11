@@ -15,12 +15,9 @@ const InfoUser = () => {
         setId(localStorage.getItem('id'));
         let idLocal = localStorage.getItem('id');
         axios.get(`https://movies-52928.firebaseio.com/${idLocal}/mail.json/`)
-            .then(response => { 
-                setMail(response.data.mail) 
-            })
-            .catch(err => { 
-                //  console.log(err)
-            })
+        .then(response => { 
+            setMail(response.data.mail) 
+        })
     },[mail.length]) 
  
     const handleSubmitMail = (e) => {
@@ -31,8 +28,8 @@ const InfoUser = () => {
             returnSecureToken: true
         };
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
-            .then(response => { 
-                const mail = { mail : response.data.email };
+        .then(response => { 
+            const mail = { mail : response.data.email };
                 axios.put(`https://movies-52928.firebaseio.com/${id}/mail.json/`, mail)
                     .then(res => {  
                         toast.success('Info perso mise à jour.', {

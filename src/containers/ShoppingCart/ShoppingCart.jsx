@@ -27,7 +27,7 @@ const ShoppingCart = () => {
             .then(response => {setCbCompleted(response.data.number)})
             .catch(err => {})
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
-            .then(response => {setInfoUser(response.data.name) })
+            .then(response => {setInfoUser(`${response.data.lastname} ${response.data.name}`) })
             .catch(err => {})
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
             .then(response => {setMail(response.data.mail)})

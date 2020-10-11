@@ -37,7 +37,7 @@ class MoviesList extends Component {
   }
 
   newMovie = () => {
-    if (this.props.page > this.props.nbPage)  // this.props.nbPage !== 0 && 
+    if (this.props.page > this.props.nbPage)
       this.setState({ hasMore: false });
     else if (this.props.next === 'filtres')
       this.props.filtresRequest(this.props.filtres, this.props.page + 1);

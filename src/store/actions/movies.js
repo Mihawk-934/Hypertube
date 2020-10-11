@@ -58,7 +58,6 @@ export const popularRequest = (page) => {
         .then(response => {
             dispatch(movies(response.data.results, response.data.total_pages, page, 'popular'));
         })
-        .catch(err => console.log(err));
     }
 };
 
@@ -78,7 +77,6 @@ export const filtresRequest = (filtres, page) => {
             response.data.total_results === 0 ? noResult = true : noResult = false; 
             dispatch(movies(response.data.results, response.data.total_pages, page, 'filtres', noResult));
         })
-        .catch(err => console.log(err));
     }
 };
 
@@ -91,6 +89,5 @@ export const textSearchRequest = (textSearch, page) => {
             response.data.total_results === 0 ? noResult = true : noResult = false; 
             dispatch(movies(response.data.results, response.data.total_pages, page, 'textSearch', noResult));
         })
-        .catch(err => console.log(err));
     }
 };

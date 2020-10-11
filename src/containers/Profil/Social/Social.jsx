@@ -16,6 +16,7 @@ const Social = () => {
     const [ok1, setOk1] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [name,setName] = useState(null);
+    const [lastName, setLastName] = useState(null);
     const [mail, setMail] = useState('');
 
     const history = useHistory();
@@ -33,7 +34,10 @@ const Social = () => {
             .then(res => { setBtnNewsletter(res.data.newsletter);})
             .catch(err => {})
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
-            .then(res => {setName(res.data.name)})
+            .then(res => { 
+                setName(res.data.name)
+                setLastName(res.data.lastname)
+            })
             .catch(err => {})
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
             .then(response => {setMail(response.data.mail)})
@@ -61,9 +65,8 @@ const Social = () => {
             axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
                 .then(res => {
                     const templateId = 'template_eq0ley2'; 
-                    sendFeedback(templateId, {message_html: 'message_html', from_name: name, reply_to: mail});
+                    sendFeedback(templateId, {message_html: 'message_html', from_name: `${lastName} ${name}`, reply_to: mail});
                     toast.success("Vous etes maintenant abonneer a notre newsletter", {  className: "toastCss" })
-
                 })
                 .catch(err => {})
             : axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
@@ -71,8 +74,7 @@ const Social = () => {
                 .catch(err => {})
         }
            
-    }, [btnMembre, btnNewsletter, ok, ok1]);
-    //utiliser useCallbackwithtruc pour thcat();
+    }, [btnMembre, btnNewsletter, ok, ok1, tchat, mail, name, lastName]);
 
     const sendFeedback = (templateId, variables) => {
         window.emailjs.send('123456789', templateId,variables)
@@ -120,6 +122,8 @@ const Social = () => {
                     </div>
                 </div>
             </div>
+
+            {!localStorage.getItem('photoPhone') && 
             <div className="BlockContainer">
                 <div className="TitleBackground">
                     <h4 className='h4'>Newsletter</h4>
@@ -137,7 +141,7 @@ const Social = () => {
                         <ToastContainer transition={Zoom} position="top-center" pauseOnFocusLoss type="dark"/>
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }

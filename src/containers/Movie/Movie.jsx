@@ -50,7 +50,6 @@ class MovieId extends Component {
                 this.setState({movie: data})
                 }
             )
-            .catch(err => console.log(err));
     };
 
     submit = (e) => {

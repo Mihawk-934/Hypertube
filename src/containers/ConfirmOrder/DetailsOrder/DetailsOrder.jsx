@@ -18,14 +18,14 @@ const ConfirmOrder = () => {
         .catch(err => {})   
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
             .then(response => {setAdresse(response.data.address) })
-            .catch(err => console.log(err))  
+            .catch(err => {})  
     }, [])
 
     let recapCommande = (
         <ul className="GaucheCart" style={{padding:'0'}}>
             {command.map(movie => (
                 <li className="liMovie" key={movie.id}>
-                    <img className="imgMovie" style={{cursor:'none'}} src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id} />
+                    <img className="imgMovie" style={{cursor:'inhrit'}} src={`https://image.tmdb.org/t/p/w500${movie.img}`} alt={movie.id} />
                     <div className="infoMovie">
                         <p className='titleMovie'>{movie.title}</p>
                         <p className='pMovie'>Note {movie.note}/10</p>

@@ -112,12 +112,14 @@ export const authLogin = (email, password, history) => {
                 if(response.data.photo === true)
                     dispatch(photo(id));
             })
-            .catch(err => { console.log(err)})
             axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
             .then(res => {
                 dispatch(tchat(res.data.social))
             })
-            .catch(err => {})
+            axios.get(`https://movies-52928.firebaseio.com/${response.data.localId}/user.json/`)
+            .then(res => {
+                localStorage.setItem('name',res.data.name)
+            })
             localStorage.setItem('animation', true);
             localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('id', response.data.localId);
@@ -147,6 +149,11 @@ export const socialTwitter = (provider,history) => {
                 localStorage.setItem('photo', response.additionalUserInfo.profile.profile_image_url)
                 localStorage.setItem('email', response.user.email)
                 dispatch(authSuccess(response.credential.idToken, response.user.uid));
+                axios.get(`https://movies-52928.firebaseio.com/${response.user.uid}/social.json/`)
+                .then(res => {
+                    dispatch(tchat(res.data.social))
+                })
+                .catch(err => {})
                 history.push('/home');
             })
             .catch(err => {
@@ -167,6 +174,11 @@ export const socialAuth = (provider,history) => {
                 localStorage.setItem('photo', response.user.photoURL)
                 localStorage.setItem('email', response.user.email)
                 dispatch(authSuccess(response.credential.idToken, response.user.uid));
+                axios.get(`https://movies-52928.firebaseio.com/${response.user.uid}/social.json/`)
+                .then(res => {
+                    dispatch(tchat(res.data.social))
+                })
+                .catch(err => {})
                 history.push('/home');  
             })
             .catch(err => {
@@ -187,6 +199,11 @@ export const socialFacebook = (provider,history) => {
                 localStorage.setItem('photo', 'https://png.pngtree.com/png-clipart/20190927/ourlarge/pngtree-facebook-logo-png-in-golden-glitter-luxury-design-png-image_1762766.jpg');
                 localStorage.setItem('email', response.user.email)
                 dispatch(authSuccess(response.credential.idToken, response.user.uid));
+                axios.get(`https://movies-52928.firebaseio.com/${response.user.uid}/social.json/`)
+                .then(res => {
+                    dispatch(tchat(res.data.social))
+                })
+                .catch(err => {})
                 history.push('/home');  
             })
             .catch(err => {
@@ -202,8 +219,14 @@ export const authCheckState = () => {
         if (!token)
             dispatch(authLogout());
         else {
-            if (localStorage.getItem('photo') || localStorage.getItem('photoPhone'))
+            if (localStorage.getItem('photo') || localStorage.getItem('photoPhone')) {
                 dispatch(authSuccess(token,id)); 
+                axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
+                .then(res => {
+                    dispatch(tchat(res.data.social))
+                })
+                .catch(err => {})
+            }
             else {
                 dispatch(authSuccess(token,id));
                 axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
@@ -234,9 +257,6 @@ export const photo = (id) => {
         firebase.storage().ref(`images/${id}/image`).getDownloadURL()
             .then(function(url) {
                 dispatch(photoUrl(url))
-            })
-            .catch(err => {    
-                 console.log(err)
             })
     };
 };

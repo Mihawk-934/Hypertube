@@ -8,7 +8,7 @@ import SuperHeros from '../../../assets/avengers.png';
 import StarWars from '../../../assets/darkvador.png';
 
 const SliderHome = () => (
-    <Carousel className="Slider" indicators={false} controls={false} interval={4000}>
+    <Carousel className="Slider" indicators={false} controls={false} interval={3000}>
         <Carousel.Item className="SliderItem">
             <img className="ImgCarousel" src={Promo} alt="Promotions" />
         </Carousel.Item>

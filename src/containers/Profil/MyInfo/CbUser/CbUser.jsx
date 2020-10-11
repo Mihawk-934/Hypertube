@@ -23,9 +23,7 @@ const CbUser = () => {
                 setExpiry(response.data.expiry)  
                 setNumber(response.data.number)  
             })
-            .catch(err => {
-                // console.log(err)
-            })
+            .catch(err => {})
     }, []) 
  
     const handleSubmit = (e) => {

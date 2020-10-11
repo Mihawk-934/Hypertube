@@ -39,7 +39,6 @@ class PhotoUser extends Component {
                             ref.props.photoProfil(url);
                         }
                     })
-                    .catch(err => console.log(err))
                 }
                 else
                     this.setState({image : 'https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'})
@@ -55,29 +54,16 @@ class PhotoUser extends Component {
                     if(this.state.good) {
                         if (this.state.image !== undefined) {
                             storage.put(this.state.imageTmp)
-                                .then(res => { 
-                                    let ref = this
-                                    storage.getDownloadURL()
-                                        .then(function(url) {
-                                            ref.props.photoProfil(url);
-                                            ref.setState({image:url, good: false})
-                                            const photo = { photo : true };
-                                            axios.put(`https://movies-52928.firebaseio.com/${id}/photo.json/`, photo)
-                                                .then(res => {
-                                                    // console.log(res)
-                                                })
-                                                .catch(err => { 
-                                                    // console.log(err)
-                                                })
-                                        })
-                                        .catch(err => {
-                                            // console.log(err)
-                                        })
-                                //    console.log(res)
+                            .then(res => { 
+                                let ref = this
+                                storage.getDownloadURL()
+                                .then(function(url) {
+                                    ref.props.photoProfil(url);
+                                    ref.setState({image:url, good: false})
+                                    const photo = { photo : true };
+                                    axios.put(`https://movies-52928.firebaseio.com/${id}/photo.json/`, photo)
                                 })
-                                .catch(err => {
-                                    // console.log(err)
-                                })
+                            })
                         } 
                     }        
                 })
@@ -94,7 +80,7 @@ class PhotoUser extends Component {
                 <div className="BlockImageProfil">
                     <img src={this.state.image} className='ImgProfil'alt=''/>
                     {
-                        (!localStorage.getItem('photoPhone') && !localStorage.getItem('photoPhone')) && 
+                        (!localStorage.getItem('photo') && !localStorage.getItem('photoPhone')) && 
                         <div className='BlockLogo'>
                             <input style={{display: 'none'}} type='file' accept="image/*" onChange={this.handleChange} ref={fileInput => this.fileInput = fileInput}/>
                             <MdAddCircle className='LogoAdd' onClick={() => this.fileInput.click()}/>

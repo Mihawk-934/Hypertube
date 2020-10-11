@@ -15,21 +15,13 @@ const Presentation = (props) => {
         <Container>
             <Row>
                 <Col sm={12} md={4}>
-                    <>
-                        {/* { props.movie.poster_path ?  */}
-                        {props.movie.poster_path &&<Image style={{ width: "100%", height: "auto" }} src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`} alt={`poster ${props.movie.title}`}/>}
-                            {/* :  */}
-                            {/* <Image style={{ width: "100%", height: "auto" }} src={noFilm} alt={`poster ${props.movie.title}`}/> */}
-                        {/* } */}
-                    </>
+                    {props.movie.poster_path &&<Image style={{ width: "100%", height: "auto" }} src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`} alt={`poster ${props.movie.title}`}/>}
                     <Icons movie={props.movie}/>
-                    {/* {props.movie.youtubeKey && <Modal id={props.movie.youtubeKey}/>} */}
                 </Col>
                 <Col sm={12} md={8}>
                     <Row>
                         <Col sm={12} md={9} style={{marginTop:'10px'}}> 
                             <h1 className="TitreMovie2" style={{fontSize:'40px'}}>{props.movie.title} {props.movie.release_date && <span style={{fontStyle: 'italic', fontSize:'30px'}}>({props.movie.release_date})</span>} </h1>
-                            {/* <p><FaEye style={{color:"green", height:'20px', width:'20px'}}/> Deja vu</p> */}
                             <h5 className="TaglineMovie2">{props.movie.tagline}</h5>
                         </Col>
                         <Col sm={12} md={3}> 
@@ -54,8 +46,6 @@ const Presentation = (props) => {
                     </Row>
                     <Rubrique title='Genre' data={props.movie.genres} css="LiMovie" map={true}/>
                     <Rubrique title='Acteurs' data={props.movie.acteurs} map={true} img={true}/>
-                    {/* <Rubrique title='Producteurs' data={props.acteurs} map={true}/>
-                    <Rubrique title='Realisateur' data={props.acteurs} map={true}/> */}
                     <Rubrique title='Synopisis' data={props.movie.overview}/>
                 </Col>
             </Row>

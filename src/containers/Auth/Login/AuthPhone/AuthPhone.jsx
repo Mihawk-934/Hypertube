@@ -8,6 +8,7 @@ import MyInput from '../../../../components/MyInput/MyInput';
 import MyButton from '../../../../components/MyButton/MyButton';
 import '../../auth.css';
 import { checkInput } from '../../../../components/utility/utility';
+import axios from 'axios';
 
 class Phone extends Component {
     state = {
@@ -65,6 +66,11 @@ class Phone extends Component {
             localStorage.setItem('id',result.user.uid);
             localStorage.setItem('token', result.user.ma);
             localStorage.setItem('show', true);
+            axios.get(`https://movies-52928.firebaseio.com/${result.user.uid}/social.json/`)
+            .then(res => {
+                this.props.tchat(res.data.social)
+            })
+            .catch(err => {})
             this.props.onPhone(result.user.ma,result.user.uid);
             this.props.history.push('/home');
         })
@@ -136,7 +142,8 @@ class Phone extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onPhone: (token, userId) => dispatch(actions.authSuccess(token, userId))
+        onPhone: (token, userId) => dispatch(actions.authSuccess(token, userId)),
+        tchat: (data) => dispatch(actions.tchat(data))
     };
 };
 
