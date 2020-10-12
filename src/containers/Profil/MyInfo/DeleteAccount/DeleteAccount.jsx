@@ -2,36 +2,37 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Modal, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../../../store/actions/index';
 
 const DeleteAccount = () => {
-    const history = useHistory();
     const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
     const showAction = () => { dispatch(actions.hideToolbarAndFooter()) };
 
     const deleteAccount = () => {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:delete?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces',{"idToken": localStorage.getItem('token')}) 
-            .then(res =>{
-                toast.info('Votre a bien ete supprimer A bientot .', {
-                    autoClose: 3000,
-                    closeButton: false,
-                    className:'toastCss'
-                })
-                localStorage.clear();
-                showAction();
-                setModal(false);
+        .then(res =>{
+            toast.info('Votre a bien ete supprimer A bientot .', {
+                autoClose: 3000,
+                closeButton: false,
+                className:'toastCss'
             })
-            .catch(err => {
-                toast.error('Erreur, veuillez vous reconnectez 😮.',  {
-                    autoClose: 3000,
-                    closeButton: false,
-                    className:'toastCss'
-                })
+            localStorage.clear();
+            showAction();
+            setModal(false);
+            setTimeout(() => {
+                window.location.reload(false);
+            }, 3000);
+        })
+        .catch(err => {
+            toast.error('Erreur, veuillez vous reconnectez 😮.',  {
+                autoClose: 3000,
+                closeButton: false,
+                className:'toastCss'
             })
+        })
     }
 
     const Annuler = () => {
@@ -41,12 +42,6 @@ const DeleteAccount = () => {
             closeButton: false,
             className:'toastCss'
         })
-    }
-
-    if (localStorage.getItem('token')=== null){
-        setTimeout(() => {
-          return(history.push('/register'))
-        }, 3000);
     }
 
     return (

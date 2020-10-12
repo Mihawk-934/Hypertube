@@ -56,6 +56,24 @@ export const registerSuccess = (value) => {
     };
 };
 
+export const photoUrl = (url) => {
+    return {
+        type: actionTypes.PHOTO,
+        photo: url
+    }
+}
+
+export const photo = (id) => {
+    return dispatch => {
+        dispatch(authStart());
+        firebase.storage().ref(`images/${id}/image`).getDownloadURL()
+        .then(function(url) {
+            dispatch(photoUrl(url))
+        })
+        .catch(err => {})
+    };
+};
+
 export const tchat = (value) => {
     return {
         type: actionTypes.TCHAT,
@@ -112,103 +130,60 @@ export const authLogin = (email, password, history) => {
                 if(response.data.photo === true)
                     dispatch(photo(id));
             })
+            .catch(err => {})
             axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
             .then(res => {
                 dispatch(tchat(res.data.social))
             })
+            .catch(err => {})
             axios.get(`https://movies-52928.firebaseio.com/${response.data.localId}/user.json/`)
             .then(res => {
                 localStorage.setItem('name',res.data.name)
             })
+            .catch(err => {})
             localStorage.setItem('animation', true);
             localStorage.setItem('token', response.data.idToken);
-                localStorage.setItem('id', response.data.localId);
-                localStorage.setItem('email',response.data.email);
-                localStorage.setItem('noSocial', true);
-                dispatch(authSuccess(response.data.idToken, response.data.localId));
-                history.push('/home');
-            })
-            .catch(err => {
-                if (err.response.data.error.message === 'INVALID_PASSWORD')
-                    dispatch(errorServor('Mot de passe Invalid'));
-                else if (err.response.data.error.message === 'EMAIL_NOT_FOUND')
-                    dispatch(errorServor('Mail Invalid'));
-            })
+            localStorage.setItem('id', response.data.localId);
+            localStorage.setItem('email',response.data.email);
+            localStorage.setItem('noSocial', true);
+            dispatch(authSuccess(response.data.idToken, response.data.localId));
+            history.push('/home');
+        })
+        .catch(err => {
+            if (err.response.data.error.message === 'INVALID_PASSWORD')
+                dispatch(errorServor('Mot de passe Invalid'));
+            else if (err.response.data.error.message === 'EMAIL_NOT_FOUND')
+                dispatch(errorServor('Mail Invalid'));
+        })
     };
 };
 
-export const socialTwitter = (provider,history) => {
+export const socialAuth = (provider, history, name) => {
     return dispatch => {
         dispatch(authStart());
         firebase.auth().signInWithPopup(provider)
-            .then(response => {
-                localStorage.setItem('animation', true)
-                localStorage.setItem('id', response.user.uid)
-                localStorage.setItem('token', response.credential.accessToken)
-                localStorage.setItem('name', response.user.displayName)
+        .then(response => {
+            localStorage.setItem('animation', true)
+            localStorage.setItem('id', response.user.uid)
+            localStorage.setItem('token', response.credential.accessToken)
+            localStorage.setItem('name', response.user.displayName)
+            if (name === 'twitter')
                 localStorage.setItem('photo', response.additionalUserInfo.profile.profile_image_url)
-                localStorage.setItem('email', response.user.email)
-                dispatch(authSuccess(response.credential.idToken, response.user.uid));
-                axios.get(`https://movies-52928.firebaseio.com/${response.user.uid}/social.json/`)
-                .then(res => {
-                    dispatch(tchat(res.data.social))
-                })
-                .catch(err => {})
-                history.push('/home');
-            })
-            .catch(err => {
-                dispatch(authFail(err.message));
-            })  
-    };
-}
-
-export const socialAuth = (provider,history) => {
-    return dispatch => {
-        dispatch(authStart());
-        firebase.auth().signInWithPopup(provider)
-            .then(response => {
-                localStorage.setItem('animation', true)
-                localStorage.setItem('id', response.user.uid)
-                localStorage.setItem('token', response.credential.accessToken)
-                localStorage.setItem('name', response.user.displayName)
+            else if (name === 'gmail')
                 localStorage.setItem('photo', response.user.photoURL)
-                localStorage.setItem('email', response.user.email)
-                dispatch(authSuccess(response.credential.idToken, response.user.uid));
-                axios.get(`https://movies-52928.firebaseio.com/${response.user.uid}/social.json/`)
-                .then(res => {
-                    dispatch(tchat(res.data.social))
-                })
-                .catch(err => {})
-                history.push('/home');  
+            localStorage.setItem('email', response.user.email)
+            dispatch(authSuccess(response.credential.idToken, response.user.uid));
+            axios.get(`https://movies-52928.firebaseio.com/${response.user.uid}/social.json/`)
+            .then(res => {
+                dispatch(tchat(res.data.social))
             })
-            .catch(err => {
-                dispatch(authFail(err.message));
-            })  
-    };
-};
-
-export const socialFacebook = (provider,history) => {
-    return dispatch => {
-        dispatch(authStart());
-        firebase.auth().signInWithPopup(provider)
-            .then(response => {
-                localStorage.setItem('animation', true)
-                localStorage.setItem('id', response.user.uid)
-                localStorage.setItem('token', response.credential.accessToken)
-                localStorage.setItem('name', response.user.displayName)
-                localStorage.setItem('photo', 'https://png.pngtree.com/png-clipart/20190927/ourlarge/pngtree-facebook-logo-png-in-golden-glitter-luxury-design-png-image_1762766.jpg');
-                localStorage.setItem('email', response.user.email)
-                dispatch(authSuccess(response.credential.idToken, response.user.uid));
-                axios.get(`https://movies-52928.firebaseio.com/${response.user.uid}/social.json/`)
-                .then(res => {
-                    dispatch(tchat(res.data.social))
-                })
-                .catch(err => {})
-                history.push('/home');  
-            })
-            .catch(err => {
-                dispatch(authFail(err.message));
-            })  
+            .catch(err => {})
+            history.push('/home');  
+        })
+        .catch(err => {
+            console.log('errrr')
+            dispatch(authFail(err.message));
+        })  
     };
 };
 
@@ -219,44 +194,20 @@ export const authCheckState = () => {
         if (!token)
             dispatch(authLogout());
         else {
-            if (localStorage.getItem('photo') || localStorage.getItem('photoPhone')) {
-                dispatch(authSuccess(token,id)); 
-                axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
-                .then(res => {
-                    dispatch(tchat(res.data.social))
-                })
-                .catch(err => {})
-            }
-            else {
-                dispatch(authSuccess(token,id));
-                axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
-                .then(res => {
-                    dispatch(tchat(res.data.social))
-                })
-                .catch(err => {})
+            dispatch(authSuccess(token,id));
+            axios.get(`https://movies-52928.firebaseio.com/${id}/social.json/`)
+            .then(res => {
+                dispatch(tchat(res.data.social))
+            })
+            .catch(err => {})
+            if (localStorage.getItem('photo')=== null && localStorage.getItem('photoPhone') === null) {
                 axios.get(`https://movies-52928.firebaseio.com/${id}/photo.json/`)
                 .then(response => { 
                     if(response.data.photo === true)
                         dispatch(photo(id));
                 })
+                .catch(err => {})  
             }
         }
-    };
-};
-
-export const photoUrl = (url) => {
-    return {
-        type: actionTypes.PHOTO,
-        photo: url
-    }
-}
-
-export const photo = (id) => {
-    return dispatch => {
-        dispatch(authStart());
-        firebase.storage().ref(`images/${id}/image`).getDownloadURL()
-            .then(function(url) {
-                dispatch(photoUrl(url))
-            })
     };
 };

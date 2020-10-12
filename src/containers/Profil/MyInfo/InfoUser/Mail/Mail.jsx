@@ -18,7 +18,8 @@ const InfoUser = () => {
         .then(response => { 
             setMail(response.data.mail) 
         })
-    },[mail.length]) 
+        .catch(err => {})
+    }, [mail.length]) 
  
     const handleSubmitMail = (e) => {
         e.preventDefault(); 
@@ -30,29 +31,29 @@ const InfoUser = () => {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDPBaoPmbCgQfEQNz9VgHt88mGg6Jv4ces', authData)
         .then(response => { 
             const mail = { mail : response.data.email };
-                axios.put(`https://movies-52928.firebaseio.com/${id}/mail.json/`, mail)
-                    .then(res => {  
-                        toast.success('Info perso mise à jour.', {
-                            autoClose: 3000,
-                            closeButton: false,
-                            className: "toastCss"
-                        })
-                    })
-                    .catch(err => { 
-                        toast.error('Erreur, veuillez ressayer plus tard 😮.', {
-                            autoClose: 3000,
-                            closeButton: false,
-                            className: "toastCss"
-                        })
-                    })
+            axios.put(`https://movies-52928.firebaseio.com/${id}/mail.json/`, mail)
+            .then(res => {  
+                toast.success('Info perso mise à jour.', {
+                    autoClose: 3000,
+                    closeButton: false,
+                    className: "toastCss"
+                })
             })
-            .catch(err => {
+            .catch(err => { 
                 toast.error('Erreur, veuillez ressayer plus tard 😮.', {
                     autoClose: 3000,
                     closeButton: false,
                     className: "toastCss"
                 })
-            })      
+            })
+        })
+        .catch(err => {
+            toast.error('Erreur, veuillez ressayer plus tard 😮.', {
+                autoClose: 3000,
+                closeButton: false,
+                className: "toastCss"
+            })
+        })      
     }
  
     return (

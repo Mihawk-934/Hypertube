@@ -35,21 +35,22 @@ class MovieId extends Component {
 
     infoMovie = () => {
         axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=1e32f5c452c2267d5367589e9864ab1c&append_to_response=videos,credits,similar&language=fr`)
-            .then(response => {
-                let similar = response.data.similar.results.slice(0, 20).filter(movie => movie.poster_path !== null);
-                let acteurs = response.data.credits.cast.splice(0, 4);
-                acteurs = acteurs.map(acteur => {
-                    return {...acteur,
-                        img: true
-                    }
-                }) 
-                let youtubeKey = null
-                if (response.data.videos.results.length !== 0)
-                    youtubeKey = response.data.videos.results[0].key
-                let data = {...response.data, release_date: response.data.release_date.substr(0, 4), acteurs : acteurs, youtubeKey : youtubeKey, similar: similar}
-                this.setState({movie: data})
+        .then(response => {
+            let similar = response.data.similar.results.slice(0, 20).filter(movie => movie.poster_path !== null);
+            let acteurs = response.data.credits.cast.splice(0, 4);
+            acteurs = acteurs.map(acteur => {
+                return {...acteur,
+                    img: true
                 }
-            )
+            }) 
+            let youtubeKey = null
+            if (response.data.videos.results.length !== 0)
+                youtubeKey = response.data.videos.results[0].key
+            let data = {...response.data, release_date: response.data.release_date.substr(0, 4), acteurs : acteurs, youtubeKey : youtubeKey, similar: similar}
+            this.setState({movie: data})
+            }
+        )
+        .catch(err => {})
     };
 
     submit = (e) => {

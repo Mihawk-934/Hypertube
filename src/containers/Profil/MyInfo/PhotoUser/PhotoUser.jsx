@@ -3,19 +3,13 @@ import { connect } from 'react-redux';
 import { MdAddCircle } from 'react-icons/md';
 import * as actions from '../../../../store/actions/index';
 import firebase from '../../../../fire';
-import './PhotoUser.css';
 import axios from 'axios';
-
-let fileName = 'image';
-let newDirectory = localStorage.getItem('id');
-let id = localStorage.getItem('id');
-let storage = firebase.storage().ref(`images/${newDirectory}/${fileName}`);
+import './PhotoUser.css';
 
 class PhotoUser extends Component {
     state = {
         image: null,
-        imageTmp: null,
-        good: false
+        imageTmp: null
     }
 
     componentDidMount() {
@@ -29,10 +23,10 @@ class PhotoUser extends Component {
         }
         else {
             let ref = this
-            axios.get(`https://movies-52928.firebaseio.com/${id}/photo.json/`)
+            axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/photo.json/`)
             .then(response => { 
                 if(response.data.photo === true) {
-                    storage.getDownloadURL()
+                    firebase.storage().ref(`images/${localStorage.getItem('id')}/image`).getDownloadURL()
                     .then(function(url) {
                         if (url) {
                             ref.setState({image: url});
@@ -48,27 +42,25 @@ class PhotoUser extends Component {
     }
 
     handleChange = (e) => {
-        if (e.target.files[0]) {
-            if (e.target.files[0] !== this.state.image ) {
-                this.setState({imageTmp: e.target.files[0], good: true}, () => {
-                    if(this.state.good) {
-                        if (this.state.image !== undefined) {
-                            storage.put(this.state.imageTmp)
-                            .then(res => { 
-                                let ref = this
-                                storage.getDownloadURL()
-                                .then(function(url) {
-                                    ref.props.photoProfil(url);
-                                    ref.setState({image:url, good: false})
-                                    const photo = { photo : true };
-                                    axios.put(`https://movies-52928.firebaseio.com/${id}/photo.json/`, photo)
-                                })
-                            })
-                        } 
-                    }        
-                })
-            }            
-        }         
+        if ( e.target.files[0] && e.target.files[0] !== this.state.image ) {
+            this.setState({imageTmp: e.target.files[0]}, () => {
+                firebase.storage().ref(`images/${localStorage.getItem('id')}/image`).put(this.state.imageTmp)
+                .then(res => { 
+                    let ref = this
+                        firebase.storage().ref(`images/${localStorage.getItem('id')}/image`).getDownloadURL()
+                        .then(function(url) {
+                            ref.props.photoProfil(url);
+                            ref.setState({image:url})
+                            const photo = { photo : true };
+                            axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/photo.json/`, photo)
+                            .then(res => {})
+                            .catch(err => {})
+                        })
+                        .catch(err => {})
+                    })
+                .catch(err => {})
+            })
+        }              
     };
     
     render () {

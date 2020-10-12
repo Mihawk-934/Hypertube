@@ -4,6 +4,7 @@
 
 .NavUser, .NavIcon {
     margin: 10px;
+    cursor: pointer;
 }
 
 .User {

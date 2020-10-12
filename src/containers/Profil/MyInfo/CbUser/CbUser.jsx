@@ -17,13 +17,13 @@ const CbUser = () => {
     useEffect(() => {
         let idLocal = localStorage.getItem('id')
         axios.get(`https://movies-52928.firebaseio.com/${idLocal}/CarteBleu.json/`)
-            .then(response => {
-                setCvc(response.data.cvc) 
-                setName(response.data.name)   
-                setExpiry(response.data.expiry)  
-                setNumber(response.data.number)  
-            })
-            .catch(err => {})
+        .then(response => {
+            setCvc(response.data.cvc) 
+            setName(response.data.name)   
+            setExpiry(response.data.expiry)  
+            setNumber(response.data.number)  
+        })
+        .catch(err => {})
     }, []) 
  
     const handleSubmit = (e) => {
@@ -33,22 +33,22 @@ const CbUser = () => {
             number: number,
             cvc: cvc,
             expiry: expiry,
-         };
+        };
         axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/CarteBleu.json/`, data)
-            .then(response => {
-                toast.success('Carte Bleu mise à jour.', {
-                    autoClose: 3000,
-                    closeButton: false,
-                    className: "toastCss"
-                })
+        .then(response => {
+            toast.success('Carte Bleu mise à jour.', {
+                autoClose: 3000,
+                closeButton: false,
+                className: "toastCss"
             })
-            .catch(err => {
-                toast.error('Erreur, veuillez ressayer plus tard 😮.', {
-                    autoClose: 3000,
-                    closeButton: false,
-                    className: "toastCss"
-                })
-            })    
+        })
+        .catch(err => {
+            toast.error('Erreur, veuillez ressayer plus tard 😮.', {
+                autoClose: 3000,
+                closeButton: false,
+                className: "toastCss"
+            })
+        })    
     }
 
     return (

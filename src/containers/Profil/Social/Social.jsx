@@ -28,52 +28,51 @@ const Social = () => {
 
     useEffect(()=>{
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/social.json/`)
-            .then(res => { setBtnMembre(res.data.social);})
-            .catch(err => {})
+        .then(res => { setBtnMembre(res.data.social);})
+        .catch(err => {})
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`)
-            .then(res => { setBtnNewsletter(res.data.newsletter);})
-            .catch(err => {})
+        .then(res => { setBtnNewsletter(res.data.newsletter);})
+        .catch(err => {})
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/user.json/`)
-            .then(res => { 
-                setName(res.data.name)
-                setLastName(res.data.lastname)
-            })
-            .catch(err => {})
+        .then(res => { 
+            setName(res.data.name)
+            setLastName(res.data.lastname)
+        })
+        .catch(err => {})
         axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/mail.json/`)
-            .then(response => {setMail(response.data.mail)})
-            .catch(err => {setMail(localStorage.getItem('email'))})
-    },[])
+        .then(response => {setMail(response.data.mail)})
+        .catch(err => {setMail(localStorage.getItem('email'))})
+    }, [])
 
     useEffect(() => {
         if (ok) {
             btnMembre ? 
             axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
-                .then(res => {
-                    toast.success("Nous sommes heureux de vous compter parmis nos membres.", {  className: "toastCss" })
-                    tchat(btnMembre)
-                })
-                .catch(err => {})
-            : axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
-                .then(res => {
-                    toast.error("Nous sommes triste de ne plus vous compter parmis nos membres.", {  className: "toastCss" })
-                    tchat(btnMembre)
-                })
-                .catch(err => {})
+            .then(res => {
+                toast.success("Nous sommes heureux de vous compter parmis nos membres.", {  className: "toastCss" })
+                tchat(btnMembre)
+            })
+            .catch(err => {})
+        :   axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/social.json/`,{ social : btnMembre })
+            .then(res => {
+                toast.error("Nous sommes triste de ne plus vous compter parmis nos membres.", {  className: "toastCss" })
+                tchat(btnMembre)
+            })
+            .catch(err => {})
         } 
         if (ok1) {
             btnNewsletter ? 
             axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
-                .then(res => {
-                    const templateId = 'template_eq0ley2'; 
-                    sendFeedback(templateId, {message_html: 'message_html', from_name: `${lastName} ${name}`, reply_to: mail});
-                    toast.success("Vous etes maintenant abonneer a notre newsletter", {  className: "toastCss" })
-                })
-                .catch(err => {})
-            : axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
-                .then(res => toast.error("Vous etes desabonner a notre newsletter", {  className: "toastCss" }))
-                .catch(err => {})
+            .then(res => {
+                const templateId = 'template_eq0ley2'; 
+                sendFeedback(templateId, {message_html: 'message_html', from_name: `${lastName} ${name}`, reply_to: mail});
+                toast.success("Vous etes maintenant abonneer a notre newsletter", {  className: "toastCss" })
+            })
+            .catch(err => {})
+        :   axios.put(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/newsletter.json/`,{ newsletter : btnNewsletter })
+            .then(res => toast.error("Vous etes desabonner a notre newsletter", {  className: "toastCss" }))
+            .catch(err => {})
         }
-           
     }, [btnMembre, btnNewsletter, ok, ok1, tchat, mail, name, lastName]);
 
     const sendFeedback = (templateId, variables) => {
@@ -98,7 +97,6 @@ const Social = () => {
         else 
             setShowModal(true)   
     }
-
 
     return (
         <div className='PageMyInfo'>

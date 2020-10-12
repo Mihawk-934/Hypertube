@@ -16,7 +16,7 @@ const Home = () =>  {
     }, [dispatch]);
 
     useEffect(() => {
-        if (localStorage.hasOwnProperty('animation')) {
+        if (localStorage.getItem('animation')) {
             setTimeout(() => {
                 hideAction()
                 localStorage.removeItem('animation');

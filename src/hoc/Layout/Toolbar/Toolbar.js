@@ -21,6 +21,11 @@ const Toolbar = () => {
     else 
         photo = 'https://lebackyard.fr/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png';
 
+    const logOut = () => {
+        localStorage.clear();
+        window.location.reload(false);
+    }
+
     return (
         <Navbar collapseOnSelect expand="sm" className="Toolbar" variant="dark" style={{padding:'0'}}>
             <Navbar.Brand style={{padding:'0'}}><Logo/></Navbar.Brand>
@@ -35,9 +40,9 @@ const Toolbar = () => {
                     <NavLink to="/profil" className='NavUser'>
                         <Image src={photo} className='User' roundedCircle/>
                     </NavLink>
-                    <NavLink to="/logout" className='NavIcon'>
+                    <div onClick={logOut} className='NavIcon'>
                         <FiLogOut className="Icon"/>
-                    </NavLink>
+                    </div>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

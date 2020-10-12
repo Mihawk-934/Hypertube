@@ -13,11 +13,12 @@ const InfoUser = () => {
         setId(localStorage.getItem('id'));
         let idLocal = localStorage.getItem('id');
         axios.get(`https://movies-52928.firebaseio.com/${idLocal}/user.json/`)
-            .then(response => {
-                setAddress(response.data.address) 
-                setName(response.data.name)   
-                setLastname(response.data.lastname)
-            })
+        .then(response => {
+            setAddress(response.data.address) 
+            setName(response.data.name)   
+            setLastname(response.data.lastname)
+        })
+        .catch(err => {})
     }, [])
  
     const handleSubmit = (e) => {
@@ -29,20 +30,20 @@ const InfoUser = () => {
         };
         localStorage.setItem('name', name);
         axios.put(`https://movies-52928.firebaseio.com/${id}/user.json/`,data)
-            .then(res => {
-                toast.success('Info perso mise à jour.', {
-                    autoClose: 3000,
-                    closeButton: false,
-                    className: "toastCss"
-                })
+        .then(res => {
+            toast.success('Info perso mise à jour.', {
+                autoClose: 3000,
+                closeButton: false,
+                className: "toastCss"
             })
-            .catch(err => {
-                toast.error('Erreur, veuillez ressayer plus tard 😮.', {
-                    autoClose: 3000,
-                    closeButton: false,
-                    className: "toastCss"
-                })
-            })    
+        })
+        .catch(err => {
+            toast.error('Erreur, veuillez ressayer plus tard 😮.', {
+                autoClose: 3000,
+                closeButton: false,
+                className: "toastCss"
+            })
+        })    
     }
  
     return (

@@ -4,8 +4,6 @@ export {
     authLogin,
     authSuccess,
     socialAuth,
-    socialTwitter,
-    socialFacebook,
     errorServor,
     authCheckState,
     authLogout,

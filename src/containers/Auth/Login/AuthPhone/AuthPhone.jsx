@@ -44,15 +44,15 @@ class Phone extends Component {
         let phoneNumber = this.state.values.phone;
         let appVerifier = window.recaptchaVerifier;
         firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-            .then(confirmationResult => { 
-                this.setState({ show: true, disable : true }, () => {
-                    window.confirmationResult = confirmationResult;
-                    phoneNumber = null;
-                })
+        .then(confirmationResult => { 
+            this.setState({ show: true, disable : true }, () => {
+                window.confirmationResult = confirmationResult;
+                phoneNumber = null;
             })
-            .catch(error => {
-                this.setState({errorCatch:error.message})
-            });
+        })
+        .catch(error => {
+            this.setState({errorCatch:error.message})
+        });
     }
         
     receiveCode = (e) => {

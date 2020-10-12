@@ -27,7 +27,7 @@ const Layout = (props) =>  {
             <main>
                 {props.children}
             </main>
-            <ButtonTop />
+            { show && <ButtonTop /> }
             { show && <Footer /> }
             { show && tchat && <Tchat />}
         </>

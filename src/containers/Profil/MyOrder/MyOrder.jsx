@@ -6,10 +6,10 @@ const MyOrder = () => {
   const [orderUser, setOrderUser] = useState([]);
   useEffect(() => {
     axios.get(`https://movies-52928.firebaseio.com/${localStorage.getItem('id')}/Order.json/`)
-      .then(res => {
-        res.data !== null && setOrderUser(res.data)
-      })
-      .catch(err => {})   
+    .then(res => {
+      res.data !== null && setOrderUser(res.data)
+    })
+    .catch(err => {})   
   }, [])
 
   let order;
