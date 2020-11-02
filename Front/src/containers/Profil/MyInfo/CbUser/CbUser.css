@@ -1,0 +1,23 @@
+.BlockCbUser {
+    margin: 20px;
+}
+
+.blockCvcDate {
+    display: flex;
+    flex-direction: row; 
+    width: 70%;
+    margin: auto;
+}
+
+@media(max-width: 400px) {
+    .BlockCbUser {
+        margin: 0;
+        margin-top: 20px;
+    }
+}
+
+@media(max-width: 600px) {
+    .blockCvcDate {
+        width: 100%
+    }
+}
