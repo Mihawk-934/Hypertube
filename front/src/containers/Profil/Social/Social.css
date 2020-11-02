@@ -1,0 +1,54 @@
+.liSocial {
+    list-style: none;
+    color: black;
+    margin-top: 20px;
+}
+
+.liSocial:before {
+    content: '✓';
+    color: gold;
+    margin-right: 20px;
+}
+
+.h4Social {
+    color: black;
+}
+
+.Switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+.GaucheSocial {
+    width: 80%;
+    border-right: 2px solid grey;
+}
+
+.BlockSocial1, .BlockSocial2 {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+@media (max-width: 420px) {
+    .liSocial {
+        margin-top: 10px;
+    }
+    .Switch {
+        width: 100%;
+    }
+}
+
+@media (max-width: 852px) {
+    .BlockSocial1, .BlockSocial2 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .GaucheSocial {
+        width: 100%;
+        border-right: none;
+    }
+}

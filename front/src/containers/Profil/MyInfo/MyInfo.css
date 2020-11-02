@@ -1,0 +1,52 @@
+.PageMyInfo {
+    width: 100%;
+    font-family: PT Sans;
+}
+
+.BlockContainer {
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.TitleBackground {
+    background-image: radial-gradient(circle at 50% 50%, #ae0000, #000000);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.Title {
+    font-weight: bold;
+    color: black;
+} 
+
+.h4 {
+    margin-top: 10px;
+}
+
+.toastCss {
+    text-align: center;
+}
+
+/* ----- MyCaoursel ------ */
+
+.BlockMyList {
+    height: 550px;
+    margin: 20px;
+  }
+  
+  @media(max-width: 600px) {
+    .BlockMyList {
+        height: 330px;
+    }
+}
+
+@media (max-width: 490px) {
+    .toastCss {
+        width: 90%;
+    }
+}

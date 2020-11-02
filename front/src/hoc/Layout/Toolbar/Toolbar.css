@@ -1,0 +1,53 @@
+.Toolbar {
+    background-color: black;
+}
+
+.NavUser, .NavIcon {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.User {
+    width: 70px;
+    height: 70px;
+    border: 2px solid transparent;
+}
+
+.User:hover {
+    border: 2px solid white;
+}
+
+.NavIcon {
+    display:flex;
+    align-items: center;
+}
+
+.Icon {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.Icon:hover {
+    color: red; 
+}
+
+.NumberCart {
+    width: 23px;
+    position: absolute;
+    top: 38px;
+    text-align: center;
+    right: 179px;
+    color: white;
+}
+
+@media (max-width: 575px) {
+    .NavUser, .NavIcon {
+        display: flex;
+        flex-direction: column;
+        margin: 10px auto 10px;
+    }  
+    .NumberCart {
+        position: inherit;
+    }
+}
